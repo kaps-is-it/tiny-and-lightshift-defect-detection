@@ -1,0 +1,6 @@
+# Install the matching torch and torchvision builds from pytorch.org for your device.
+torch==2.11.0
+torchvision==0.26.0
+numpy==2.4.4
+scipy==1.17.1
+Pillow==12.2.0

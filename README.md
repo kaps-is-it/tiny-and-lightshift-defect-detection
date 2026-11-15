@@ -1,0 +1,55 @@
+# Detecting Tiny Industrial Defects Under Changing Light
+
+A faint scratch on a metal can can be visible in the original camera image and disappear when the image is resized for an inspection model. Change the lighting and a reflection can look like a scratch, or wash out the real one. On a production line, either problem can lead to good parts being rejected or defective parts making it through.
+
+This project tests how much detail an inspection model gains by looking at overlapping crops of the original image, and whether that gain holds when the lighting changes. It also tests whether checking a few known-good parts under the new light helps recover reliable pass/fail decisions.
+
+## First results
+
+On the MVTec AD 2 `can` public split, tiling raised average defect localization from **0.0% to 39.2% AU-PRO** across six lights. The tiled model still passed every defective capture at the validation-derived threshold. Its image-level AUROC averaged 38.0% across the six lighting groups, so the next experiment needs a better way to turn patch scores into part decisions.
+
+![Can localization and missed defects for three model variants across six lighting conditions](results/can_baseline.png)
+
+| Can model | Mean AU-PRO at 5% pixel FPR | Missed defects | False rejects | Median compute time |
+| --- | ---: | ---: | ---: | ---: |
+| Full frame | 0.0% | 73 / 90 | 13 / 72 | 30 ms |
+| Full frame with lighting augmentation | 15.0% | 58 / 90 | 22 / 72 | 29 ms |
+| Tiled | 39.2% | 90 / 90 | 15 / 72 | 168 ms |
+
+These are local results from 15 defective and 12 good scenes, each photographed six times. Compute time is measured on an RTX 5060 Laptop GPU and includes preprocessing and stitching, with image decoding timed outside it. MVTec's official leaderboard uses the private splits. [MVTec AD 2 benchmark](https://benchmark.mvtec.com/)
+
+The simpler `bottle` baseline caught all 63 defective test images and falsely rejected 3 of 20 good ones. In the `can` recalibration pilot, four reference parts reduced full-frame false rejects under `shift_3` from 3 to 0 out of 8 held-out good scenes. Missed defects in that condition rose from 7 to 11 out of 15. A threshold change alone offered little help on the tiled runs.
+
+## The experiment
+
+1. **Get the pipeline working.** Run PatchCore on the `bottle` category from the original MVTec AD and check its heatmaps against the defect masks.
+2. **Measure what resizing and lighting do.** Compare full-frame and tiled PatchCore on the same MVTec AD 2 `can` scenes photographed under six lighting conditions. Measure how often each method misses defects, rejects good parts, and correctly locates the defect. Record processing time per image.
+3. **Test a stronger detector.** Use SuperADD as a reference and test whether a finer-resolution pass improves localization. Repeat the comparison on `sheet_metal` and run a separate `can` pilot that adjusts the pass/fail threshold from a few known-good parts. [SuperADD report](https://arxiv.org/abs/2605.14808)
+
+## Run the baseline
+
+Use Python 3.11. Install matching PyTorch and torchvision builds for your device, then install the project dependencies. The experiments below used the CUDA 12.8 builds of PyTorch 2.11 and torchvision 0.26. [PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v2110)
+
+```sh
+python -m pip install -r requirements.txt
+```
+
+Extract the original MVTec AD to `MVTECH_ANAMOLY_DATASET` and MVTec AD 2 to `mvtec_ad_2_dataset`. You can pass `--dataset` to use a different folder.
+
+```sh
+python build_scene_manifest.py
+python run_experiment.py bottle
+python run_experiment.py can
+python run_experiment.py can --mode tiled
+python run_experiment.py can --augment-lighting
+python calibrate_lighting.py artifacts/can/full
+python calibrate_lighting.py artifacts/can/tiled
+```
+
+The manifest checks image-to-mask filenames and groups 162 `can` captures into 27 scenes. Each experiment writes per-image scores, per-lighting metrics, and sample visualizations under `artifacts/<category>/<mode>/`. CUDA is used when available. `--device cpu` forces a CPU run.
+
+The baseline uses a frozen ResNet-18 and a uniformly sampled memory bank of 4,096 patch features from good training images. Each variant sets its own pass/fail threshold at the 90th percentile of good regular-light validation scores, then keeps that threshold fixed for every test light. Tiled inference uses 256-pixel crops with at least 25% overlap. This is a PatchCore-style baseline with a simpler bank and score rule than the paper. Local AU-PRO uses 4,096 score bins at a 5% pixel false-positive limit. See the [project plan](PROJECT_PLAN.md) for the official benchmark protocol. [PatchCore paper](https://arxiv.org/abs/2106.08265)
+
+## Datasets
+
+Download the datasets from MVTec. Both are released under CC BY-NC-SA 4.0. [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad) · [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
