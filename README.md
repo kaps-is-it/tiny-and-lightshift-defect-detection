@@ -20,7 +20,9 @@ These are local results from 15 defective and 12 good scenes, each photographed 
 
 The simpler `bottle` baseline caught all 63 defective test images and falsely rejected 3 of 20 good ones. In the `can` recalibration pilot, four reference parts reduced full-frame false rejects under `shift_3` from 3 to 0 out of 8 held-out good scenes. Missed defects in that condition rose from 7 to 11 out of 15. A threshold change alone offered little help on the tiled runs.
 
-In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same observed false-reject counts. The original tiled heatmaps still gave the strongest localization.
+In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same pooled false-reject counts. The original tiled heatmaps still gave the strongest localization.
+
+In the [reduced SuperADD comparison](results/superadd.md), processing the native-scale image raised AU-PRO from 6.4% to 11.1%, while tiny-region overlap fell from 17.2% to 9.1%. Tiled PatchCore still led on overall localization for these local runs.
 
 ## The experiment
 

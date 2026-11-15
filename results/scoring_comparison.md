@@ -20,7 +20,7 @@ All four scores used the same tiled detector, training images, and public evalua
 | Spatial top tail | 60.7% | 16.1% | 69 / 90 | 14 / 72 |
 | Local contrast top tail | 47.2% | 20.6% | 64 / 90 | 21 / 72 |
 
-Spatial scoring improved the ranking by 22.8 points and reduced both errors at this operating point. Local contrast caught five more defective captures than spatial scoring and falsely rejected seven more good captures. The raw heatmap still gave the strongest localization. A system can use the raw map to show an inspector where to look and use a separate score to decide which parts need attention.
+Spatial scoring improved the ranking by 22.8 points and reduced both errors at this operating point. Local contrast caught five more defective captures than spatial scoring and falsely rejected seven more good captures. It still missed 64 of 90 defective captures. The raw heatmap gave the strongest localization. A system can use the raw map to show an inspector where to look and use a separate score to decide which parts need attention.
 
 AUROC and AU-PRO are averaged across the six lights. Error counts pool repeated captures of 15 defective and 12 good scenes, so the 162 decisions come from 27 independent scenes. The raw maximum row uses the same threshold subset as the other rows. The original README baseline used all 46 normal validation images to set its threshold.
 
