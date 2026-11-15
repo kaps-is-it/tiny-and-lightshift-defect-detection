@@ -110,14 +110,10 @@ def _localization_metrics(results: list[ImageResult], tiny_area_ratio: float) ->
     return metrics
 
 
-def summarize(
-    results: list[ImageResult], threshold: float, tiny_area_ratio: float = 0.0001
-) -> dict:
-    """Summarize one lighting group with a fixed image rejection threshold."""
+def summarize_decisions(results: list[ImageResult], threshold: float) -> dict:
+    """Measure part-level decisions and ranking at a fixed score threshold."""
     if not results:
         raise ValueError("No images to evaluate")
-    if not 0 < tiny_area_ratio <= 1:
-        raise ValueError("Tiny region area ratio must be in (0, 1]")
     scores = np.array([result.score for result in results], dtype=np.float64)
     if not (np.isfinite(scores).all() and np.isfinite(threshold)):
         raise ValueError("Image scores and threshold must be finite")
@@ -150,8 +146,16 @@ def summarize(
         "false_reject_rate": fp / negatives if negatives else None,
         "image_f1": 2 * tp / f1_denominator if f1_denominator else None,
         "image_auroc": image_auroc,
-        **_localization_metrics(results, tiny_area_ratio),
     }
+
+
+def summarize(
+    results: list[ImageResult], threshold: float, tiny_area_ratio: float = 0.0001
+) -> dict:
+    """Summarize decisions and pixel localization for one lighting group."""
+    if not 0 < tiny_area_ratio <= 1:
+        raise ValueError("Tiny region area ratio must be in (0, 1]")
+    return {**summarize_decisions(results, threshold), **_localization_metrics(results, tiny_area_ratio)}
 
 
 def save_overlay(

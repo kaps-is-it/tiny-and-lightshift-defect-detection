@@ -20,6 +20,8 @@ These are local results from 15 defective and 12 good scenes, each photographed 
 
 The simpler `bottle` baseline caught all 63 defective test images and falsely rejected 3 of 20 good ones. In the `can` recalibration pilot, four reference parts reduced full-frame false rejects under `shift_3` from 3 to 0 out of 8 held-out good scenes. Missed defects in that condition rose from 7 to 11 out of 15. A threshold change alone offered little help on the tiled runs.
 
+In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same observed false-reject counts. The original tiled heatmaps still gave the strongest localization.
+
 ## The experiment
 
 1. **Get the pipeline working.** Run PatchCore on the `bottle` category from the original MVTec AD and check its heatmaps against the defect masks.
@@ -44,6 +46,8 @@ python run_experiment.py can --mode tiled
 python run_experiment.py can --augment-lighting
 python calibrate_lighting.py artifacts/can/full
 python calibrate_lighting.py artifacts/can/tiled
+python compare_scoring.py can
+python compare_scoring.py sheet_metal
 ```
 
 The manifest checks image-to-mask filenames and groups 162 `can` captures into 27 scenes. Each experiment writes per-image scores, per-lighting metrics, and sample visualizations under `artifacts/<category>/<mode>/`. CUDA is used when available. `--device cpu` forces a CPU run.
