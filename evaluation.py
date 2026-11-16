@@ -159,7 +159,7 @@ def summarize(
 
 
 def save_overlay(
-    image_path: Path, result: ImageResult, out: Path, scale: tuple[float, float]
+    image_path: Path, result: ImageResult, out: Path, scale: tuple[float, float], *, decision: str = ""
 ) -> None:
     """Render the input, anomaly overlay, and pixel labels on a shared layout."""
     with Image.open(image_path) as opened:
@@ -192,7 +192,10 @@ def save_overlay(
     top = 62
     canvas = Image.new("RGB", (3 * width + 4 * gap, top + height + gap), (19, 23, 29))
     draw = ImageDraw.Draw(canvas)
-    draw.text((gap, 8), f"{result.scene} | {result.lighting} | score {result.score:.3f}", fill="white")
+    caption = f"{result.scene} | {result.lighting} | score {result.score:.3f}"
+    if decision:
+        caption += f" | {decision}"
+    draw.text((gap, 8), caption, fill="white")
     panels = (("Input", preview), ("Anomaly overlay", heatmap), ("Ground-truth mask", Image.fromarray(mask)))
     for index, (label, panel) in enumerate(panels):
         x = gap + index * (width + gap)

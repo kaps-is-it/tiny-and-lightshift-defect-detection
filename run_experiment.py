@@ -6,7 +6,7 @@ import json
 import random
 import time
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import numpy as np
@@ -16,7 +16,8 @@ from scipy.ndimage import gaussian_filter
 
 from build_scene_manifest import build_manifest
 from detector import PatchDetector
-from evaluation import ImageResult, save_overlay, summarize
+from evaluation import ImageResult, save_overlay, summarize, summarize_decisions
+from part_scoring import BACKGROUND_WINDOW, local_contrast_score
 
 
 INPUT_SIZE = 256
@@ -181,13 +182,22 @@ def run(args: argparse.Namespace) -> None:
     detector.fit(training_batches(views, tile_size, args.batch_size))
     fit_time = time.perf_counter() - started
     print(f"Reference bank ready in {fit_time:.1f}s; scoring {len(validation)} good validation images", flush=True)
-    validation_scores = [
-        float(predict_map(detector, read_image(path), tile_size, args.batch_size).max())
-        for path in validation
-    ]
-    threshold = float(np.quantile(validation_scores, 0.90))
+    validation_records = []
+    for path in validation:
+        anomaly_map = predict_map(detector, read_image(path), tile_size, args.batch_size)
+        record = {"image": path.relative_to(args.dataset).as_posix(), "score": float(anomaly_map.max())}
+        if args.compare_part_scores:
+            record["local_contrast_score"] = local_contrast_score(anomaly_map)
+        validation_records.append(record)
+    threshold = float(np.quantile([record["score"] for record in validation_records], 0.90))
+    local_threshold = None
+    if args.compare_part_scores:
+        normal_scores = [record["local_contrast_score"] for record in validation_records]
+        local_threshold = float(np.quantile(normal_scores, 0.90))
 
     variant = f"{args.mode}-augmented" if args.augment_lighting else args.mode
+    if args.compare_part_scores:
+        variant += "-paired"
     output = args.output / args.category / variant
     output.mkdir(parents=True, exist_ok=True)
     by_light = defaultdict(list)
@@ -195,9 +205,12 @@ def run(args: argparse.Namespace) -> None:
         by_light[capture.lighting].append(capture)
     records = []
     metrics = {}
+    local_metrics = {}
     for lighting in sorted(by_light, key=lambda name: (name != "regular", name)):
         results = []
+        local_results = []
         times = []
+        local_times = []
         for capture in by_light[lighting]:
             image = read_image(capture.image)
             started = time.perf_counter()
@@ -215,26 +228,47 @@ def run(args: argparse.Namespace) -> None:
                 capture.mask is not None, float(anomaly_map.max()), anomaly_map, mask,
             )
             results.append(result)
-            records.append({
+            record = {
                 "image": result.image, "scene": result.scene, "lighting": result.lighting,
                 "is_defective": result.is_defective, "score": result.score,
                 "rejected": result.score >= threshold, "inference_ms": elapsed,
-            })
+            }
+            if local_threshold is not None:
+                scoring_start = time.perf_counter()
+                local_score = local_contrast_score(anomaly_map)
+                local_elapsed = (time.perf_counter() - scoring_start) * 1000
+                local_times.append(local_elapsed)
+                local_results.append(replace(result, score=local_score))
+                record.update({
+                    "local_contrast_score": local_score,
+                    "local_contrast_rejected": local_score >= local_threshold,
+                    "local_contrast_ms": local_elapsed,
+                })
+            records.append(record)
 
         summary = summarize(results, threshold)
         summary["inference_ms_median"] = float(np.median(times))
         summary["inference_ms_p95"] = float(np.quantile(times, 0.95))
         metrics[lighting] = summary
+        local_summary = None
+        if local_threshold is not None:
+            local_summary = summarize_decisions(local_results, local_threshold)
+            local_summary["scoring_ms_median"] = float(np.median(local_times))
+            local_metrics[lighting] = local_summary
         for label, defective in (("good", False), ("defect", True)):
-            preview = next((result for result in results if result.is_defective == defective), None)
+            examples = local_results if local_threshold is not None else results
+            preview = next((result for result in examples if result.is_defective == defective), None)
             if preview:
-                save_overlay(args.dataset / preview.image, preview, output / f"{lighting}_{label}.png", (0.0, threshold))
-        print(f"{lighting}: {summary['fn']} missed, {summary['fp']} false rejects, {summary['inference_ms_median']:.0f} ms/image", flush=True)
+                decision = ""
+                if local_threshold is not None:
+                    verdict = "reject" if preview.score >= local_threshold else "pass"
+                    decision = f"local contrast {verdict}"
+                save_overlay(args.dataset / preview.image, preview, output / f"{lighting}_{label}.png", (0.0, threshold), decision=decision)
+        message = f"{lighting}: {summary['fn']} missed, {summary['fp']} false rejects, {summary['inference_ms_median']:.0f} ms/image"
+        if local_summary is not None:
+            message += f" | local contrast: {local_summary['fn']} missed, {local_summary['fp']} false rejects"
+        print(message, flush=True)
 
-    validation_records = [
-        {"image": path.relative_to(args.dataset).as_posix(), "score": score}
-        for path, score in zip(validation, validation_scores, strict=True)
-    ]
     write_predictions(output / "predictions.csv", records)
     write_predictions(output / "validation_scores.csv", validation_records)
     report = {
@@ -246,16 +280,24 @@ def run(args: argparse.Namespace) -> None:
         "fit_seconds": fit_time, "score_threshold": threshold, "by_lighting": metrics,
         "training_images": [path.relative_to(args.dataset).as_posix() for path in training],
     }
+    if local_threshold is not None:
+        report.update({
+            "local_contrast_threshold": local_threshold,
+            "local_contrast_window": BACKGROUND_WINDOW,
+            "local_contrast_top_fraction": 0.0001,
+            "local_contrast_by_lighting": local_metrics,
+        })
     (output / "metrics.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(f"Saved results to {output}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("category", choices=("bottle", "can", "sheet_metal"))
+    parser.add_argument("category", choices=("bottle", "can", "fabric", "sheet_metal", "wallplugs"))
     parser.add_argument("--dataset", type=Path, help="Override the extracted dataset location")
     parser.add_argument("--mode", choices=("full", "tiled"), default="full")
     parser.add_argument("--augment-lighting", action="store_true", help="Add one brightness/contrast variant per good training image")
+    parser.add_argument("--compare-part-scores", action="store_true", help="Compare raw maximum and local contrast on the same tiled heatmap")
     parser.add_argument("--tile-size", type=int, default=256, help="Native-pixel crop size for tiled mode")
     parser.add_argument("--bank-size", type=int, default=4096)
     parser.add_argument("--batch-size", type=int, default=32)
@@ -265,6 +307,8 @@ def main() -> None:
     args = parser.parse_args()
     if min(args.tile_size, args.bank_size, args.batch_size) <= 0:
         parser.error("Tile size, bank size, and batch size must be positive")
+    if args.compare_part_scores and args.mode != "tiled":
+        parser.error("The local-contrast score comparison requires tiled mode")
     if args.dataset is None:
         args.dataset = Path("MVTECH_ANAMOLY_DATASET" if args.category == "bottle" else "mvtec_ad_2_dataset")
     run(args)

@@ -10,10 +10,10 @@ from pathlib import Path
 import numpy as np
 import torch
 from PIL import Image
-from scipy.ndimage import uniform_filter
 
 from detector import PatchDetector
 from evaluation import ImageResult, summarize, summarize_decisions
+from part_scoring import BACKGROUND_WINDOW, local_contrast
 from run_experiment import (
     load_splits,
     predict_map,
@@ -26,12 +26,6 @@ from spatial_scoring import SpatialScorer
 
 
 TILE_SIZE = 256
-BACKGROUND_WINDOW = 65  # Slightly wider than eight feature strides in a native tile.
-
-
-def local_contrast(anomaly_map: np.ndarray) -> np.ndarray:
-    background = uniform_filter(anomaly_map, size=BACKGROUND_WINDOW, mode="reflect")
-    return np.maximum(anomaly_map - background, 0)
 
 
 def score_maps(anomaly_map: np.ndarray, spatial: SpatialScorer) -> dict[str, tuple[float, np.ndarray]]:
