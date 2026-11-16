@@ -22,6 +22,8 @@ The simpler `bottle` baseline caught all 63 defective test images and falsely re
 
 In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same pooled false-reject counts. The original tiled heatmaps still gave the strongest localization.
 
+The [transfer test on fabric and wall plugs](results/hybrid_transfer.md) kept those raw heatmaps and used local contrast only for part decisions. It produced fewer false rejects and more missed defects in both new categories at the tested thresholds.
+
 In the [reduced SuperADD comparison](results/superadd.md), processing the native-scale image raised AU-PRO from 6.4% to 11.1%, while tiny-region overlap fell from 17.2% to 9.1%. Tiled PatchCore still led on overall localization for these local runs.
 
 ## The experiment
