@@ -105,6 +105,9 @@ python run_detail.py can              # the branch and its numbers
 python run_detail.py sheet_metal fabric --synthetic 48
 python build_report.py                # results/ can head to the report
 python render_figures.py              # every figure in this README
+# champion archive (3-seed ensemble, MVTec checker passing):
+python prepare_submission.py --device cuda --output submission_ensemble --ensemble-seeds 42 7 1234
+python MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py submission_ensemble
 ```
 
 Everything runs on one laptop GPU (RTX 5060 Laptop, 8 GB) with CUDA.
@@ -130,7 +133,7 @@ The repository currently holds two locally validated benchmark archives, built f
 
 - Numbers here are from the **public** `can` split. This is the development set, and the public split materially flatters every configuration. The private split exists for a reason.
 - The branch encodes one physical fact — defects on this product are darker than local surround. It is valid on this set, across lighting conditions, and is explicitly per-category; it is not a universal anomaly prior.
-- The polarization is chosen on the public development split. That choice is disclosed in `artifacts/submission_ensemble_config.json` (and `submission/`'s own config before the file is moved aside) and is not a universal law.
+- The polarity is chosen on the public development split. That choice is disclosed in `artifacts/submission_ensemble_config.json` and is not a universal law.
 - The benchmark archive was built and locally validated, but has **not** been submitted to the official server. What the private leaderboard will say is currently unknown.
 - This is not a general-purpose defect detector; it is a careful study on what counts as defective on this material.
 
@@ -139,6 +142,7 @@ The repository currently holds two locally validated benchmark archives, built f
 MVTec AD and MVTec AD 2 are released by MVTec Software GmbH under CC BY-NC-SA 4.0; they are referenced here for attribution and disclosed non-commercially. The figures of results on the public can set are measurements, not representative of any other task.
 
 Report: [`results/project_report.md`](results/project_report.md)  
+One-page log of every variant measured: [`results/experiment_log.md`](results/experiment_log.md)  
 Transfer study and scoring comparison: [`results/scoring_comparison.md`](results/scoring_comparison.md)  
 Local validation log of the archive: [`results/detail_branch.md`](results/detail_branch.md)  
 

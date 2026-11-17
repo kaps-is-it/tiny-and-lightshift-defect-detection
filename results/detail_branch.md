@@ -29,6 +29,24 @@ Paired, per-seed gain of `hand_dark_w0.75` over the control:
 
 The branch is also used at weight 0.5 as the recommended operating point because the
 public development split favours it; it is the setting submitted by `prepare_submission.py`.
+The assembled champion is the 3-seed ensemble (`--ensemble-seeds 42 7 1234`), which adds
+a further ≈+1 AU-PRO and is the configuration signed off by the official checker at
+`submission_ensemble/` (see the README's per-category table).
+
+### Ensemble verification (this archive, all 8 categories)
+
+| Category | `submission/` (single-seed) | `submission_ensemble/` (3 seeds) | Δ |
+| --- | ---: | ---: | ---: |
+| can (dark) | 49.2 | **49.6** | +0.4 |
+| fabric | 36.1 | **38.1** | +2.0 |
+| fruit_jelly | 36.9 | **38.8** | +1.9 |
+| rice (dark) | 24.2 | **24.5** | +0.3 |
+| sheet_metal (bright) | 45.6 | **47.3** | +1.6 |
+| vial | 46.3 | **46.9** | +0.6 |
+| wallplugs | 36.5 | **40.2** | +3.7 |
+| walnuts | 58.0 | **59.1** | +1.1 |
+
+Both builds pass MVTec's checker locally ("All checks successful"); neither has been uploaded.
 
 ### Seed 42 detail
 
@@ -79,7 +97,7 @@ Findings:
 - `fabric` resists every branch equally; its texture amplifies under high-pass filtering.
 
 Set polarities are never fit on defect labels; they are chosen on the public
-development split and disclosed in `submission/config.json`.
+development split and disclosed in `artifacts/submission_ensemble_config.json`.
 
 ## Preparing the official submission
 
@@ -87,10 +105,13 @@ development split and disclosed in `submission/config.json`.
 mission on the public test split (development data only), and writes float16 TIFF maps downscaled to
 1/4 native size plus binary masks calibrated on good validation pixels (p99.5 by default, FAQ
 mean + 3 sigma as `--threshold-rule`). The script never uploads anything. Per-category choices are
-recorded in `submission/config.json` and follow from the public split; no private labels are
-consulted anywhere in the build. Maps are at 1/4 native resolution (`--map-downscale 1` restores
-native size), matching how many published VAND entries submit, so the server stores about 16 times
-fewer pixels than native.
+recorded in `artifacts/submission_ensemble_config.json` and follow from the public split; no
+private labels are consulted anywhere in the build. Maps are at 1/4 native resolution
+(`--map-downscale 1` restores native size), matching how many published VAND entries submit,
+so the server stores about 16 times fewer pixels than native. MVTec's official checker passes
+for both the single-seed and the ensemble archives (`submission/` and
+`submission_ensemble/`); both hold 4,090 float16 TIFF maps plus 4,090 binary `.png` masks
+and both are kept locally, gitignored, and un-uploaded.
 
 ## Official SuperADD comparator
 

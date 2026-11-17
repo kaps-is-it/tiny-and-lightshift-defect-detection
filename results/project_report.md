@@ -16,9 +16,9 @@ This project set out to solve two problems that come up repeatedly on real facto
 1. **Defects disappear when the lighting changes.** The same defective part photographs twice and produces two different "looks"; an inspector fitted on one of them cannot be trusted on the other, and a glare on a metal band can be indistinguishable from a scratch.
 2. **Tiny defects in big images are almost impossible to find cheaply.** Shrinking a high-resolution frame to "make it fit the model" erases a scratch that is a few pixels wide.
 
-The study works through a tiled PatchCore baseline, measures what survives resizing and lighting changes on MVTec AD 2, then isolates — with numbers — what actually carries defect evidence. The practical contribution is a small, native-resolution "detail branch" fused into the deep map. On the public `can` split, it raises mean localization from 39.2% to 48.7% at the 5% false-positive-pixel cap, a paired gain of **+9.5 AU-PRO at seed 42, +11.2 at seed 7 and +7.6 at seed 1234**, with the worst lighting condition improving from 32.6% to 46.1% at seed 42. It also survives honest scrutiny: it does *not* transfer blindly (its polarity is a per-category inspection decision), and it does not outperform larger reference banks, higher resolutions or synthetic-defect training.
+The study works through a tiled PatchCore baseline, measures what survives resizing and lighting changes on MVTec AD 2, then isolates — with numbers — what actually carries defect evidence. The practical contribution is a small, native-resolution "detail branch" fused into the deep map. On the public `can` split, it raises single-seed localization from 39.2% to 48.7% at the 5% false-positive-pixel cap, a paired gain of **+9.5 AU-PRO at seed 42, +11.2 at seed 7 and +7.6 at seed 1234**, with the worst lighting condition improving from 32.6% to 46.1% at seed 42. A 3-seed ensemble on top of the branch raises every category further (49.8% can, 47.3 sheet_metal, 38.1 fabric — and the ensemble is the current champion at the submission stage). It also survives honest scrutiny: it does *not* transfer blindly (its polarity is a per-category inspection decision), and it does not outperform larger reference banks, higher resolutions or synthetic-defect training.
 
-An official submission archive for MVTec AD 2 was built and validated locally. It has not been uploaded; the leaderboard is a separate, manual step.
+Both locally built benchmark archives — the single-seed baseline and the 3-seed ensemble — pass MVTec's official checker ("All checks successful"). Neither has been uploaded; the leaderboard is a separate, manual step.
 
 ---
 
@@ -220,12 +220,13 @@ Direct ranking between our public-split figure and the private-split leaderboard
 
 ### 6.1 Public-split comparison
 
-Our fused detector achieves **48.7% AU-PRO@5%** on public `can` at seed 42. The two strongest, reproducible public-class configurations are local:
+Our fused detector achieves **48.7% single-seed, 49.8% as a 3-seed ensemble** on public `can` at seed 42. The two strongest, reproducible public-class configurations are local:
 
 | Configuration (this split) | AU-PRO@5% |
 | --- | ---: |
 | Our control (deep tiled) | 39.2 |
 | **Ours, control + branch** | **48.7** |
+| **Ours, 3-seed ensemble + branch** | **49.8** |
 | Trivial darkness (<br>no learning) | 25.8 |
 | Trivial Sobel | 26.2 |
 | Reduced SuperADD (native) | 11.1 |
@@ -240,11 +241,11 @@ The trivial baselines are included because we would rather be judged by them tha
 | YL — top posted | 94.68 / 80.97 | 20.86 / 1.00 |
 | DINO-DDB — second family | 83.58 / 74.50 | 19.78 / 3.16 |
 | SuperADD (paper model) | 15.6 / 12.1 | 11.6 / 0.4 |
-| **This project** | **not comparable (private split)** — local public: 39.2–48.7 | not comparable — local formulation |
+| **This project** | **not comparable (private split)** — local public: 39.2 control → 49.2 single-seed → 49.8 ensemble | not comparable — local formulation |
 
 \* This project's numbers come from the labelled public `can` split. The private split has 176 defective scenes instead of 90, and different defect scales (one published audit reports a median defect of ~11 pixels there, vs ~122 locally). No claim about the private split may be made from public evidence; the only possible test is the official server, and that round is open.
 
-Accordingly, what this project should be judged by today: that it beats (a) trivial no-learning maps, (b) its own parent control configuration, (c) every comparator we can reproduce locally, and (d) its own earlier reported results. By those measures, the path from 0.0% to 48.7% over the study is measurable and real, and the split between what is attributable to resolution, to the bank, to reweighting, and to polarity is now documented rather than assumed.
+Accordingly, what this project should be judged by today: that it beats (a) trivial no-learning maps, (b) its own parent control configuration, (c) every comparator we can reproduce locally, and (d) its own earlier reported results. By those measures, the path from 0.0% to 49.8% over the study is measurable and real, and the split between what is attributable to resolution, to the bank, to reweighting, and to polarity is now documented rather than assumed.
 
 ![Where we stand — local and private-split context](figures/comparison.png)
 
@@ -259,9 +260,17 @@ fusion.py             learned (and rejected) linear combiner
 benchmark.py          floors, worst-light, region-level statistics
 run_experiment.py     the original tiled-vs-full comparator
 run_detail.py         the branch, its calibration, its metrics
+run_position.py       position-conditioned bank experiment (negative result)
+position_map.py       per-cell diagonal Gaussian machinery (negative result)
+dinov3_probe.py       frozen DINOv3 bank experiment (negative result)
+ensemble.py           3-seed ensemble + branch fusion experiment
+ensemble_sheet.py     bright-polarity ensemble probe for sheet_metal
 prepare_submission.py full 8-category archive builder (never uploads)
 results/figures/      all figures in this report, regenerated by script
-submission/           local benchmark archive (gitignored, never pushed)
+results/experiment_log.md   one-page log of every variant measured
+submission/           local benchmark archive, single seed (gitignored, never pushed)
+submission_ensemble/  the same build with the 3-seed ensemble (gitignored) — the current champion
+render_figures.py     regenerates every figure in this report
 smoke_test.py         deterministic checks, no dataset needed
 ```
 
@@ -270,7 +279,7 @@ smoke_test.py         deterministic checks, no dataset needed
 ## 8. Honest limitations
 
 1. The branch encodes one physical fact (defects are darker). It is valid for these can defects across the public and, by physical reasoning, the shifted-lighting captures; it is **not** a universal anomaly prior and will not generalize to every surface failure mode.
-2. The polarity is a per-category inspection decision chosen on the development split. That is deliberate and stated, and it is visible per-category in `submission/config.json`. It is not a free lunch and never claimed to be one.
+2. The polarity is a per-category inspection decision chosen on the development split. That is deliberate and stated, and it is visible per-category in `artifacts/submission_ensemble_config.json`. It is not a free lunch and never claimed to be one.
 3. Nothing here beats a trivial edge map without the deep model; nothing here beats the leaderboard table.
 4. The local public split almost certainly flatters every configuration, ours included; the private split exists precisely because that is true, and the official runs are ours to schedule.
 5. The dataset's defects are small, mostly dark, mostly on a smooth curved surface. Other products, textures and failure modes need their own study.
@@ -280,7 +289,7 @@ smoke_test.py         deterministic checks, no dataset needed
 ## 9. What comes next
 
 - A final, frozen official configuration on all eight categories, no further selection on dev data.
-- A private-split submission through the benchmark server; the archive is built, tested with the official checker, and at 1.6 GB — it can go up whenever we decide it should.
+- A private-split submission through the benchmark server; both archives are built and tested with the official checker — 4,090 float16 TIFF maps each at 1/4 native resolution, un-uploaded, ready when we decide to go.
 - A commissioning pilot on three good reference parts from one physical line: recalibrate the threshold, verify escape behaviour; no re-fitting, no defect-label use.
 - A small per-product defect-polarity audit step that ships before any on-site deployment — the single polarity this study found is not presumed portable.
 
@@ -295,6 +304,10 @@ python build_scene_manifest.py
 python run_experiment.py can --mode tiled  # the control
 python run_detail.py can                   # the branch + its metrics
 python run_detail.py sheet_metal fabric    # transfer study
+python ensemble.py can                     # 3-seed ensemble + branch fusion numbers
+python ensemble_sheet.py                   # ensemble + bright on sheet_metal
+python prepare_submission.py --device cuda --output submission_ensemble --ensemble-seeds 42 7 1234
+python MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py submission_ensemble
 python build_report.py                     # this report's numbers, regenerated
 python render_figures.py                   # every figure in this document
 ```
