@@ -1,0 +1,747 @@
+{
+  "dataset": {
+    "title": "MVTec AD 2",
+    "source": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+    "license": "CC BY-NC-SA 4.0"
+  },
+  "display": {
+    "anomaly_color": "inferno palette; min=0 and max=1.25 times each recorded normal-validation threshold",
+    "score": "raw image maximum divided by that variant's recorded rejection threshold; a dimensionless ratio",
+    "binary": "raw fusion map >= recorded rejection threshold",
+    "mask": "original capture-specific binary annotation, resized with nearest-neighbor interpolation"
+  },
+  "figures": {
+    "can_trials_01.png": {
+      "dimensions": [
+        1800,
+        1270
+      ],
+      "captures": [
+        {
+          "run": "artifacts/multiscale/full/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9331384301185608,
+          "threshold": 1.0282618403434753,
+          "recorded_predictions": "artifacts/multiscale/full/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/full/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/native/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9476379156112671,
+          "threshold": 0.97086501121521,
+          "recorded_predictions": "artifacts/multiscale/native/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/native/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/luma/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.973275899887085,
+          "threshold": 0.991988480091095,
+          "recorded_predictions": "artifacts/multiscale/luma/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/luma/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/retinex/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9316148161888123,
+          "threshold": 0.980797529220581,
+          "recorded_predictions": "artifacts/multiscale/retinex/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/retinex/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/augmented/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9242206811904907,
+          "threshold": 0.9910037517547607,
+          "recorded_predictions": "artifacts/multiscale/augmented/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/augmented/can/metrics.json"
+        }
+      ],
+      "source_detail": {
+        "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+        "scene": "can/bad/000",
+        "lighting": "regular",
+        "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+        "crop_xyxy": [
+          1825,
+          138,
+          1953,
+          266
+        ]
+      },
+      "selection": "The first defective regular-light capture, held constant for every configuration."
+    },
+    "can_trials_02.png": {
+      "dimensions": [
+        1800,
+        1270
+      ],
+      "captures": [
+        {
+          "run": "artifacts/multiscale/coreset/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9877122640609741,
+          "threshold": 1.0078662633895874,
+          "recorded_predictions": "artifacts/multiscale/coreset/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/coreset/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/convnext-native/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9509185552597046,
+          "threshold": 0.932241678237915,
+          "recorded_predictions": "artifacts/multiscale/convnext-native/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/convnext-native/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/gradient-native/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.9511073231697083,
+          "threshold": 0.9503779709339142,
+          "recorded_predictions": "artifacts/multiscale/gradient-native/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/gradient-native/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/synthetic-native/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 0.8410441875457764,
+          "threshold": 0.8675949573516846,
+          "recorded_predictions": "artifacts/multiscale/synthetic-native/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/synthetic-native/can/metrics.json"
+        },
+        {
+          "run": "artifacts/multiscale/distillation-native/can",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1825,
+            138,
+            1953,
+            266
+          ],
+          "map_source": "regenerated native-coordinate fusion",
+          "fusion_score": 1.0500378608703613,
+          "threshold": 1.2146481275558472,
+          "recorded_predictions": "artifacts/multiscale/distillation-native/can/predictions.csv",
+          "recorded_metrics": "artifacts/multiscale/distillation-native/can/metrics.json"
+        }
+      ],
+      "source_detail": {
+        "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+        "scene": "can/bad/000",
+        "lighting": "regular",
+        "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+        "crop_xyxy": [
+          1825,
+          138,
+          1953,
+          266
+        ]
+      },
+      "selection": "The first defective regular-light capture, held constant for every configuration."
+    },
+    "inspection_hero.png": {
+      "dimensions": [
+        1800,
+        1110
+      ],
+      "image": "mvtec_ad_2_dataset/can/test_public/bad/003_regular.png",
+      "scene": "can/bad/003",
+      "lighting": "regular",
+      "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_regular_mask.png",
+      "crop_xyxy": [
+        74,
+        505,
+        186,
+        617
+      ],
+      "selection": "Lowest numeric regular-light defective scene whose recorded native-fusion score exceeds its source-validation threshold.",
+      "run": "artifacts/multiscale/native/can",
+      "threshold": 0.97086501121521,
+      "score": 1.007663607597351,
+      "mask_pixels": 131,
+      "predicted_pixels": 46,
+      "correctly_predicted_pixels": 46,
+      "illustrative": true
+    },
+    "feature_branches.png": {
+      "dimensions": [
+        1800,
+        730
+      ],
+      "image": "mvtec_ad_2_dataset/can/test_public/bad/003_regular.png",
+      "scene": "can/bad/003",
+      "lighting": "regular",
+      "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_regular_mask.png",
+      "crop_xyxy": [
+        50,
+        481,
+        210,
+        641
+      ],
+      "run": "artifacts/multiscale/native/can",
+      "map_variants": [
+        "context",
+        "fine",
+        "fusion"
+      ]
+    },
+    "resolution_comparison.png": {
+      "dimensions": [
+        1800,
+        730
+      ],
+      "image": "mvtec_ad_2_dataset/can/test_public/bad/003_regular.png",
+      "scene": "can/bad/003",
+      "lighting": "regular",
+      "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_regular_mask.png",
+      "crop_xyxy": [
+        50,
+        481,
+        210,
+        641
+      ],
+      "runs": [
+        "artifacts/multiscale/full/can",
+        "artifacts/multiscale/native/can"
+      ],
+      "display_normalization": "Each score map divided by that model's own source-validation threshold; all color palettes span ratio 0\u20131.25."
+    },
+    "lighting_comparison.png": {
+      "dimensions": [
+        1800,
+        1175
+      ],
+      "run": "artifacts/multiscale/native/can",
+      "captures": [
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_regular.png",
+          "scene": "can/bad/003",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_regular_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 1.007663607597351,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_underexposed.png",
+          "scene": "can/bad/003",
+          "lighting": "underexposed",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_underexposed_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 0.9952341318130493,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_overexposed.png",
+          "scene": "can/bad/003",
+          "lighting": "overexposed",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_overexposed_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 1.0082814693450928,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_shift_1.png",
+          "scene": "can/bad/003",
+          "lighting": "shift_1",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_shift_1_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 0.9963735342025757,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_shift_2.png",
+          "scene": "can/bad/003",
+          "lighting": "shift_2",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_shift_2_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 1.0091321468353271,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/003_shift_3.png",
+          "scene": "can/bad/003",
+          "lighting": "shift_3",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/003_shift_3_mask.png",
+          "crop_xyxy": [
+            50,
+            481,
+            210,
+            641
+          ],
+          "score": 1.001923680305481,
+          "threshold": 0.97086501121521,
+          "rejected": true
+        }
+      ]
+    },
+    "failure_case.png": {
+      "dimensions": [
+        1800,
+        900
+      ],
+      "run": "artifacts/multiscale/native/can",
+      "captures": [
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "lighting": "regular",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "crop_xyxy": [
+            1809,
+            122,
+            1969,
+            282
+          ],
+          "score": 0.9476379156112671,
+          "threshold": 0.97086501121521,
+          "selection": "Miss = lowest numeric annotated scene. False reject = lowest numeric good scene falsely rejected by shift_1."
+        },
+        {
+          "image": "mvtec_ad_2_dataset/can/test_public/good/003_shift_1.png",
+          "scene": "can/good/003",
+          "lighting": "shift_1",
+          "crop_xyxy": [
+            743,
+            818,
+            904,
+            979
+          ],
+          "score": 1.075952410697937,
+          "threshold": 0.97086501121521,
+          "selection": "Miss = lowest numeric annotated scene. False reject = lowest numeric good scene falsely rejected by shift_1."
+        }
+      ]
+    },
+    "category_examples.png": {
+      "dimensions": [
+        1800,
+        1555
+      ],
+      "captures": [
+        {
+          "run": "artifacts/multiscale/native/can",
+          "saved_overlay": "artifacts/multiscale/native/can/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/can/test_public/bad/000_regular.png",
+          "scene": "can/bad/000",
+          "mask": "mvtec_ad_2_dataset/can/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.9476379156112671,
+          "threshold": 0.97086501121521,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            227
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            227
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/fabric",
+          "saved_overlay": "artifacts/multiscale/native/fabric/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/fabric/test_public/bad/000_regular.png",
+          "scene": "fabric/bad/000",
+          "mask": "mvtec_ad_2_dataset/fabric/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.9246652126312256,
+          "threshold": 0.9424289464950562,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            363
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            363
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/fruit_jelly",
+          "saved_overlay": "artifacts/multiscale/native/fruit_jelly/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/fruit_jelly/test_public/bad/000_regular.png",
+          "scene": "fruit_jelly/bad/000",
+          "mask": "mvtec_ad_2_dataset/fruit_jelly/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.901572585105896,
+          "threshold": 0.9770872831344605,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            323
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            323
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/rice",
+          "saved_overlay": "artifacts/multiscale/native/rice/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/rice/test_public/bad/000_regular.png",
+          "scene": "rice/bad/000",
+          "mask": "mvtec_ad_2_dataset/rice/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.8725999593734741,
+          "threshold": 0.9277514219284058,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            363
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            363
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/sheet_metal",
+          "saved_overlay": "artifacts/multiscale/native/sheet_metal/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/sheet_metal/test_public/bad/000_regular.png",
+          "scene": "sheet_metal/bad/000",
+          "mask": "mvtec_ad_2_dataset/sheet_metal/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.9215770363807678,
+          "threshold": 0.9464444637298584,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            152
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            152
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/vial",
+          "saved_overlay": "artifacts/multiscale/native/vial/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/vial/test_public/bad/000_regular.png",
+          "scene": "vial/bad/000",
+          "mask": "mvtec_ad_2_dataset/vial/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.9012182950973511,
+          "threshold": 0.9732483625411987,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            248,
+            382
+          ],
+          "saved_heatmap_box": [
+            260,
+            62,
+            496,
+            382
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/wallplugs",
+          "saved_overlay": "artifacts/multiscale/native/wallplugs/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/wallplugs/test_public/bad/000_regular.png",
+          "scene": "wallplugs/bad/000",
+          "mask": "mvtec_ad_2_dataset/wallplugs/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 0.8373925685882568,
+          "threshold": 1.0388432025909424,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            363
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            363
+          ]
+        },
+        {
+          "run": "artifacts/multiscale/native/walnuts",
+          "saved_overlay": "artifacts/multiscale/native/walnuts/regular-fusion.png",
+          "image": "mvtec_ad_2_dataset/walnuts/test_public/bad/000_regular.png",
+          "scene": "walnuts/bad/000",
+          "mask": "mvtec_ad_2_dataset/walnuts/test_public/ground_truth/bad/000_regular_mask.png",
+          "lighting": "regular",
+          "fusion_score": 1.0271685123443604,
+          "threshold": 1.0415380239486696,
+          "map_source": "input and heatmap panels cropped from the saved thumbnail preview",
+          "saved_input_box": [
+            12,
+            62,
+            372,
+            363
+          ],
+          "saved_heatmap_box": [
+            384,
+            62,
+            744,
+            363
+          ]
+        }
+      ],
+      "selection": "First defective regular-light capture in each category, using the exact saved native-fusion preview.",
+      "display": "Saved evaluation overlays normalize scores by their own validation threshold, clipping at 1.0 with a maximum color opacity of 0.7."
+    }
+  },
+  "regeneration_checks": {
+    "full": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "native": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/underexposed": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/overexposed": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/shift_1": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/shift_2": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "bad/003/shift_3": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      },
+      "good/003/shift_1": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "luma": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "retinex": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "augmented": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "coreset": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "convnext-native": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "gradient-native": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.0,
+        "fusion": 0.0
+      }
+    },
+    "synthetic-native": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 6.3478946685791016e-06,
+        "fusion": 7.927417755126953e-06
+      }
+    },
+    "distillation-native": {
+      "bad/000/regular": {
+        "context": 0.0,
+        "fine": 0.00011014938354492188,
+        "fusion": 3.218650817871094e-05
+      }
+    }
+  }
+}

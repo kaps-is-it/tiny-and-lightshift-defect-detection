@@ -1,0 +1,963 @@
+{
+  "retrieved_at_utc": "2026-11-17T21:16:18.586702+00:00",
+  "source": "https://benchmark.mvtec.com/",
+  "primary_feed": "https://www.benchmark.mvtec.com/v1/leaderboard",
+  "feed_sha256": "dcd2ebb09f47dcee37ec768e918c2a9aaa31301d3ea8fee972ceed3d102d04c9",
+  "entry_count": 1039,
+  "category_order": [
+    "can",
+    "fabric",
+    "fruit_jelly",
+    "rice",
+    "sheet_metal",
+    "vial",
+    "wallplugs",
+    "walnuts"
+  ],
+  "metric": "AU-PRO integrated to pixel FPR 0.05 with equal defect-region weighting",
+  "scope": {
+    "AucPro": "eight-category average on test_private",
+    "AucProMixed": "eight-category average on test_private_mixed",
+    "can": "first object column in organizer category order"
+  },
+  "maxima": {
+    "AucPro": {
+      "eight_category_mean": {
+        "score_percent": 88.72,
+        "entries": [
+          {
+            "methodName": "YL",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1794589071
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 94.68,
+        "entries": [
+          {
+            "methodName": "YL",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1794589071
+          }
+        ]
+      }
+    },
+    "AucProMixed": {
+      "eight_category_mean": {
+        "score_percent": 82.44,
+        "entries": [
+          {
+            "methodName": "DINO-DDBv10",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784544759
+          },
+          {
+            "methodName": "DINO-DDBv11",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784582336
+          },
+          {
+            "methodName": "DINO-DDB(CL-7)",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784257004
+          },
+          {
+            "methodName": "DINO-DDB(CL-6)",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784230257
+          },
+          {
+            "methodName": "DINO-DDB(CL-5)",
+            "publicationTitle": "",
+            "publicationAuthors": " LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784222626
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 80.97,
+        "entries": [
+          {
+            "methodName": "YL",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1794589071
+          }
+        ]
+      }
+    },
+    "SegF1": {
+      "eight_category_mean": {
+        "score_percent": 65.3,
+        "entries": [
+          {
+            "methodName": "VAND2025 WSEG",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "https://github.com/image-based-screen-industrial-detect/vand3.0/blob/master/vand3.0.pdf",
+            "projectUrl": "https://github.com/image-based-screen-industrial-detect/vand3.0",
+            "leaderboardDate": 1748334100
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 25.22,
+        "entries": [
+          {
+            "methodName": "test-0721",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784621766
+          }
+        ]
+      }
+    },
+    "SegF1Mixed": {
+      "eight_category_mean": {
+        "score_percent": 61.65,
+        "entries": [
+          {
+            "methodName": "DINO-DDB",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784813475
+          },
+          {
+            "methodName": "DINO-DDB0723",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784821293
+          },
+          {
+            "methodName": "DINO-DDB0726",
+            "publicationTitle": "",
+            "publicationAuthors": " LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1785046020
+          },
+          {
+            "methodName": "DINO-DDB0807",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1786099297
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 14.04,
+        "entries": [
+          {
+            "methodName": "VAND2025 WSEG",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "https://github.com/image-based-screen-industrial-detect/vand3.0/blob/master/vand3.0.pdf",
+            "projectUrl": "https://github.com/image-based-screen-industrial-detect/vand3.0",
+            "leaderboardDate": 1748334100
+          }
+        ]
+      }
+    },
+    "ClassF1": {
+      "eight_category_mean": {
+        "score_percent": 85.89,
+        "entries": [
+          {
+            "methodName": "CTDA+CGFA Ensemble--4",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1787951142
+          },
+          {
+            "methodName": "CTDA+CGFA Ensemble-7",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1788629301
+          },
+          {
+            "methodName": "CTDA+CGFA Ensemble--6",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1788586705
+          },
+          {
+            "methodName": "CTDA+CGFA Ensemble--5",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1787992418
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 75.7,
+        "entries": [
+          {
+            "methodName": "YL",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1794589071
+          }
+        ]
+      }
+    },
+    "ClassF1Mixed": {
+      "eight_category_mean": {
+        "score_percent": 84.5,
+        "entries": [
+          {
+            "methodName": "DINO-DDB",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784813475
+          },
+          {
+            "methodName": "DINO-DDB0723",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1784821293
+          },
+          {
+            "methodName": "DINO-DDB0726",
+            "publicationTitle": "",
+            "publicationAuthors": " LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1785046020
+          },
+          {
+            "methodName": "DINO-DDB0807",
+            "publicationTitle": "",
+            "publicationAuthors": "LIN",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1786099297
+          }
+        ]
+      },
+      "can": {
+        "score_percent": 73.15,
+        "entries": [
+          {
+            "methodName": "YL",
+            "publicationTitle": "",
+            "publicationAuthors": "",
+            "publicationUrl": "",
+            "projectUrl": "",
+            "leaderboardDate": 1794589071
+          }
+        ]
+      }
+    }
+  },
+  "selected_entries": [
+    {
+      "methodName": "SuperADD-A-B-Distilled",
+      "publicationTitle": "",
+      "publicationAuthors": "chenghe",
+      "publicationUrl": "",
+      "projectUrl": "",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1794453301,
+      "SegF1": {
+        "objScores": [
+          21.43,
+          86.67,
+          74.17,
+          75.89,
+          66.08,
+          63.18,
+          2.68,
+          71.77
+        ],
+        "avgScore": 57.74
+      },
+      "AucPro": {
+        "objScores": [
+          67.56,
+          86.85,
+          70.03,
+          75.05,
+          74.43,
+          83.02,
+          44.33,
+          79.62
+        ],
+        "avgScore": 72.61
+      },
+      "ClassF1": {
+        "objScores": [
+          69.45,
+          78.32,
+          88.27,
+          81.13,
+          89.79,
+          87.61,
+          58.73,
+          76.03
+        ],
+        "avgScore": 78.66
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          0.82,
+          82.83,
+          73.84,
+          76.64,
+          67.32,
+          61.96,
+          1.91,
+          71.69
+        ],
+        "avgScore": 54.62
+      },
+      "AucProMixed": {
+        "objScores": [
+          51.41,
+          87.85,
+          69.52,
+          76.04,
+          74.57,
+          79.68,
+          32.64,
+          76.64
+        ],
+        "avgScore": 68.54
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          69.17,
+          78.62,
+          87.06,
+          81.25,
+          91.0,
+          84.61,
+          66.23,
+          73.65
+        ],
+        "avgScore": 78.95
+      }
+    },
+    {
+      "methodName": "YL",
+      "publicationTitle": "",
+      "publicationAuthors": "",
+      "publicationUrl": "",
+      "projectUrl": "",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1773625055,
+      "SegF1": {
+        "objScores": [
+          16.13,
+          45.96,
+          41.04,
+          71.11,
+          72.52,
+          43.92,
+          7.25,
+          67.71
+        ],
+        "avgScore": 45.7
+      },
+      "AucPro": {
+        "objScores": [
+          40.57,
+          64.06,
+          64.27,
+          71.25,
+          83.13,
+          69.79,
+          19.94,
+          82.02
+        ],
+        "avgScore": 61.88
+      },
+      "ClassF1": {
+        "objScores": [
+          45.48,
+          76.38,
+          90.09,
+          81.29,
+          91.74,
+          85.58,
+          47.05,
+          85.16
+        ],
+        "avgScore": 75.35
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          6.25,
+          41.35,
+          40.17,
+          71.7,
+          72.78,
+          40.07,
+          4.95,
+          65.95
+        ],
+        "avgScore": 42.9
+      },
+      "AucProMixed": {
+        "objScores": [
+          34.75,
+          66.69,
+          64.18,
+          72.32,
+          81.77,
+          63.28,
+          13.78,
+          79.14
+        ],
+        "avgScore": 59.49
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          30.57,
+          76.95,
+          89.38,
+          82.69,
+          88.41,
+          84.73,
+          46.84,
+          84.03
+        ],
+        "avgScore": 72.95
+      }
+    },
+    {
+      "methodName": "VAND2026_regular CAT",
+      "publicationTitle": "",
+      "publicationAuthors": "",
+      "publicationUrl": "https://github.com/VisualScienceLab-KHU/VAND2026_CAT/blob/main/vand4.0.pdf",
+      "projectUrl": "https://github.com/VisualScienceLab-KHU/VAND2026_CAT",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1778840037,
+      "SegF1": {
+        "objScores": [
+          17.8,
+          43.5,
+          38.35,
+          69.17,
+          66.43,
+          41.41,
+          11.7,
+          65.73
+        ],
+        "avgScore": 44.26
+      },
+      "AucPro": {
+        "objScores": [
+          51.36,
+          91.63,
+          74.71,
+          68.74,
+          67.21,
+          73.9,
+          66.88,
+          82.91
+        ],
+        "avgScore": 72.17
+      },
+      "ClassF1": {
+        "objScores": [
+          20.19,
+          87.24,
+          84.01,
+          71.57,
+          85.02,
+          83.54,
+          67.28,
+          90.78
+        ],
+        "avgScore": 73.7
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          3.48,
+          35.84,
+          38.48,
+          69.33,
+          63.74,
+          38.31,
+          4.76,
+          62.01
+        ],
+        "avgScore": 39.49
+      },
+      "AucProMixed": {
+        "objScores": [
+          41.46,
+          86.91,
+          74.56,
+          69.48,
+          63.88,
+          69.55,
+          45.36,
+          79.14
+        ],
+        "avgScore": 66.29
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          52.88,
+          80.36,
+          83.82,
+          74.75,
+          85.2,
+          83.54,
+          67.36,
+          84.41
+        ],
+        "avgScore": 76.54
+      }
+    },
+    {
+      "methodName": "YL",
+      "publicationTitle": "",
+      "publicationAuthors": "",
+      "publicationUrl": "",
+      "projectUrl": "",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1792679276,
+      "SegF1": {
+        "objScores": [
+          13.96,
+          66.13,
+          49.28,
+          71.91,
+          67.08,
+          51.86,
+          3.32,
+          64.46
+        ],
+        "avgScore": 48.5
+      },
+      "AucPro": {
+        "objScores": [
+          85.09,
+          97.4,
+          86.7,
+          87.43,
+          94.45,
+          79.92,
+          74.85,
+          89.48
+        ],
+        "avgScore": 86.91
+      },
+      "ClassF1": {
+        "objScores": [
+          72.14,
+          83.01,
+          83.82,
+          79.12,
+          86.06,
+          91.98,
+          74.93,
+          74.99
+        ],
+        "avgScore": 80.76
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          0.84,
+          34.24,
+          49.5,
+          71.78,
+          58.99,
+          42.6,
+          0.39,
+          39.18
+        ],
+        "avgScore": 37.19
+      },
+      "AucProMixed": {
+        "objScores": [
+          64.67,
+          94.8,
+          86.1,
+          87.77,
+          93.5,
+          73.94,
+          41.18,
+          81.54
+        ],
+        "avgScore": 77.94
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          69.95,
+          79.29,
+          83.82,
+          79.56,
+          85.48,
+          85.9,
+          74.17,
+          74.38
+        ],
+        "avgScore": 79.07
+      }
+    },
+    {
+      "methodName": "YL",
+      "publicationTitle": "",
+      "publicationAuthors": "",
+      "publicationUrl": "",
+      "projectUrl": "",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1794589071,
+      "SegF1": {
+        "objScores": [
+          20.86,
+          80.6,
+          58.65,
+          72.74,
+          63.15,
+          51.48,
+          38.88,
+          72.67
+        ],
+        "avgScore": 57.38
+      },
+      "AucPro": {
+        "objScores": [
+          94.68,
+          98.29,
+          87.54,
+          78.42,
+          95.36,
+          84.43,
+          80.22,
+          90.78
+        ],
+        "avgScore": 88.72
+      },
+      "ClassF1": {
+        "objScores": [
+          75.7,
+          84.56,
+          89.06,
+          72.56,
+          92.23,
+          92.07,
+          81.69,
+          83.97
+        ],
+        "avgScore": 83.98
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          1.0,
+          55.25,
+          56.97,
+          72.67,
+          62.14,
+          35.49,
+          1.91,
+          43.22
+        ],
+        "avgScore": 41.08
+      },
+      "AucProMixed": {
+        "objScores": [
+          80.97,
+          97.17,
+          86.7,
+          78.04,
+          94.84,
+          66.46,
+          51.95,
+          84.31
+        ],
+        "avgScore": 80.06
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          73.15,
+          80.26,
+          91.04,
+          71.34,
+          91.07,
+          85.77,
+          74.55,
+          82.56
+        ],
+        "avgScore": 81.22
+      }
+    },
+    {
+      "methodName": "YL",
+      "publicationTitle": "",
+      "publicationAuthors": "",
+      "publicationUrl": "",
+      "projectUrl": "",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1793278812,
+      "SegF1": {
+        "objScores": [
+          16.69,
+          75.89,
+          58.09,
+          75.05,
+          59.35,
+          52.71,
+          37.75,
+          71.44
+        ],
+        "avgScore": 55.87
+      },
+      "AucPro": {
+        "objScores": [
+          89.62,
+          97.78,
+          89.6,
+          84.72,
+          95.0,
+          81.18,
+          78.64,
+          90.07
+        ],
+        "avgScore": 88.33
+      },
+      "ClassF1": {
+        "objScores": [
+          70.27,
+          86.14,
+          90.86,
+          77.9,
+          94.17,
+          92.82,
+          69.46,
+          85.52
+        ],
+        "avgScore": 83.39
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          0.6,
+          41.31,
+          57.83,
+          75.19,
+          58.03,
+          36.22,
+          2.36,
+          35.89
+        ],
+        "avgScore": 38.43
+      },
+      "AucProMixed": {
+        "objScores": [
+          61.08,
+          95.95,
+          88.82,
+          85.03,
+          94.31,
+          63.97,
+          49.57,
+          78.92
+        ],
+        "avgScore": 77.21
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          70.96,
+          79.35,
+          90.67,
+          79.66,
+          91.3,
+          85.96,
+          71.24,
+          82.24
+        ],
+        "avgScore": 81.42
+      }
+    },
+    {
+      "methodName": "VAND2026_regular SuperADD",
+      "publicationTitle": "SuperADD Training-free Class-agnostic Anomaly Segmentation",
+      "publicationAuthors": "Lukas Roming + Felix Lehnerer + Jonas Vilho Funk + Andreas Michel",
+      "publicationUrl": "https://arxiv.org/abs/2605.14808",
+      "projectUrl": "https://github.com/LukasRoom/SuperADD",
+      "projectRuntime": 0.0,
+      "projectMemory": 0.0,
+      "leaderboardDate": 1778685859,
+      "SegF1": {
+        "objScores": [
+          11.59,
+          88.47,
+          68.03,
+          73.83,
+          55.74,
+          64.37,
+          26.43,
+          70.88
+        ],
+        "avgScore": 57.42
+      },
+      "AucPro": {
+        "objScores": [
+          15.64,
+          63.87,
+          55.53,
+          70.54,
+          72.1,
+          76.2,
+          59.18,
+          77.82
+        ],
+        "avgScore": 61.36
+      },
+      "ClassF1": {
+        "objScores": [
+          22.64,
+          63.23,
+          81.11,
+          70.46,
+          90.9,
+          88.99,
+          50.76,
+          76.14
+        ],
+        "avgScore": 68.03
+      },
+      "SegF1Mixed": {
+        "objScores": [
+          0.38,
+          86.14,
+          67.75,
+          74.32,
+          55.47,
+          63.52,
+          18.38,
+          68.84
+        ],
+        "avgScore": 54.35
+      },
+      "AucProMixed": {
+        "objScores": [
+          12.11,
+          64.7,
+          55.67,
+          71.42,
+          70.86,
+          74.14,
+          49.47,
+          74.14
+        ],
+        "avgScore": 59.07
+      },
+      "ClassF1Mixed": {
+        "objScores": [
+          54.98,
+          67.13,
+          82.09,
+          70.25,
+          90.82,
+          87.03,
+          59.39,
+          74.3
+        ],
+        "avgScore": 73.25
+      }
+    }
+  ],
+  "protocol_source": "https://link.springer.com/article/10.1007/s11263-026-02743-0",
+  "methodology_sources": {
+    "CAT": "https://github.com/VisualScienceLab-KHU/VAND2026_CAT/tree/9038ee3dddf947f30c61251c6fce898f2334ba6c",
+    "SuperADD": "https://arxiv.org/abs/2605.14808",
+    "SuperADD_implementation": "https://github.com/LukasRoom/SuperADD/tree/44cf25144442fbbc1334ea59d1632327a4376d1a"
+  },
+  "comparability": {
+    "official": "Organizer-computed private-split scores across eight categories. Regular and mixed are different split columns.",
+    "local": "This repository uses the labeled public split, estimates localization with 4096 common-score bins and averages lighting groups equally within categories. Its changed-light public Can rows measure different captures from official Can mixed rows.",
+    "part_decisions": "Official classification F1 uses any positive submitted mask pixel. The repository default normal-validation image-score rule and its released-model mask rules are documented separately.",
+    "model_identity": "Similar or identical submission names do not establish identical implementations or author identity. YL has no linked paper, source or authors in the feed. Highest mixed-average DINO-DDB entries list LIN but no linked paper or source.",
+    "original_paper": "The original benchmark paper below-60-percent context uses AU-PRO at FPR 0.30. The paper reports 31.6 percent maximum mean AU-PRO at FPR 0.05 for its evaluated 256px regular private baselines. These historical baselines differ from current leaderboard maxima."
+  },
+  "verified_method_details": {
+    "CAT": {
+      "official_submission": "VAND2026_regular CAT",
+      "title": "CAT: Structure-Aware Feature Refinement for Fine-Grained Industrial Anomaly Segmentation",
+      "authors": [
+        "Wongyu Lee",
+        "SeungJae Kim",
+        "SuYeon Kim",
+        "KunHo Heo",
+        "MyeongAh Cho"
+      ],
+      "affiliation": "Kyung Hee University",
+      "report": "https://github.com/VisualScienceLab-KHU/VAND2026_CAT/blob/9038ee3dddf947f30c61251c6fce898f2334ba6c/vand4.0.pdf",
+      "method": "Frozen DINOv3 ViT-L/16 encoder and normal-only trained INP-Former prototype/decoder modules with graph-attention and local-context refinement. Cosine encoder-decoder residual maps.",
+      "published_private_regular_mean_segmentation_f1_percent": 44.26,
+      "published_private_mixed_mean_segmentation_f1_percent": 39.49
+    },
+    "SuperADD": {
+      "official_submission": "VAND2026_regular SuperADD",
+      "authors": [
+        "Lukas Roming",
+        "Felix Lehnerer",
+        "Jonas V. Funk",
+        "Andreas Michel",
+        "Georg Maier",
+        "Thomas Längle",
+        "Jürgen Beyerer"
+      ],
+      "method": "Frozen DINOv3 embeddings, overlapping windows, intensity augmentation for normal-reference construction, nearest-neighbor memory-bank scoring, and iterative binary morphological closing.",
+      "published_private_regular_mean_segmentation_f1_percent": 57.42,
+      "published_private_mixed_mean_segmentation_f1_percent": 54.35,
+      "paper_public_can_pixel_f1_percent": 0.0,
+      "paper_table1_metric_caution": "The paper labels its public table AU-ROC_0.05. It must not be silently relabeled as AU-PRO or compared numerically with this repository’s AU-PRO."
+    }
+  }
+}

@@ -192,8 +192,8 @@ def main() -> None:
             "reinspection_note": (
                 "The alternate view is a preexisting benchmark capture. The OR policy retries regular-view "
                 "passes and rejects if either view rejects. The two-vote policy retries regular-view rejects "
-                "and rejects only if both views reject. Costs sum recorded map compute times for the views used "
-                "and exclude camera and station overhead."
+                "and rejects only if both views reject. Costs sum the recorded map compute times "
+                "of the dataset views used by the policy."
             ),
             "runs": runs,
         }

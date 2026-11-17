@@ -1,79 +1,139 @@
-# Detecting Tiny Industrial Defects Under Changing Light
+# Tiny Defects Under Changing Light
 
-A faint scratch can disappear when a camera image is resized for a vision model. A different light can wash out that same scratch or turn a reflection into a false alarm. This project measures both failures on manufactured parts photographed repeatedly under controlled changes in lighting.
+**Industrial anomaly detection · Computer vision · PyTorch · MVTec AD 2**
 
-The inspector models normal appearance from defect-free images. It scans overlapping crops of each full-resolution capture, scores fine detail and surrounding context, and stitches the scores back into the camera coordinates. The experiments track localization and part decisions separately. A heatmap can point to the right scratch even when an inspection threshold passes the defective part.
+I started this project after reading about defect detectors becoming unreliable when lighting changes or reflections appear. Tiny scratches added another problem. Resizing a large image could remove the very detail the model needed to inspect.
 
-## Results
+I wanted to see how much of that I could solve using MVTec's existing images. I built a normal-image inspector, tested ten configurations on Can, checked transfer across all eight AD 2 categories, and ran the released CAT and SuperADD models on the same public Can captures.
 
-![Shifted-light localization across eight categories and Can ablations](results/multiscale.png)
+![My detector inspecting a real 131-pixel Can defect with its heatmap and binary prediction](results/visuals/inspection_hero.png)
 
-- Tiled ResNet fusion reached **46.4% AU-PRO** on **Can** under changed lighting versus **5.8%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
-- Across eight categories, fusion raised mean tiny-region overlap from **63.7% to 73.2%**. Mean AU-PRO moved from **39.7% to 39.9%**. Under the fixed thresholds, fusion missed 448 of 585 shifted defective captures versus 388 for context, while falsely rejecting 43 of 315 good captures versus 63.
-- In the **Can adaptation replay**, neither median-offset nor bounded affine score calibration jointly reduced average misses and false rejects across 495 support sets. Feature calibration also left more defects undetected at the fixed threshold. An independent acquisition audit found reduced median defect contrast after resizing in all 47 category-light groups.
+*Actual MVTec Can scene `bad/003`. Warm colors indicate larger anomaly scores. Cyan marks the dataset annotation, and the white thresholded region is the model prediction. I chose the first regular-light defective scene correctly rejected by fusion for this illustration.*
 
-[Full results, limits, and how to repeat the comparisons](results/experiments.md)
+[Read my detailed project report](PROJECT_REPORT.md) · [Full experiment results](results/experiments.md) · [Research review](RESEARCH.md)
 
-The MVTec AD 2 public split has 1,084 captures of 184 scenes across eight categories. For the main comparison, both branches saw the same 96 evenly spaced good training images per category. Each branch used the good regular-light validation split to set a fixed threshold. Defect masks were used to score the outputs. AU-PRO here is the per-region overlap area up to 5% pixel false positives, estimated with 4,096 score bins. Each lighting group gets equal weight within a category. The measured results in this project use the labeled public split. [Paper and benchmark protocol](https://link.springer.com/article/10.1007/s11263-026-02743-0) · [Official leaderboard](https://benchmark.mvtec.com/)
+## The result in brief
+
+- **Preserving image detail made the biggest difference.** My native-resolution fine/context model reached **46.39% AU-PRO** on Can under changed lighting. The matched full-frame version reached **5.8%**.
+- **Tiny-region coverage improved across categories.** Fine/context fusion raised mean tiny-region overlap from **63.7% to 73.2%** at 5% pixel false positives.
+- **Pass/fail decisions remained difficult.** Across the eight categories, fusion missed 448 of 585 shifted defective captures versus 388 for context alone. It falsely rejected 43 of 315 good captures versus 63.
+
+AU-PRO measures how well a heatmap covers defect regions while limiting marked background. Tiny overlap measures coverage of regions occupying at most 0.01% of the original image. The decision counts use fixed thresholds estimated from good regular-light validation images.
+
+## What the inspector does
+
+I use a frozen ResNet-18 to compare image patches with good examples from the same product category.
+
+1. Scan the original image with overlapping 256-pixel tiles.
+2. Score **fine features at stride four** and **context features at stride eight** against their normal references.
+3. Stitch both maps back into the original image coordinates.
+4. Scale the maps using good validation images and average them.
+5. Save an anomaly overlay, image score, and pass/reject decision.
+
+The reference banks contain 1,024 fine and 4,096 context features. Chunked nearest-neighbor matching keeps the denser search manageable on an 8 GiB laptop GPU.
+
+![The same defect crop scored by full-frame and native-tile models](results/visuals/resolution_comparison.png)
+
+<details>
+<summary>Inspect the feature branches and the same part under six lights</summary>
+
+![The context, detail, and fused maps for the same defect](results/visuals/feature_branches.png)
+
+![The same Can scene under all six dataset lighting conditions](results/visuals/lighting_comparison.png)
+
+The cyan boundary comes from each capture's annotation. Every displayed score uses the recorded normal-validation threshold.
+
+</details>
+
+The images above are outputs from the implemented detector. The report includes the source scenes, ground-truth masks, display scales, and examples where localization and the final decision disagree.
+
+## What I tried
+
+| Question | Experiments | What I found |
+| --- | --- | --- |
+| Does shrinking the image hide defects? | Full-frame input versus native overlapping tiles | Native fusion improved changed-light Can AU-PRO by about 40.6 percentage points. |
+| Does finer detail help? | Context alone, fine features alone, and fusion | Fusion improved Can localization and mean tiny-region coverage. Transfer depended on the category. |
+| Can preprocessing handle lighting? | Bounded gamma, mild Retinex, and simulated lighting during training | Retinex reached 46.9% Can AU-PRO but missed 12 more defects than native RGB fusion at the fixed threshold. |
+| Would a different reference or representation help? | Coresets, DINOv3 ConvNeXt-Tiny, gradients, synthetic-defect learning, and student–teacher learning | Coresets helped Fabric and Wall Plugs localization. The other tested fine branches trailed native ResNet features on Can. |
+| Can a few good references repair the decisions? | Median offsets, affine score calibration, feature correction, and drift alerts | The tested adaptations traded errors or generated substantial referral burden. |
+
+<details>
+<summary>View actual predictions from all ten Can experiments</summary>
+
+![Full-frame, native, gamma, Retinex, and simulated-lighting trials](results/visuals/can_trials_01.png)
+
+![Coreset, DINOv3, gradient, synthetic-defect, and student–teacher trials](results/visuals/can_trials_02.png)
+
+All ten cards use the same regular-light Can scene, `bad/000`. Each overlay and native-coordinate crop comes from its recorded model configuration. The captions retain the actual decision and score-to-threshold ratio.
+
+</details>
+
+The controlled Can screen used the same 96 good source images per configuration, plus simulated normal views where specified. The wider study evaluated **1,084 public captures of 184 scenes**. All lighting views of a scene stay together in paired uncertainty estimates. [Every configuration and its results](PROJECT_REPORT.md#6-the-experiments-in-order)
+
+![Category-level localization and the Can configuration comparison](results/multiscale.png)
+
+<details>
+<summary>See the inspector on all eight AD 2 categories</summary>
+
+![Actual native-model input and overlay examples across the eight categories](results/visuals/category_examples.png)
+
+I used the first defective regular-light capture from each category. Each PASS in this gallery is a missed defect. The chart and full tables summarize the complete evaluation.
+
+</details>
+
+## Comparison with released models
+
+I ran CAT's released Can checkpoint and SuperADD's full released Can reference bank on the same public images. This table covers the five changed lights.
+
+| Method | Localization AU-PRO | Tiny overlap | Pixel F1 | Missed defects | False rejects | Median compute |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| **My native RGB fusion** | **46.39%** | **73.14%** | 2.89% | 54 / 75 | **15 / 60** | **215 ms** |
+| Released CAT | 33.87% | 42.00% | **4.21%** | **27 / 75** | 32 / 60 | 2,027 ms |
+| Released SuperADD | 4.91% | 9.04% | 0.00% | 34 / 75 | 28 / 60 | 3,141 ms |
+
+My model gave the strongest localization in this local comparison. CAT caught more defective parts and rejected more good parts at its published binary-mask threshold. Each model's decision rule and source calibration are documented with the measurements. [Reproduction details and metrics](results/released_comparators.md)
+
+For context, the official board's highest posted mixed-private Can AU-PRO was **80.97%** on November 17, 2026. Those scores use private captures. I use the matched public reruns above for direct model comparisons and keep the dated leaderboard figures in the report. [Benchmark context](PROJECT_REPORT.md#8-where-the-website-benchmark-fits) · [Official board](https://benchmark.mvtec.com/)
+
+## Where it still fails
+
+Reflections and normal texture can produce stronger scores than a small defect. A useful-looking heatmap can also sit below the image rejection threshold. On shifted Wall Plugs, the fused model passed all 75 defective captures at that fixed threshold. I kept these failures in the results because the error trade-off is part of the outcome.
+
+![Actual missed tiny defect and false reject produced by my native fusion model](results/visuals/failure_case.png)
 
 ## Reproduce the study
 
-Use Python 3.11 and the matching PyTorch and torchvision builds for your device. The main experiments used CUDA 12.8 on an RTX 5060 Laptop GPU. [PyTorch installation](https://pytorch.org/get-started/previous-versions/#v2110)
+Use Python 3.11 and matching PyTorch/torchvision builds. My GPU runs used an RTX 5060 Laptop with CUDA 12.8.
+
+Download MVTec AD 2 and extract it into `mvtec_ad_2_dataset`. The original MVTec AD Bottle check uses `MVTECH_ANAMOLY_DATASET`. Both datasets use CC BY-NC-SA 4.0. [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2) · [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
 
 ```sh
 python -m pip install -r requirements.txt
-```
 
-Extract MVTec AD 2 into `mvtec_ad_2_dataset`. Extract the original MVTec AD into `MVTECH_ANAMOLY_DATASET` if you want to reproduce the Bottle pipeline check. The programs also accept `--dataset`. Both datasets are available for noncommercial research under CC BY-NC-SA 4.0. [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2) · [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
+# Run Can and save real prediction previews.
+python multiscale_experiment.py can --previews
 
-```sh
-python run_experiment.py bottle
+# Score an image and save its overlay and decision.
+python inspection.py score can mvtec_ad_2_dataset/can/test_public/good/000_regular.png --method fusion --output artifacts/inspection
+
+# Repeat the eight-category comparison.
 python multiscale_experiment.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts --previews
-python multiscale_experiment.py can --treatment full
-python multiscale_experiment.py can --treatment luma
-python multiscale_experiment.py can --treatment retinex
-python multiscale_experiment.py can --treatment augmented
-python multiscale_experiment.py can fabric wallplugs --treatment coreset
-python multiscale_experiment.py can --backbone gradient
-python multiscale_experiment.py can --backbone synthetic
-python multiscale_experiment.py can --backbone distillation
+
 python report_experiments.py
 ```
 
-For the DINOv3 ConvNeXt experiment, install `timm==1.0.30` and `safetensors==0.7.0`. Download the pinned checkpoint and pass its path with `--weights`. Its SHA-256 is `a7637753a2e85d709d1a5474e13382d39e7bc581a35868b477585c970f36847f`. To render the summary chart, install `matplotlib==3.10.8` and run the report with `--chart results/multiscale.png`. [Pinned DINOv3 ConvNeXt-Tiny checkpoint](https://huggingface.co/timm/convnext_tiny.dinov3_lvd1689m/blob/39c7bb32f83c11bbb13cb23058f8852a4dac88ed/model.safetensors)
+Runs save metrics, per-image scores, selected training paths, thresholds, and previews under `artifacts`. Pass `--dataset` for a different data location and `--device cpu` for CPU execution. The default source budget is 96 normal images per category. `--train-limit 0` uses the complete normal training split.
 
-```sh
-python multiscale_experiment.py can --backbone convnext --weights artifacts/backbones/convnext_tiny_dinov3.safetensors
-python lighting_study.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
-python paired_robustness.py artifacts/multiscale/native/can
-python support_adaptation.py artifacts/multiscale/native/can --lighting-audit artifacts/lighting_study/can
-python feature_adaptation.py
-```
+The repository also contains a local map exporter validated on all 4,090 private images. The measured project results use the labeled public split. [Local archive manifest](results/benchmark_export.json)
 
-The experiment writes per-image decisions, normal validation scores, and per-light metrics under `artifacts/multiscale`. Model weights and data stay outside Git. Set `--train-limit 0` to use every good training image. Source dependence, few-part adaptation, and extra-view analysis are described in the [acquisition and adaptation report](results/acquisition_and_adaptation.md).
+## Explore the work
 
-## Score images and package maps locally
+| Read | Contents |
+| --- | --- |
+| [Detailed project report](PROJECT_REPORT.md) | The original question, research, implementation, every experiment stage, final choices, and limitations. |
+| [Experiment tables](results/experiments.md) | Per-configuration and per-category results with metric definitions. |
+| [Released CAT and SuperADD comparison](results/released_comparators.md) | Matched public Can results, pinned code, checkpoint hashes, and commands. |
+| [Lighting and adaptation study](results/acquisition_and_adaptation.md) | Resizing audit, lighting alerts, and verified-good reference replays. |
+| [Research notes](RESEARCH.md) | The literature and calculations behind the tested ideas. |
 
-Fit a category reference once per invocation, score a batch of images, and save inspection previews and decisions. The optional review flag defers images where the fine and context decisions disagree.
-
-```sh
-python inspection.py score can mvtec_ad_2_dataset/can/test_public/good/000_regular.png --method fusion --output artifacts/inspection
-```
-
-The benchmark command fits each category using its good train and validation images, then generates continuous float16 TIFF maps for both private splits. By default the maps retain native image dimensions. `--with-masks` adds binary maps made with the normal-validation threshold. `--resume` continues the same settings after an interrupted run. Add `--checker MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py` to also run the organizer's local checker before packaging. [MVTec benchmark format](https://benchmark.mvtec.com/submit)
-
-```sh
-python inspection.py benchmark --method fusion --with-masks --output artifacts/submission --archive artifacts/submission.tar.gz
-```
-
-The exported native RGB fusion archive contains maps and masks for all 4,090 private captures and passed MVTec’s local checker. The archive lives in the local `artifacts` directory. GitHub contains the code, reports, and archive manifest. [Archive manifest](results/benchmark_export.json)
-
-## Research notes
-
-- [Full experimental results](results/experiments.md)
-- [Acquisition and adaptation](results/acquisition_and_adaptation.md)
-- [Released CAT and SuperADD on the same Can captures](results/released_comparators.md)
-- [Physical station capture protocol and analysis CLI](STATION_PROTOCOL.md)
-- [Literature review and experimental rationale](RESEARCH.md)
-- [Original protocol and MVTec dataset inventory](PROJECT_PLAN.md)
-- [Earlier part-scoring comparison](results/scoring_comparison.md), [public transfer pilot](results/hybrid_transfer.md), and [SuperADD release and reduced runs](results/superadd.md)
+The figures use MVTec images and masks with model outputs from this project. Their source paths, scene IDs, and rendering choices are recorded in the [visual manifest](results/visuals/manifest.json). MVTec imagery and masks remain subject to CC BY-NC-SA 4.0. [Dataset attribution](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
