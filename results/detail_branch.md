@@ -81,6 +81,17 @@ Findings:
 Set polarities are never fit on defect labels; they are chosen on the public
 development split and disclosed in `submission/config.json`.
 
+## Preparing the official submission
+
+`prepare_submission.py` runs locally over all 8 categories, calibrates the branch polarity per
+mission on the public test split (development data only), and writes float16 TIFF maps downscaled to
+1/4 native size plus binary masks calibrated on good validation pixels (p99.5 by default, FAQ
+mean + 3 sigma as `--threshold-rule`). The script never uploads anything. Per-category choices are
+recorded in `submission/config.json` and follow from the public split; no private labels are
+consulted anywhere in the build. Maps are at 1/4 native resolution (`--map-downscale 1` restores
+native size), matching how many published VAND entries submit, so the server stores about 16 times
+fewer pixels than native.
+
 ## Official SuperADD comparator
 
 - Reduced ViT-S/16 @ 0.625 scale: mean AU-PRO 6.4% on this public split
