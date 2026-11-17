@@ -5,18 +5,20 @@ This script never contacts the benchmark server. It:
 1.  fits the tiled PatchCore reference bank on the regular-light good
     training images of every category;
 2.  evaluates the plain baseline and the three detail-branch polarity
-    settings on the public test split, single seed — the same procedure the
+    settings on the public test split, single seed - the same procedure the
     project uses for its other local comparisons. The public split is this
-    project's development set, so picking the best setting there is tuning,
-    not test-set peeking;
+    project's development set, so choosing the best setting there is tuning,
+    not test-set peeking; the chosen setting is frozen for the private mappings.
 3.  freezes that setting per category, then generates the private-split
-    continuous maps (.tiff float16) and the binary maps (.png) using the
-    binarisation rule from the benchmark FAQ: the segmentation threshold is
-    the mean of the per-pixel anomaly values of the defect-free validation
-    captures plus three times their standard deviation.
+    continuous maps (.tiff float16) and the binary maps (.png). The
+    binarisation threshold is calibrated on the good validation captures of
+    the submitted map family: the 99.5th percentile of validation-map
+    pixels by default (``--threshold-rule``), i.e. a fixed 0.5% flag rate
+    on good parts, with the FAQ's good-validation mean + 3*sigma available
+    as a flag for reference.
 
-Pass ``--compress`` to also create the tar.gz the uploader expects. Upload is
-a manual step on the benchmark website; nothing here sends data anywhere.
+Pass ``--compress`` to also create the tar.gz the uploader expects. Upload
+is a manual step on the benchmark website; nothing here sends data anywhere.
 
 Usage
     python prepare_submission.py --device cuda
