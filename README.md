@@ -8,7 +8,7 @@ The inspector models normal appearance from defect-free images. It scans overlap
 
 ![Shifted-light localization across eight categories and Can ablations](results/multiscale.png)
 
-- Tiled ResNet fusion reached **46.4% AU-PRO** on **Can** under changed lighting versus **4.6%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
+- Tiled ResNet fusion reached **46.4% AU-PRO** on **Can** under changed lighting versus **5.8%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
 - Across eight categories, fusion raised mean tiny-region overlap from **63.7% to 73.2%**. Mean AU-PRO moved from **39.7% to 39.9%**. Under the fixed thresholds, fusion missed 448 of 585 shifted defective captures versus 388 for context, while falsely rejecting 43 of 315 good captures versus 63.
 - In the **Can adaptation replay**, neither median-offset nor bounded affine score calibration jointly reduced average misses and false rejects across 495 support sets. Feature calibration also left more defects undetected at the fixed threshold. An independent acquisition audit found reduced median defect contrast after resizing in all 47 category-light groups.
 
@@ -29,7 +29,7 @@ Extract MVTec AD 2 into `mvtec_ad_2_dataset`. Extract the original MVTec AD into
 ```sh
 python run_experiment.py bottle
 python multiscale_experiment.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts --previews
-python multiscale_experiment.py can --treatment full --device cpu
+python multiscale_experiment.py can --treatment full
 python multiscale_experiment.py can --treatment luma
 python multiscale_experiment.py can --treatment retinex
 python multiscale_experiment.py can --treatment augmented
@@ -65,6 +65,8 @@ The benchmark command fits each category using its good train and validation ima
 ```sh
 python inspection.py benchmark --method fusion --with-masks --output artifacts/submission --archive artifacts/submission.tar.gz
 ```
+
+The exported native RGB fusion archive contains maps and masks for all 4,090 private captures and passed MVTec’s local checker. It lives in the local `artifacts` directory. Official evaluation is pending. [Archive manifest](results/benchmark_export.json)
 
 ## Research notes
 

@@ -1,0 +1,27 @@
+{
+  "archive": "mvtec_ad2_native_fusion.tar.gz",
+  "archive_bytes": 21349110305,
+  "sha256": "cece82611a7b75bb5d3bbca74146017bd75297dfff9d2386f4cd2d80542358a0",
+  "model": {
+    "backbone": "torchvision ResNet-18 ImageNet",
+    "method": "arithmetic mean of context and fine native RGB maps scaled on regular good validation",
+    "normal_training_images_per_category": 96,
+    "context_bank_size": 4096,
+    "fine_bank_size": 1024,
+    "seed": 42,
+    "mask_calibration": "90th percentile of regular good validation image maxima"
+  },
+  "resolution": "native",
+  "files_by_split": {
+    "test_private": {
+      "float16_tiff": 2045,
+      "binary_png": 2045
+    },
+    "test_private_mixed": {
+      "float16_tiff": 2045,
+      "binary_png": 2045
+    }
+  },
+  "local_validation": "MVTec supplied checker and full archive inventory",
+  "official_evaluation": "Pending"
+}

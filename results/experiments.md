@@ -33,7 +33,7 @@ Fusion led context and fine localization in four categories. It recovered much m
 
 | Same 96 normal source images | Context AU-PRO | Fine AU-PRO | Fusion AU-PRO | Fusion tiny overlap | Fusion misses, false rejects |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Full frame, ResNet | 2.2% | 7.4% | 4.6% | 0.2% | 72/75, 1/60 |
+| Full frame, ResNet | 2.6% | 9.5% | 5.8% | 3.7% | 66/75, 7/60 |
 | Native RGB, ResNet | 35.9% | 35.5% | 46.4% | 73.1% | 54/75, 15/60 |
 | Bounded gamma | 35.0% | 33.8% | 43.6% | 72.8% | 55/75, 20/60 |
 | Mild Retinex | 36.0% | 34.5% | 46.9% | 74.2% | 66/75, 16/60 |
@@ -44,7 +44,7 @@ Fusion led context and fine localization in four categories. It recovered much m
 | Synthetic-defect head | 35.9% | 7.9% | 25.2% | 39.4% | 41/75, 28/60 |
 | Student–teacher detail | 35.9% | 20.8% | 33.3% | 61.1% | 62/75, 10/60 |
 
-Native images retain the decisive signal. Can fusion gained about 42 points of shifted-light AU-PRO over its matched full-frame control. Mild Retinex produced a small map-level gain, with 12 more misses than raw RGB fusion at the source-calibrated part threshold. Gamma and simulated broad lighting reduced localization. The projected farthest-first sampler drew from four times the final bank budget and kept the same number of references at prediction. It missed eight fewer defective captures while adding ten false rejects relative to native fusion. We chose native RGB fusion for the private-split localization run because it improved tiny-region overlap across categories and avoids a Can-specific preprocessing setting.
+Native images retain the decisive signal. Can fusion gained about 41 points of shifted-light AU-PRO over its matched full-frame control. Mild Retinex produced a small map-level gain, with 12 more misses than raw RGB fusion at the source-calibrated part threshold. Gamma and simulated broad lighting reduced localization. The projected farthest-first sampler drew from four times the final bank budget and kept the same number of references at prediction. It missed eight fewer defective captures while adding ten false rejects relative to native fusion. We chose native RGB fusion for the private-split localization run because it improved tiny-region overlap across categories and avoids a Can-specific preprocessing setting.
 
 The DINOv3 challenger used frozen ConvNeXt-Tiny stages 0, 1, and 2 with the same windows and bank budgets. The gradient challenger replaced only the fine branch with oriented Sobel and Laplacian responses. The two trained branches used 180 optimizer steps and up to 512 good source crops. One learned from simulated narrow scratches and spots. The student–teacher branch learned to predict frozen stride-four teacher features with normal-only exposure augmentation. All three latter challengers kept ResNet context unchanged. Their fine maps trailed the native ResNet fine branch on Can.
 
@@ -68,6 +68,6 @@ A second commissioning replay mapped shifted patch features toward matched regul
 
 ## Benchmark status
 
-The exporter prepares the 4,090 private captures as continuous float16 TIFF maps, with an optional second tree of binary masks. MVTec owns the private labels and computes the official scores after submission. The numbers above measure the public captures. The released SuperADD Can bank download remained incomplete after two verified resume attempts. CAT ran in the authors' larger training environment, with the checkpoint and separate backbone required for reproduction. These two full releases and a physical camera validation remain open. [MVTec upload specification](https://benchmark.mvtec.com/submit) · [SuperADD release](https://github.com/LukasRoom/SuperADD#reproduce-our-results) · [CAT release](https://github.com/VisualScienceLab-KHU/VAND2026_CAT)
+The 19.88 GiB native RGB fusion archive passed MVTec's local checker. It contains 2,045 continuous float16 TIFF maps and 2,045 binary PNG masks for each of the two private splits. The archive stays in the local `artifacts` directory. Its [file manifest and SHA-256](benchmark_export.json) record the configuration and exact artifact. Official ranking awaits MVTec evaluation. The released SuperADD Can bank download remained incomplete after two verified resume attempts. CAT ran in the authors' larger training environment, with the checkpoint and separate backbone required for reproduction. These two full releases and a physical camera validation remain open. [MVTec upload specification](https://benchmark.mvtec.com/submit) · [SuperADD release](https://github.com/LukasRoom/SuperADD#reproduce-our-results) · [CAT release](https://github.com/VisualScienceLab-KHU/VAND2026_CAT)
 
 [Per-light metrics and part decisions](multiscale.json) · [Paired decision and reinspection results](paired_robustness.json) · [Research and alternatives](../RESEARCH.md)
