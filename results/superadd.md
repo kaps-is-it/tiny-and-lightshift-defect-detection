@@ -9,7 +9,7 @@ The reference uses every 16th image from the sorted `can/train/good` split. Supe
 | Reduced SuperADD, 0.625× image scale | 6.4% | 17.2% | 49.4% | 68 / 90 | 13 / 72 | 345 ms |
 | Reduced SuperADD, native image scale | 11.1% | 9.1% | 52.1% | 67 / 90 | 12 / 72 | 636 ms |
 
-Native-scale input improved overall AU-PRO and worsened the overlap on tiny regions. It also took about 1.8 times as long per capture. Both runs had zero pixel segmentation F1 at the fitted thresholds. The best local AU-PRO on these scenes remains the tiled PatchCore baseline at 39.2%.
+Native-scale input improved overall AU-PRO and worsened the overlap on tiny regions. It also took about 1.8 times as long per capture. Both runs had zero pixel segmentation F1 at the fitted thresholds. The tiled PatchCore baseline in that comparison reached 39.2% AU-PRO. See the [expanded study](experiments.md) for the later comparisons.
 
 The binary-mask decisions above follow SuperADD's postprocessed mask. Part AUROC uses the peak continuous score. Each run fits its bank and threshold at its own input scale. Timings include preprocessing and restoration to the original frame on the RTX 5060 Laptop GPU. Image decoding sits outside that timing. SuperADD builds its feature map from whole 16-pixel tokens. At native scale, the upstream token grid covers 2,224 of the 2,232 image columns and the returned map is stretched to the frame width.
 
@@ -17,7 +17,7 @@ The published ViT-H+ configuration uses a larger released bank. Its 2 GB downloa
 
 ## Reproduce the reduced run
 
-Start from the Python environment in the [README](../README.md#run-the-baseline) with CUDA available. Install the optional packages and check out the upstream revision used here.
+Start from the Python environment in the [README](../README.md#reproduce-the-study) with CUDA available. Install the optional packages and check out the upstream revision used here.
 
 ```sh
 python -m pip install timm==1.0.30 safetensors==0.7.0 opencv-python==4.13.0.92 tqdm

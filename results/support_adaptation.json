@@ -1,0 +1,913 @@
+{
+  "category": "can",
+  "treatment": "native",
+  "good_scenes": 12,
+  "defective_scenes": 15,
+  "support_size": 4,
+  "support_sets": 495,
+  "fitted_regular_thresholds": {
+    "context": 3.594789147377014,
+    "fine": 5.4275219440460205,
+    "fusion": 0.97086501121521,
+    "context_local": 1.1193094256142864,
+    "fusion_local": 0.3278666537531598
+  },
+  "affine_scale_bounds": [
+    0.5,
+    2.0
+  ],
+  "review_gate_threshold": 1.9110571518503414,
+  "changed_lights": {
+    "good_captures_per_support_set": 40,
+    "defective_captures_per_support_set": 75,
+    "variants": {
+      "context": {
+        "fixed": {
+          "mean_false_rejects": 6.0,
+          "mean_missed_defects": 70.0
+        },
+        "median_offset": {
+          "mean_false_rejects": 5.119191919191919,
+          "mean_missed_defects": 71.26060606060607,
+          "mean_false_reject_delta": -0.8808080808080808,
+          "mean_missed_defect_delta": 1.2606060606060605,
+          "mean_good_captures_rescued": 0.8808080808080808,
+          "mean_good_captures_newly_rejected": 0.0,
+          "mean_defects_newly_caught": 0.18787878787878787,
+          "mean_defects_newly_missed": 1.4484848484848485,
+          "support_sets_with_more_misses": 434,
+          "support_sets_with_more_false_rejects": 0,
+          "support_sets_improving_errors_without_tradeoff": 22,
+          "max_missed_defect_delta": 4
+        },
+        "bounded_affine": {
+          "mean_false_rejects": 4.151515151515151,
+          "mean_missed_defects": 71.24646464646464,
+          "mean_false_reject_delta": -1.8484848484848484,
+          "mean_missed_defect_delta": 1.2464646464646465,
+          "mean_good_captures_rescued": 2.5373737373737373,
+          "mean_good_captures_newly_rejected": 0.6888888888888889,
+          "mean_defects_newly_caught": 1.1777777777777778,
+          "mean_defects_newly_missed": 2.4242424242424243,
+          "support_sets_with_more_misses": 325,
+          "support_sets_with_more_false_rejects": 42,
+          "support_sets_improving_errors_without_tradeoff": 63,
+          "max_missed_defect_delta": 5,
+          "median_scale": 1.0037315727977703,
+          "clipped_scale_fits": 106
+        },
+        "drift_review": {
+          "mean_automatically_false_rejected_good": 0.6505050505050505,
+          "mean_automatically_missed_defects": 14.727272727272727
+        }
+      },
+      "fine": {
+        "fixed": {
+          "mean_false_rejects": 11.333333333333334,
+          "mean_missed_defects": 59.0
+        },
+        "median_offset": {
+          "mean_false_rejects": 11.83838383838384,
+          "mean_missed_defects": 58.16969696969697,
+          "mean_false_reject_delta": 0.5050505050505051,
+          "mean_missed_defect_delta": -0.8303030303030303,
+          "mean_good_captures_rescued": 0.5131313131313131,
+          "mean_good_captures_newly_rejected": 1.018181818181818,
+          "mean_defects_newly_caught": 1.6606060606060606,
+          "mean_defects_newly_missed": 0.8303030303030303,
+          "support_sets_with_more_misses": 68,
+          "support_sets_with_more_false_rejects": 174,
+          "support_sets_improving_errors_without_tradeoff": 76,
+          "max_missed_defect_delta": 3
+        },
+        "bounded_affine": {
+          "mean_false_rejects": 12.511111111111111,
+          "mean_missed_defects": 56.30909090909091,
+          "mean_false_reject_delta": 1.1777777777777778,
+          "mean_missed_defect_delta": -2.690909090909091,
+          "mean_good_captures_rescued": 2.301010101010101,
+          "mean_good_captures_newly_rejected": 3.478787878787879,
+          "mean_defects_newly_caught": 6.367676767676768,
+          "mean_defects_newly_missed": 3.676767676767677,
+          "support_sets_with_more_misses": 86,
+          "support_sets_with_more_false_rejects": 320,
+          "support_sets_improving_errors_without_tradeoff": 45,
+          "max_missed_defect_delta": 4,
+          "median_scale": 0.8686874914969005,
+          "clipped_scale_fits": 373
+        },
+        "drift_review": {
+          "mean_automatically_false_rejected_good": 1.3333333333333333,
+          "mean_automatically_missed_defects": 11.781818181818181
+        }
+      },
+      "fusion": {
+        "fixed": {
+          "mean_false_rejects": 10.0,
+          "mean_missed_defects": 54.0
+        },
+        "median_offset": {
+          "mean_false_rejects": 8.266666666666667,
+          "mean_missed_defects": 61.26060606060606,
+          "mean_false_reject_delta": -1.7333333333333334,
+          "mean_missed_defect_delta": 7.260606060606061,
+          "mean_good_captures_rescued": 3.1717171717171717,
+          "mean_good_captures_newly_rejected": 1.4383838383838383,
+          "mean_defects_newly_caught": 1.797979797979798,
+          "mean_defects_newly_missed": 9.05858585858586,
+          "support_sets_with_more_misses": 431,
+          "support_sets_with_more_false_rejects": 119,
+          "support_sets_improving_errors_without_tradeoff": 1,
+          "max_missed_defect_delta": 16
+        },
+        "bounded_affine": {
+          "mean_false_rejects": 11.88080808080808,
+          "mean_missed_defects": 56.88484848484848,
+          "mean_false_reject_delta": 1.8808080808080807,
+          "mean_missed_defect_delta": 2.8848484848484848,
+          "mean_good_captures_rescued": 2.1858585858585857,
+          "mean_good_captures_newly_rejected": 4.066666666666666,
+          "mean_defects_newly_caught": 2.3797979797979796,
+          "mean_defects_newly_missed": 5.264646464646464,
+          "support_sets_with_more_misses": 364,
+          "support_sets_with_more_false_rejects": 335,
+          "support_sets_improving_errors_without_tradeoff": 6,
+          "max_missed_defect_delta": 19,
+          "median_scale": 0.7548287445468849,
+          "clipped_scale_fits": 911
+        },
+        "drift_review": {
+          "mean_automatically_false_rejected_good": 1.9838383838383837,
+          "mean_automatically_missed_defects": 10.8
+        }
+      },
+      "context_local": {
+        "fixed": {
+          "mean_false_rejects": 4.0,
+          "mean_missed_defects": 65.0
+        },
+        "median_offset": {
+          "mean_false_rejects": 8.688888888888888,
+          "mean_missed_defects": 60.87070707070707,
+          "mean_false_reject_delta": 4.688888888888889,
+          "mean_missed_defect_delta": -4.129292929292929,
+          "mean_good_captures_rescued": 0.4383838383838384,
+          "mean_good_captures_newly_rejected": 5.127272727272727,
+          "mean_defects_newly_caught": 5.141414141414141,
+          "mean_defects_newly_missed": 1.0121212121212122,
+          "support_sets_with_more_misses": 0,
+          "support_sets_with_more_false_rejects": 422,
+          "support_sets_improving_errors_without_tradeoff": 73,
+          "max_missed_defect_delta": -2
+        },
+        "bounded_affine": {
+          "mean_false_rejects": 9.44848484848485,
+          "mean_missed_defects": 60.21010101010101,
+          "mean_false_reject_delta": 5.448484848484848,
+          "mean_missed_defect_delta": -4.78989898989899,
+          "mean_good_captures_rescued": 0.8484848484848485,
+          "mean_good_captures_newly_rejected": 6.296969696969697,
+          "mean_defects_newly_caught": 5.8969696969696965,
+          "mean_defects_newly_missed": 1.107070707070707,
+          "support_sets_with_more_misses": 1,
+          "support_sets_with_more_false_rejects": 433,
+          "support_sets_improving_errors_without_tradeoff": 59,
+          "max_missed_defect_delta": 1,
+          "median_scale": 0.7982700726614078,
+          "clipped_scale_fits": 909
+        },
+        "drift_review": {
+          "mean_automatically_false_rejected_good": 2.618181818181818,
+          "mean_automatically_missed_defects": 12.763636363636364
+        }
+      },
+      "fusion_local": {
+        "fixed": {
+          "mean_false_rejects": 13.333333333333334,
+          "mean_missed_defects": 61.0
+        },
+        "median_offset": {
+          "mean_false_rejects": 6.836363636363636,
+          "mean_missed_defects": 70.02626262626262,
+          "mean_false_reject_delta": -6.496969696969697,
+          "mean_missed_defect_delta": 9.026262626262627,
+          "mean_good_captures_rescued": 6.496969696969697,
+          "mean_good_captures_newly_rejected": 0.0,
+          "mean_defects_newly_caught": 0.2909090909090909,
+          "mean_defects_newly_missed": 9.317171717171718,
+          "support_sets_with_more_misses": 495,
+          "support_sets_with_more_false_rejects": 0,
+          "support_sets_improving_errors_without_tradeoff": 0,
+          "max_missed_defect_delta": 10
+        },
+        "bounded_affine": {
+          "mean_false_rejects": 8.38989898989899,
+          "mean_missed_defects": 66.08080808080808,
+          "mean_false_reject_delta": -4.943434343434343,
+          "mean_missed_defect_delta": 5.08080808080808,
+          "mean_good_captures_rescued": 5.288888888888889,
+          "mean_good_captures_newly_rejected": 0.34545454545454546,
+          "mean_defects_newly_caught": 3.026262626262626,
+          "mean_defects_newly_missed": 8.107070707070706,
+          "support_sets_with_more_misses": 422,
+          "support_sets_with_more_false_rejects": 8,
+          "support_sets_improving_errors_without_tradeoff": 55,
+          "max_missed_defect_delta": 12,
+          "median_scale": 0.5000110751699619,
+          "clipped_scale_fits": 1361
+        },
+        "drift_review": {
+          "mean_automatically_false_rejected_good": 5.22020202020202,
+          "mean_automatically_missed_defects": 8.836363636363636
+        }
+      }
+    },
+    "review": {
+      "triggered_support_set_light_pairs": 1989,
+      "support_set_light_pairs": 2475,
+      "mean_good_captures_referred": 32.14545454545455,
+      "mean_defective_captures_referred": 60.27272727272728
+    }
+  },
+  "limitations": [
+    "The replay uses labeled good support scenes as verified references and keeps their captures out of both comparison arms.",
+    "Every support scene has a regular reference capture. Support and evaluation captures share the same acquisition condition within a replay group.",
+    "Support sets and lighting views overlap. Counts are descriptive sensitivity to support choice, not independent sample sizes.",
+    "Median offset and positive bounded affine calibration are monotone within each light. They move the operating point without improving within-light score ordering or AUROC.",
+    "The optional review policy defers the entire remaining batch when the support set exceeds the source-calibrated acquisition threshold. Referred captures have no simulated review outcome."
+  ],
+  "by_lighting": {
+    "regular": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 0,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 0.0,
+        "mean_defective_captures_referred": 0.0
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 15.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.6666666666666666,
+            "mean_automatically_missed_defects": 15.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 3.3333333333333335,
+            "mean_missed_defects": 14.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 3.3333333333333335,
+            "mean_automatically_missed_defects": 14.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 3.3333333333333335,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 3.3333333333333335,
+            "mean_automatically_missed_defects": 13.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 1.3333333333333333,
+            "mean_automatically_missed_defects": 13.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 14.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.6666666666666666,
+            "mean_automatically_missed_defects": 14.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          }
+        }
+      }
+    },
+    "overexposed": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 495,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 8.0,
+        "mean_defective_captures_referred": 15.0
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 15.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.07878787878787878,
+            "mean_missed_defect_delta": -0.2828282828282828,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 2.0,
+            "mean_missed_defects": 14.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.23232323232323232,
+            "mean_missed_defect_delta": -0.2727272727272727,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.907070707070707,
+            "mean_missed_defect_delta": -1.5414141414141413,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.2383838383838384,
+            "mean_missed_defect_delta": 0.38181818181818183,
+            "support_sets_with_more_misses": 120
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 1.3272727272727274,
+            "mean_missed_defect_delta": -0.05454545454545454,
+            "support_sets_with_more_misses": 33
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.014141414141414142,
+            "mean_missed_defect_delta": 0.9595959595959596,
+            "support_sets_with_more_misses": 391
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.07272727272727272,
+            "mean_missed_defect_delta": 0.7333333333333333,
+            "support_sets_with_more_misses": 311
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 14.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.4626262626262626,
+            "mean_missed_defect_delta": -0.2909090909090909,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.10707070707070707,
+            "mean_missed_defect_delta": -2.002020202020202,
+            "support_sets_with_more_misses": 0
+          }
+        }
+      }
+    },
+    "shift_1": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 495,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 8.0,
+        "mean_defective_captures_referred": 15.0
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 2.0,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.5050505050505051,
+            "mean_missed_defect_delta": 0.24242424242424243,
+            "support_sets_with_more_misses": 111
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.8202020202020202,
+            "mean_missed_defect_delta": 0.6,
+            "support_sets_with_more_misses": 238
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 2.6666666666666665,
+            "mean_missed_defects": 11.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.01616161616161616,
+            "mean_missed_defect_delta": -0.09898989898989899,
+            "support_sets_with_more_misses": 35
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.25252525252525254,
+            "mean_missed_defect_delta": -0.16565656565656567,
+            "support_sets_with_more_misses": 94
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 2.0,
+            "mean_missed_defects": 9.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.8585858585858586,
+            "mean_missed_defect_delta": 4.482828282828283,
+            "support_sets_with_more_misses": 402
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.2222222222222222,
+            "mean_missed_defect_delta": 2.18989898989899,
+            "support_sets_with_more_misses": 226
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 0.0,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 1.0383838383838384,
+            "mean_missed_defect_delta": -3.098989898989899,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 1.408080808080808,
+            "mean_missed_defect_delta": -3.4242424242424243,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.01616161616161616,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.22828282828282828,
+            "mean_missed_defect_delta": -0.5616161616161616,
+            "support_sets_with_more_misses": 73
+          }
+        }
+      }
+    },
+    "shift_2": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 9,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 0.14545454545454545,
+        "mean_defective_captures_referred": 0.2727272727272727
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 15.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.6505050505050505,
+            "mean_automatically_missed_defects": 14.727272727272727
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.052525252525252523,
+            "mean_missed_defect_delta": -0.18787878787878787,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.020202020202020204,
+            "mean_missed_defect_delta": -0.48484848484848486,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 1.3333333333333333,
+            "mean_automatically_missed_defects": 11.781818181818181
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.402020202020202,
+            "mean_missed_defect_delta": -0.28484848484848485,
+            "support_sets_with_more_misses": 9
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.7636363636363637,
+            "mean_missed_defect_delta": -1.4505050505050505,
+            "support_sets_with_more_misses": 149
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 2.0,
+            "mean_missed_defects": 11.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 1.9838383838383837,
+            "mean_automatically_missed_defects": 10.8
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.14747474747474748,
+            "mean_missed_defect_delta": -0.1414141414141414,
+            "support_sets_with_more_misses": 230
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.27070707070707073,
+            "mean_missed_defect_delta": -0.907070707070707,
+            "support_sets_with_more_misses": 201
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 2.6666666666666665,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 2.618181818181818,
+            "mean_automatically_missed_defects": 12.763636363636364
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.03434343434343434,
+            "mean_missed_defect_delta": 0.03434343434343434,
+            "support_sets_with_more_misses": 17
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.4303030303030303,
+            "mean_missed_defect_delta": 0.13131313131313133,
+            "support_sets_with_more_misses": 68
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 5.333333333333333,
+            "mean_missed_defects": 9.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 5.22020202020202,
+            "mean_automatically_missed_defects": 8.836363636363636
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -3.0525252525252524,
+            "mean_missed_defect_delta": 5.678787878787879,
+            "support_sets_with_more_misses": 495
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -2.4565656565656564,
+            "mean_missed_defect_delta": 5.395959595959596,
+            "support_sets_with_more_misses": 488
+          }
+        }
+      }
+    },
+    "shift_3": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 495,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 8.0,
+        "mean_defective_captures_referred": 15.0
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 2.0,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.32323232323232326,
+            "mean_missed_defect_delta": 1.206060606060606,
+            "support_sets_with_more_misses": 495
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.9494949494949495,
+            "mean_missed_defect_delta": 1.4646464646464648,
+            "support_sets_with_more_misses": 454
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.3838383838383838,
+            "mean_missed_defect_delta": -0.896969696969697,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 1.4282828282828284,
+            "mean_missed_defect_delta": -2.1151515151515152,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 1.3333333333333333,
+            "mean_missed_defects": 10.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.2080808080808081,
+            "mean_missed_defect_delta": 2.242424242424242,
+            "support_sets_with_more_misses": 360
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 1.018181818181818,
+            "mean_missed_defect_delta": 0.01616161616161616,
+            "support_sets_with_more_misses": 129
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 0.0,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 1.0727272727272728,
+            "mean_missed_defect_delta": -1.305050505050505,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 2.103030303030303,
+            "mean_missed_defect_delta": -1.6868686868686869,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.24646464646464647,
+            "mean_missed_defect_delta": 1.8,
+            "support_sets_with_more_misses": 456
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 0.024242424242424242,
+            "mean_missed_defect_delta": 0.47878787878787876,
+            "support_sets_with_more_misses": 214
+          }
+        }
+      }
+    },
+    "underexposed": {
+      "good_captures_per_support_set": 8,
+      "defective_captures_per_support_set": 15,
+      "review": {
+        "triggered_support_set_light_pairs": 495,
+        "support_set_light_pairs": 495,
+        "mean_good_captures_referred": 8.0,
+        "mean_defective_captures_referred": 15.0
+      },
+      "variants": {
+        "context": {
+          "fixed": {
+            "mean_false_rejects": 0.6666666666666666,
+            "mean_missed_defects": 15.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 0.0,
+            "mean_missed_defect_delta": 0.0,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.13737373737373737,
+            "mean_missed_defect_delta": -0.050505050505050504,
+            "support_sets_with_more_misses": 0
+          }
+        },
+        "fine": {
+          "fixed": {
+            "mean_false_rejects": 4.0,
+            "mean_missed_defects": 10.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.49696969696969695,
+            "mean_missed_defect_delta": 0.7232323232323232,
+            "support_sets_with_more_misses": 180
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -1.6686868686868688,
+            "mean_missed_defect_delta": 2.581818181818182,
+            "support_sets_with_more_misses": 415
+          }
+        },
+        "fusion": {
+          "fixed": {
+            "mean_false_rejects": 3.3333333333333335,
+            "mean_missed_defects": 12.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -0.2808080808080808,
+            "mean_missed_defect_delta": 0.29494949494949496,
+            "support_sets_with_more_misses": 215
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -0.9575757575757575,
+            "mean_missed_defect_delta": 1.6404040404040403,
+            "support_sets_with_more_misses": 410
+          }
+        },
+        "context_local": {
+          "fixed": {
+            "mean_false_rejects": 0.0,
+            "mean_missed_defects": 14.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": 2.5575757575757576,
+            "mean_missed_defect_delta": -0.7191919191919192,
+            "support_sets_with_more_misses": 0
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": 2.294949494949495,
+            "mean_missed_defect_delta": -0.5434343434343434,
+            "support_sets_with_more_misses": 17
+          }
+        },
+        "fusion_local": {
+          "fixed": {
+            "mean_false_rejects": 5.333333333333333,
+            "mean_missed_defects": 13.0
+          },
+          "drift_review": {
+            "mean_automatically_false_rejected_good": 0.0,
+            "mean_automatically_missed_defects": 0.0
+          },
+          "median_offset": {
+            "mean_false_reject_delta": -2.7191919191919194,
+            "mean_missed_defect_delta": 1.8383838383838385,
+            "support_sets_with_more_misses": 455
+          },
+          "bounded_affine": {
+            "mean_false_reject_delta": -2.38989898989899,
+            "mean_missed_defect_delta": 1.7696969696969698,
+            "support_sets_with_more_misses": 438
+          }
+        }
+      }
+    }
+  }
+}

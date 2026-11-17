@@ -1,0 +1,1794 @@
+{
+  "source": "lighting_study.py",
+  "split": "test_public",
+  "settings": {
+    "validation_seed": 42,
+    "alert_quantile": 0.9,
+    "batch_scene_count": 4,
+    "resize_long_edge_pixels": 256,
+    "tiny_region_max_native_area_fraction": 0.0001,
+    "feature_scale_floors": {
+      "median_luma": 0.00392156862745098,
+      "luma_range_05_95": 0.00392156862745098,
+      "near_black": 0.001,
+      "near_white": 0.001
+    }
+  },
+  "categories": {
+    "can": {
+      "calibration": {
+        "reference_images": 23,
+        "threshold_images": 23,
+        "feature_centers": {
+          "median_luma": 0.4235294117647059,
+          "luma_range_05_95": 0.8,
+          "near_black": 0.0,
+          "near_white": 0.2855670887936828
+        },
+        "feature_scales": {
+          "median_luma": 0.07558352941176467,
+          "luma_range_05_95": 0.017442352941176572,
+          "near_black": 0.001,
+          "near_white": 0.0036916322769657423
+        },
+        "scene_threshold": 2.023472278429773,
+        "threshold_batch_combinations": 8855,
+        "batch_threshold": 1.9110571518503414
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 1,
+            "median_score": 1.4008654235283138,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 0,
+            "median_score": 1.4008654235283138,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.09234823529411765,
+            "median_resized_luma_contrast": 0.027309619986061875,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.14079506515363838,
+            "median_resized_luma_contrast": 0.02332954719155099,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 9,
+            "median_score": 2.420036341197071,
+            "median_paired_score_change": 1.3612482196395002,
+            "new_alerts_vs_regular": 8,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 495,
+            "median_score": 2.420036341197071,
+            "median_paired_score_change": 1.1017512036714803,
+            "new_alerts_vs_regular": 495,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.10150588235294113,
+            "median_resized_luma_contrast": 0.030034761271044447,
+            "median_native_contrast_change_vs_regular": 0.009157647058823479,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.1556901676175769,
+            "median_resized_luma_contrast": 0.02609091271644561,
+            "median_native_contrast_change_vs_regular": 0.008102240896358547,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 11,
+            "median_score": 4.008662969210464,
+            "median_paired_score_change": 2.478347614024781,
+            "new_alerts_vs_regular": 11,
+            "cleared_alerts_vs_regular": 1
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 495,
+            "median_score": 3.9056700909842883,
+            "median_paired_score_change": 2.484155037538101,
+            "new_alerts_vs_regular": 495,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.1586706049941344,
+            "median_resized_luma_contrast": 0.034270695262240705,
+            "median_native_contrast_change_vs_regular": 0.015994190268700068,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.17168084806539124,
+            "median_resized_luma_contrast": 0.02517980978159558,
+            "median_native_contrast_change_vs_regular": 0.021202091488961787,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 1,
+            "median_score": 1.6862268986914892,
+            "median_paired_score_change": 0.13688926852846295,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 9,
+            "median_score": 1.5824590895412398,
+            "median_paired_score_change": 0.1815936660129298,
+            "new_alerts_vs_regular": 9,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.09006300679611236,
+            "median_resized_luma_contrast": 0.025653064934882494,
+            "median_native_contrast_change_vs_regular": 0.0008525149190110881,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.13433214866647283,
+            "median_resized_luma_contrast": 0.022824984718035835,
+            "median_native_contrast_change_vs_regular": -0.0008818700777703664,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 12,
+            "median_score": 5.435274333086713,
+            "median_paired_score_change": 4.08101872543266,
+            "new_alerts_vs_regular": 11,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 495,
+            "median_score": 5.3747112021620005,
+            "median_paired_score_change": 3.970755171771807,
+            "new_alerts_vs_regular": 495,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.1567198759845819,
+            "median_resized_luma_contrast": 0.040140484376813085,
+            "median_native_contrast_change_vs_regular": 0.027140522875816996,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.1771064772269403,
+            "median_resized_luma_contrast": 0.02720355591958852,
+            "median_native_contrast_change_vs_regular": 0.022236201888162672,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 12,
+            "alerts": 12,
+            "median_score": 3.518824573688291,
+            "median_paired_score_change": 2.296211496365,
+            "new_alerts_vs_regular": 11,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 495,
+            "alerts": 495,
+            "median_score": 3.4295798817385665,
+            "median_paired_score_change": 2.0462278970942513,
+            "new_alerts_vs_regular": 495,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 9,
+            "median_native_mask_pixels": 129.0,
+            "median_resized_mask_area_pixels": 1.592592716217041,
+            "median_native_luma_contrast": 0.08153411764705884,
+            "median_resized_luma_contrast": 0.025179151938415852,
+            "median_native_contrast_change_vs_regular": -0.01028259594436065,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 10,
+            "scenes_with_no_majority_mask_pixel_at_256": 7,
+            "median_native_mask_pixels": 88.0,
+            "median_resized_mask_area_pixels": 1.094135820865631,
+            "median_native_luma_contrast": 0.12453823134752423,
+            "median_resized_luma_contrast": 0.020942433649743797,
+            "median_native_contrast_change_vs_regular": -0.009851848859201786,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        }
+      }
+    },
+    "fabric": {
+      "calibration": {
+        "reference_images": 21,
+        "threshold_images": 22,
+        "feature_centers": {
+          "median_luma": 0.5137254901960784,
+          "luma_range_05_95": 0.6745098039215687,
+          "near_black": 0.0,
+          "near_white": 0.0
+        },
+        "feature_scales": {
+          "median_luma": 0.011628235294117606,
+          "luma_range_05_95": 0.005814117647058967,
+          "near_black": 0.001,
+          "near_white": 0.001
+        },
+        "scene_threshold": 3.979495480911803,
+        "threshold_batch_combinations": 7315,
+        "batch_threshold": 2.6979630379063355
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 4,
+            "median_score": 2.6979630379063235,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 203,
+            "median_score": 3.0352084176446024,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.19504249267463894,
+            "median_resized_luma_contrast": 0.071877767213337,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.20477083612902952,
+            "median_resized_luma_contrast": 0.071877767213337,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 11,
+            "median_score": 7.4193983542423565,
+            "median_paired_score_change": 4.7214353163360325,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 330,
+            "median_score": 7.756643733980644,
+            "median_paired_score_change": 4.721435316336047,
+            "new_alerts_vs_regular": 127,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.21235648688303202,
+            "median_resized_luma_contrast": 0.07864699395434797,
+            "median_native_contrast_change_vs_regular": 0.01731399420839308,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.2252677678849141,
+            "median_resized_luma_contrast": 0.07864699395434797,
+            "median_native_contrast_change_vs_regular": 0.020496931755884573,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 7,
+            "median_score": 4.046944556859457,
+            "median_paired_score_change": 1.3489815189531336,
+            "new_alerts_vs_regular": 6,
+            "cleared_alerts_vs_regular": 3
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 322,
+            "median_score": 4.384189936597745,
+            "median_paired_score_change": 1.3489815189531429,
+            "new_alerts_vs_regular": 127,
+            "cleared_alerts_vs_regular": 8
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.21060462452856268,
+            "median_resized_luma_contrast": 0.07813060530933567,
+            "median_native_contrast_change_vs_regular": 0.011652820006447573,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.2223691900230834,
+            "median_resized_luma_contrast": 0.07813060530933567,
+            "median_native_contrast_change_vs_regular": 0.014585855078399435,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 4,
+            "median_score": 3.709699177121283,
+            "median_paired_score_change": 0.6744907594765763,
+            "new_alerts_vs_regular": 2,
+            "cleared_alerts_vs_regular": 2
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 256,
+            "median_score": 3.709699177121283,
+            "median_paired_score_change": 0.6744907594765672,
+            "new_alerts_vs_regular": 92,
+            "cleared_alerts_vs_regular": 39
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.18624759505798902,
+            "median_resized_luma_contrast": 0.0693447773361893,
+            "median_native_contrast_change_vs_regular": -0.008794897616649922,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.2177031043392816,
+            "median_resized_luma_contrast": 0.0693447773361893,
+            "median_native_contrast_change_vs_regular": -0.008794897616649922,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 5,
+            "median_score": 3.3724537973828808,
+            "median_paired_score_change": -1.3489815189531713,
+            "new_alerts_vs_regular": 3,
+            "cleared_alerts_vs_regular": 2
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 229,
+            "median_score": 3.3724537973828905,
+            "median_paired_score_change": 0.16862268986914386,
+            "new_alerts_vs_regular": 85,
+            "cleared_alerts_vs_regular": 59
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.19695318207847085,
+            "median_resized_luma_contrast": 0.07219757329367091,
+            "median_native_contrast_change_vs_regular": -0.0005457556944344633,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.23253284485582232,
+            "median_resized_luma_contrast": 0.07219757329367091,
+            "median_native_contrast_change_vs_regular": 0.0019106894038319056,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 11,
+            "alerts": 11,
+            "median_score": 12.815324430055004,
+            "median_paired_score_change": 10.117361392148663,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 330,
+            "alerts": 330,
+            "median_score": 12.815324430055004,
+            "median_paired_score_change": 9.780116012410401,
+            "new_alerts_vs_regular": 127,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 620.0,
+            "median_resized_mask_area_pixels": 6.905432224273682,
+            "median_native_luma_contrast": 0.17654412086652604,
+            "median_resized_luma_contrast": 0.06505182524310534,
+            "median_native_contrast_change_vs_regular": -0.01813254303843967,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 7,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 345.0,
+            "median_resized_mask_area_pixels": 3.8061728477478027,
+            "median_native_luma_contrast": 0.18612286083726295,
+            "median_resized_luma_contrast": 0.06505182524310534,
+            "median_native_contrast_change_vs_regular": -0.018647975291766566,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        }
+      }
+    },
+    "fruit_jelly": {
+      "calibration": {
+        "reference_images": 18,
+        "threshold_images": 19,
+        "feature_centers": {
+          "median_luma": 1.0,
+          "luma_range_05_95": 0.4215686274509804,
+          "near_black": 0.0,
+          "near_white": 0.6524445488721804
+        },
+        "feature_scales": {
+          "median_luma": 0.00392156862745098,
+          "luma_range_05_95": 0.07558352941176472,
+          "near_black": 0.001,
+          "near_white": 0.027970605263157894
+        },
+        "scene_threshold": 1.613928030335103,
+        "threshold_batch_combinations": 3876,
+        "batch_threshold": 1.3230395666656285
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.5447809980387887,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.6226068549014724,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 12637.0,
+            "median_resized_mask_area_pixels": 187.83006286621094,
+            "median_native_luma_contrast": 0.07417834160498864,
+            "median_resized_luma_contrast": 0.06033097658604124,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 1,
+            "median_score": 0.7004327117641561,
+            "median_paired_score_change": 0.5217709774561288,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.7782585686268403,
+            "median_paired_score_change": 0.18159366601292914,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 12637.0,
+            "median_resized_mask_area_pixels": 187.83006286621094,
+            "median_native_luma_contrast": 0.07889259516736939,
+            "median_resized_luma_contrast": 0.06363625849582055,
+            "median_native_contrast_change_vs_regular": 0.00427990889943191,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.49289709346366534,
+            "median_paired_score_change": 0.20753561830049078,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.7004327117641566,
+            "median_paired_score_change": 0.051883904575122486,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 12637.0,
+            "median_resized_mask_area_pixels": 187.83006286621094,
+            "median_native_luma_contrast": 0.07924390496798424,
+            "median_resized_luma_contrast": 0.0656989775729713,
+            "median_native_contrast_change_vs_regular": -0.0008854344952802518,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 1,
+            "median_score": 0.5447809980387887,
+            "median_paired_score_change": 0.41800316830588385,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 0.7004327117641564,
+            "median_paired_score_change": 0.02594195228756163,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 12637.0,
+            "median_resized_mask_area_pixels": 187.83006286621094,
+            "median_native_luma_contrast": 0.06790928938696156,
+            "median_resized_luma_contrast": 0.05651057557719219,
+            "median_native_contrast_change_vs_regular": -0.006072992660659346,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        }
+      }
+    },
+    "rice": {
+      "calibration": {
+        "reference_images": 17,
+        "threshold_images": 18,
+        "feature_centers": {
+          "median_luma": 0.6078431372549019,
+          "luma_range_05_95": 0.30980392156862746,
+          "near_black": 0.0,
+          "near_white": 0.00022758533752042484
+        },
+        "feature_scales": {
+          "median_luma": 0.005814117647058803,
+          "luma_range_05_95": 0.029070588235294095,
+          "near_black": 0.001,
+          "near_white": 0.001
+        },
+        "scene_threshold": 1.3489815189532095,
+        "threshold_batch_combinations": 3060,
+        "batch_threshold": 1.1466342911102125
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 0,
+            "median_score": 0.6744907594765952,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 0,
+            "median_score": 0.6070416835289454,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.07410769210114725,
+            "median_resized_luma_contrast": 0.045492594092467704,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 7,
+            "median_score": 12.815324430055366,
+            "median_paired_score_change": 12.73514098949164,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 35,
+            "median_score": 13.152569809793663,
+            "median_paired_score_change": 12.478079050317058,
+            "new_alerts_vs_regular": 35,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.08226791791691002,
+            "median_resized_luma_contrast": 0.05125563017011402,
+            "median_native_contrast_change_vs_regular": 0.008395578564645845,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 7,
+            "median_score": 9.442870632672351,
+            "median_paired_score_change": 9.173074328881711,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 35,
+            "median_score": 9.442870632672351,
+            "median_paired_score_change": 8.970727101038724,
+            "new_alerts_vs_regular": 35,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.0662401675493888,
+            "median_resized_luma_contrast": 0.043184632862973076,
+            "median_native_contrast_change_vs_regular": -0.005988678414731524,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 7,
+            "median_score": 6.070416835289375,
+            "median_paired_score_change": 5.530824227708099,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 35,
+            "median_score": 5.733171455551078,
+            "median_paired_score_change": 5.261027923917451,
+            "new_alerts_vs_regular": 35,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.09053949266647102,
+            "median_resized_luma_contrast": 0.05212063849040253,
+            "median_native_contrast_change_vs_regular": 0.009042688308937563,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 7,
+            "median_score": 4.046944556859571,
+            "median_paired_score_change": 3.7771482530689315,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 35,
+            "median_score": 4.046944556859571,
+            "median_paired_score_change": 3.574801025225944,
+            "new_alerts_vs_regular": 35,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.08677187123821596,
+            "median_resized_luma_contrast": 0.05354181467342802,
+            "median_native_contrast_change_vs_regular": 0.00928237069051982,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 7,
+            "alerts": 7,
+            "median_score": 12.815324430055346,
+            "median_paired_score_change": 12.27573182247407,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 35,
+            "alerts": 35,
+            "median_score": 12.815324430055346,
+            "median_paired_score_change": 12.2082827465264,
+            "new_alerts_vs_regular": 35,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 5663.0,
+            "median_resized_mask_area_pixels": 61.697532653808594,
+            "median_native_luma_contrast": 0.06409813990642473,
+            "median_resized_luma_contrast": 0.03997642156445868,
+            "median_native_contrast_change_vs_regular": -0.01000955219472252,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        }
+      }
+    },
+    "sheet_metal": {
+      "calibration": {
+        "reference_images": 9,
+        "threshold_images": 10,
+        "feature_centers": {
+          "median_luma": 0.1568627450980392,
+          "luma_range_05_95": 0.5098039215686274,
+          "near_black": 0.00013451274104683196,
+          "near_white": 0.015540256973140496
+        },
+        "feature_scales": {
+          "median_luma": 0.029070588235294095,
+          "luma_range_05_95": 0.04651294117647058,
+          "near_black": 0.001,
+          "near_white": 0.002317027833376377
+        },
+        "scene_threshold": 3.020766367964529,
+        "threshold_batch_combinations": 210,
+        "batch_threshold": 2.175183116678145
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 2,
+            "median_score": 2.4532814808807855,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 1,
+            "median_score": 2.4532814808807855,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.2973272274301808,
+            "median_resized_luma_contrast": 0.0816444935604018,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.23986731626412355
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 2,
+            "median_score": 2.233760135039672,
+            "median_paired_score_change": -0.40841993067983307,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 1
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 1,
+            "median_score": 2.233760135039672,
+            "median_paired_score_change": -0.21952134584111338,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.2931642095041223,
+            "median_resized_luma_contrast": 0.0842936035122207,
+            "median_native_contrast_change_vs_regular": 0.018300528992858806,
+            "median_native_foreground_near_clipped": 0.2898651789865179
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 0,
+            "median_score": 1.2815324430055317,
+            "median_paired_score_change": -1.5086751205964422,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 2
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 0,
+            "median_score": 1.2815324430055317,
+            "median_paired_score_change": -1.1717490378752538,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 1
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.24777134879658022,
+            "median_resized_luma_contrast": 0.05894431190436097,
+            "median_native_contrast_change_vs_regular": -0.04647842296747237,
+            "median_native_foreground_near_clipped": 0.11443661971830986
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 0,
+            "median_score": 1.0033050047214367,
+            "median_paired_score_change": -1.5106658891197848,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 2
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 0,
+            "median_score": 1.0033050047214367,
+            "median_paired_score_change": -1.4499764761593488,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 1
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.2405942162196479,
+            "median_resized_luma_contrast": 0.06594803671438296,
+            "median_native_contrast_change_vs_regular": -0.025780327621902133,
+            "median_native_foreground_near_clipped": 0.14989115787291385
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 1,
+            "median_score": 2.3370243681484544,
+            "median_paired_score_change": -0.3118446775880863,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 2
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 1,
+            "median_score": 2.3370243681484544,
+            "median_paired_score_change": -0.11625711273233108,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.25597164869694944,
+            "median_resized_luma_contrast": 0.051172651873172235,
+            "median_native_contrast_change_vs_regular": -0.06985729380545855,
+            "median_native_foreground_near_clipped": 0.0721830985915493
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 4,
+            "alerts": 4,
+            "median_score": 8.244846368514693,
+            "median_paired_score_change": 5.806755685114587,
+            "new_alerts_vs_regular": 2,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 1,
+            "alerts": 1,
+            "median_score": 8.244846368514693,
+            "median_paired_score_change": 5.791564887633908,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 2,
+            "median_native_mask_pixels": 10989.0,
+            "median_resized_mask_area_pixels": 40.44187927246094,
+            "median_native_luma_contrast": 0.28804324030504397,
+            "median_resized_luma_contrast": 0.07723187066810908,
+            "median_native_contrast_change_vs_regular": -0.02751743056388334,
+            "median_native_foreground_near_clipped": 0.1888670052866176
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        }
+      }
+    },
+    "vial": {
+      "calibration": {
+        "reference_images": 20,
+        "threshold_images": 21,
+        "feature_centers": {
+          "median_luma": 0.9862745098039216,
+          "luma_range_05_95": 0.9274509803921569,
+          "near_black": 0.03420338345864661,
+          "near_white": 0.5236357142857142
+        },
+        "feature_scales": {
+          "median_luma": 0.00392156862745098,
+          "luma_range_05_95": 0.02034941176470581,
+          "near_black": 0.001,
+          "near_white": 0.006347868947368411
+        },
+        "scene_threshold": 6.8529303487641355,
+        "threshold_batch_combinations": 5985,
+        "batch_threshold": 1.9390498903681577
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 1,
+            "median_score": 1.059914050606078,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 0,
+            "median_score": 1.3769051639697016,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28554.0,
+            "median_resized_mask_area_pixels": 519.8682861328125,
+            "median_native_luma_contrast": 0.274708840310101,
+            "median_resized_luma_contrast": 0.21619475530189053,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 30.138822149501966,
+            "median_paired_score_change": 29.46433139002537,
+            "new_alerts_vs_regular": 4,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 29.74214648816434,
+            "median_paired_score_change": 28.234624995278523,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28559.0,
+            "median_resized_mask_area_pixels": 519.7872924804688,
+            "median_native_luma_contrast": 0.2559329705364567,
+            "median_resized_luma_contrast": 0.20938756294992014,
+            "median_native_contrast_change_vs_regular": 0.014503457167275302,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 15.036466165413529,
+            "median_paired_score_change": 14.299317470777913,
+            "new_alerts_vs_regular": 4,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 14.632706766917288,
+            "median_paired_score_change": 13.094418924962355,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28565.0,
+            "median_resized_mask_area_pixels": 519.8877563476562,
+            "median_native_luma_contrast": 0.24371110354049605,
+            "median_resized_luma_contrast": 0.20990442503583123,
+            "median_native_contrast_change_vs_regular": -0.008593043232441422,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 3,
+            "median_score": 7.422180451127812,
+            "median_paired_score_change": 6.6850317564921955,
+            "new_alerts_vs_regular": 3,
+            "cleared_alerts_vs_regular": 1
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 7.18950101204098,
+            "median_paired_score_change": 5.723310133785563,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28565.0,
+            "median_resized_mask_area_pixels": 519.8877563476562,
+            "median_native_luma_contrast": 0.2548552597394943,
+            "median_resized_luma_contrast": 0.2048568501000452,
+            "median_native_contrast_change_vs_regular": -0.005858551495886086,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 1,
+            "median_score": 4.718796992481199,
+            "median_paired_score_change": 3.4942212877397814,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 4.692481203007514,
+            "median_paired_score_change": 3.3979068661054823,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28559.0,
+            "median_resized_mask_area_pixels": 519.7872924804688,
+            "median_native_luma_contrast": 0.25444183071506704,
+            "median_resized_luma_contrast": 0.21525523774011812,
+            "median_native_contrast_change_vs_regular": -0.0017638244931505176,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_4": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 21.15037593984962,
+            "median_paired_score_change": 20.413227245214003,
+            "new_alerts_vs_regular": 4,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 20.712969924812022,
+            "median_paired_score_change": 19.17468208285709,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 28559.0,
+            "median_resized_mask_area_pixels": 519.7872924804688,
+            "median_native_luma_contrast": 0.24121537478051905,
+            "median_resized_luma_contrast": 0.20705375629631767,
+            "median_native_contrast_change_vs_regular": -0.009521977256018374,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 82.46933193150133,
+            "median_paired_score_change": 81.38916361452058,
+            "new_alerts_vs_regular": 4,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 5,
+            "alerts": 5,
+            "median_score": 82.46228439437097,
+            "median_paired_score_change": 81.09349278155136,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 27963.0,
+            "median_resized_mask_area_pixels": 508.5962829589844,
+            "median_native_luma_contrast": 0.22094594712657073,
+            "median_resized_luma_contrast": 0.189409340776662,
+            "median_native_contrast_change_vs_regular": -0.02618907136805132,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        }
+      }
+    },
+    "wallplugs": {
+      "calibration": {
+        "reference_images": 16,
+        "threshold_images": 17,
+        "feature_centers": {
+          "median_luma": 0.06862745098039216,
+          "luma_range_05_95": 0.5882352941176471,
+          "near_black": 0.0024416057112949347,
+          "near_white": 0.0
+        },
+        "feature_scales": {
+          "median_luma": 0.014535294117647047,
+          "luma_range_05_95": 0.03488470588235298,
+          "near_black": 0.0013549950693167894,
+          "near_white": 0.001
+        },
+        "scene_threshold": 3.8670803543324763,
+        "threshold_batch_combinations": 2380,
+        "batch_threshold": 2.494011281630775
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 3,
+            "median_score": 0.9953228437802264,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 70,
+            "median_score": 1.0467707967346285,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.0690360335006708,
+            "median_resized_luma_contrast": 0.04625151431845681,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.10542710029465219,
+            "median_resized_luma_contrast": 0.04064248647560027,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 3,
+            "median_score": 1.8143683666365709,
+            "median_paired_score_change": 0.529567984988444,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 70,
+            "median_score": 2.0002630445266543,
+            "median_paired_score_change": 0.6159033910192215,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.07552570865780449,
+            "median_resized_luma_contrast": 0.05048678327009595,
+            "median_native_contrast_change_vs_regular": 0.006489675157133695,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.11548225780883797,
+            "median_resized_luma_contrast": 0.04424711404072077,
+            "median_native_contrast_change_vs_regular": 0.010055157514185797,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 10,
+            "median_score": 112.51866037126257,
+            "median_paired_score_change": 109.54920327165212,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 210,
+            "median_score": 112.64849469030628,
+            "median_paired_score_change": 110.9548339672251,
+            "new_alerts_vs_regular": 140,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.10517113891035579,
+            "median_resized_luma_contrast": 0.0869569169393645,
+            "median_native_contrast_change_vs_regular": 0.012890477980648046,
+            "median_native_foreground_near_clipped": 0.0004399472063352398
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.16746179359992042,
+            "median_resized_luma_contrast": 0.07431630118953955,
+            "median_native_contrast_change_vs_regular": 0.06203469330526823,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 10,
+            "median_score": 221.71734532920004,
+            "median_paired_score_change": 218.16839340422814,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 210,
+            "median_score": 220.387426785662,
+            "median_paired_score_change": 218.31758510757376,
+            "new_alerts_vs_regular": 140,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.048116975437861975,
+            "median_resized_luma_contrast": 0.03024165117099617,
+            "median_native_contrast_change_vs_regular": -0.03239619463216324,
+            "median_native_foreground_near_clipped": 0.0001404297149276787
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.031731786923670346,
+            "median_resized_luma_contrast": 0.003583202192521953,
+            "median_native_contrast_change_vs_regular": -0.07369531337098184,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 10,
+            "median_score": 146.1340462503407,
+            "median_paired_score_change": 145.13872340656047,
+            "new_alerts_vs_regular": 7,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 210,
+            "median_score": 148.9166518431792,
+            "median_paired_score_change": 147.55981942058014,
+            "new_alerts_vs_regular": 140,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.08528585489872723,
+            "median_resized_luma_contrast": 0.07223596452498267,
+            "median_native_contrast_change_vs_regular": -0.006994806030980516,
+            "median_native_foreground_near_clipped": 0.00014180374361883155
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.11254294250014807,
+            "median_resized_luma_contrast": 0.04478628152571629,
+            "median_native_contrast_change_vs_regular": 0.0071158422054958936,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 3,
+            "median_score": 2.0796798417195,
+            "median_paired_score_change": 1.003860701495118,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 70,
+            "median_score": 2.0796798417195,
+            "median_paired_score_change": 1.019039933012955,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 1928.0,
+            "median_resized_mask_area_pixels": 21.146543502807617,
+            "median_native_luma_contrast": 0.06212926061908028,
+            "median_resized_luma_contrast": 0.04169713746760745,
+            "median_native_contrast_change_vs_regular": -0.006906772881590514,
+            "median_native_foreground_near_clipped": 0.0
+          },
+          "tiny_only_visibility": {
+            "scenes": 2,
+            "scenes_with_no_majority_mask_pixel_at_256": 1,
+            "median_native_mask_pixels": 256.5,
+            "median_resized_mask_area_pixels": 2.836111307144165,
+            "median_native_luma_contrast": 0.09431607468835287,
+            "median_resized_luma_contrast": 0.03666849803089558,
+            "median_native_contrast_change_vs_regular": -0.011111025606299306,
+            "median_native_foreground_near_clipped": 0.0
+          }
+        }
+      }
+    },
+    "walnuts": {
+      "calibration": {
+        "reference_images": 24,
+        "threshold_images": 24,
+        "feature_centers": {
+          "median_luma": 0.12941176470588237,
+          "luma_range_05_95": 0.41568627450980394,
+          "near_black": 8.377374387254902e-05,
+          "near_white": 9.973064746732026e-08
+        },
+        "feature_scales": {
+          "median_luma": 0.008721176470588244,
+          "luma_range_05_95": 0.05814117647058823,
+          "near_black": 0.001,
+          "near_white": 0.001
+        },
+        "scene_threshold": 3.8715769593956573,
+        "threshold_batch_combinations": 10626,
+        "batch_threshold": 2.563064886011062
+      },
+      "by_lighting": {
+        "regular": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 0,
+            "median_score": 1.7986420252709192,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 13,
+            "median_score": 1.7986420252709192,
+            "median_paired_score_change": 0.0,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.11113696710051792,
+            "median_resized_luma_contrast": 0.08522268909613938,
+            "median_native_contrast_change_vs_regular": 0.0,
+            "median_native_foreground_near_clipped": 0.0017153259119232654
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "overexposed": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 1,
+            "median_score": 1.922298664508296,
+            "median_paired_score_change": -0.12365663923737702,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 7,
+            "median_score": 1.922298664508296,
+            "median_paired_score_change": 0.11241512657943353,
+            "new_alerts_vs_regular": 5,
+            "cleared_alerts_vs_regular": 11
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.1306942578382119,
+            "median_resized_luma_contrast": 0.10083938936757722,
+            "median_native_contrast_change_vs_regular": 0.01955729073769398,
+            "median_native_foreground_near_clipped": 0.007355399531929121
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_1": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 1,
+            "median_score": 3.260038670803543,
+            "median_paired_score_change": 1.1241512657943242,
+            "new_alerts_vs_regular": 1,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 203,
+            "median_score": 3.260038670803543,
+            "median_paired_score_change": 1.3433607626242166,
+            "new_alerts_vs_regular": 190,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.10769564653076942,
+            "median_resized_luma_contrast": 0.08172086368060077,
+            "median_native_contrast_change_vs_regular": -0.011213505885829908,
+            "median_native_foreground_near_clipped": 0.0006689183261689622
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_2": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 0,
+            "median_score": 1.8773326138765234,
+            "median_paired_score_change": -0.13489815189531906,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 0,
+            "median_score": 1.8773326138765234,
+            "median_paired_score_change": 0.011241512657943264,
+            "new_alerts_vs_regular": 0,
+            "cleared_alerts_vs_regular": 13
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.08864641371426471,
+            "median_resized_luma_contrast": 0.07360286012010508,
+            "median_native_contrast_change_vs_regular": -0.003997775975375373,
+            "median_native_foreground_near_clipped": 0.0006382784717789732
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "shift_3": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 6,
+            "median_score": 4.046944556859568,
+            "median_paired_score_change": 2.1021628670353856,
+            "new_alerts_vs_regular": 6,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 210,
+            "median_score": 3.8221143037007037,
+            "median_paired_score_change": 2.0853005980484713,
+            "new_alerts_vs_regular": 197,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.10180182375098591,
+            "median_resized_luma_contrast": 0.06693405514790934,
+            "median_native_contrast_change_vs_regular": -0.013463006508489167,
+            "median_native_foreground_near_clipped": 0.0006469865777699799
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        },
+        "underexposed": {
+          "scene_alerts": {
+            "count": 10,
+            "alerts": 9,
+            "median_score": 4.496605063177298,
+            "median_paired_score_change": 2.866585727775526,
+            "new_alerts_vs_regular": 9,
+            "cleared_alerts_vs_regular": 0
+          },
+          "batch_alerts": {
+            "count": 210,
+            "alerts": 210,
+            "median_score": 4.496605063177298,
+            "median_paired_score_change": 2.647376230945633,
+            "new_alerts_vs_regular": 197,
+            "cleared_alerts_vs_regular": 0
+          },
+          "visibility": {
+            "scenes": 15,
+            "scenes_with_no_majority_mask_pixel_at_256": 0,
+            "median_native_mask_pixels": 61305.0,
+            "median_resized_mask_area_pixels": 670.4361572265625,
+            "median_native_luma_contrast": 0.08469482969611325,
+            "median_resized_luma_contrast": 0.06517814626102235,
+            "median_native_contrast_change_vs_regular": -0.026442137404404667,
+            "median_native_foreground_near_clipped": 0.0006546390249119316
+          },
+          "tiny_only_visibility": {
+            "scenes": 0
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Regular-light alerts on known-good public scenes are counted as false alerts for the acquisition monitor.",
+    "Shifted-light alerts indicate changes in image statistics. They do not estimate defect accuracy or set factory alarm rates.",
+    "Batch results enumerate overlapping four-scene combinations. Those batches are not independent samples.",
+    "Contrast is the absolute difference in mean decoded luma between the mask and its three-pixel outer ring, on a 0\u20131 scale.",
+    "The resized audit uses the long edge of 256 pixels and projects mask and ring coverage by box resampling. It is a visibility proxy, not a model or human detection score.",
+    "Each light uses its own annotation. Mask changes, texture, color, and glare can affect paired contrast independently of defect detection."
+  ]
+}

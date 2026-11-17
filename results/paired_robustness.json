@@ -1,0 +1,4822 @@
+{
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 42,
+    "unit": "scene",
+    "stratified_by": "good or defective",
+    "thresholds": "fixed"
+  },
+  "decision_errors": {
+    "good": "false reject",
+    "defective": "miss"
+  },
+  "reinspection_note": "The alternate view is a preexisting benchmark capture. The OR policy retries regular-view passes and rejects if either view rejects. The two-vote policy retries regular-view rejects and rejects only if both views reject. Costs sum recorded map compute times for the views used and exclude camera and station overhead.",
+  "runs": {
+    "native/can": {
+      "category": "can",
+      "treatment": "native",
+      "thresholds": {
+        "context": 3.594789147377014,
+        "fusion": 0.97086501121521
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 12,
+            "captures": 60,
+            "context": {
+              "errors": 9,
+              "error_rate": 0.15
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              -0.18333333333333332,
+              0.35
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 70,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 54,
+              "error_rate": 0.72
+            },
+            "fusion_minus_context": -0.21333333333333335,
+            "fusion_minus_context_95_ci": [
+              -0.4266666666666667,
+              -0.013333333333333334
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.08333333333333333
+            },
+            "fusion": {
+              "errors": 5,
+              "error_rate": 0.4166666666666667
+            },
+            "fusion_minus_context": 0.3333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.6666666666666666
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.3333333333333333,
+              0.0
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.08333333333333333
+            },
+            "fusion": {
+              "errors": 2,
+              "error_rate": 0.16666666666666666
+            },
+            "fusion_minus_context": 0.08333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.16666666666666666,
+              0.3333333333333333
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": -0.2,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.0
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.25
+            },
+            "fusion": {
+              "errors": 3,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.4166666666666667,
+              0.4166666666666667
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": -0.26666666666666666,
+            "fusion_minus_context_95_ci": [
+              -0.6,
+              0.06666666666666667
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.08333333333333333
+            },
+            "fusion": {
+              "errors": 3,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.16666666666666666,
+            "fusion_minus_context_95_ci": [
+              -0.16666666666666666,
+              0.5
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion": {
+              "errors": 11,
+              "error_rate": 0.7333333333333333
+            },
+            "fusion_minus_context": -0.26666666666666666,
+            "fusion_minus_context_95_ci": [
+              -0.5333333333333333,
+              -0.06666666666666667
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.25
+            },
+            "fusion": {
+              "errors": 2,
+              "error_rate": 0.16666666666666666
+            },
+            "fusion_minus_context": -0.08333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.4166666666666667,
+              0.25
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.4666666666666667,
+              0.26666666666666666
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 12,
+            "captures": 12,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.08333333333333333
+            },
+            "fusion": {
+              "errors": 5,
+              "error_rate": 0.4166666666666667
+            },
+            "fusion_minus_context": 0.3333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.6666666666666666
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": -0.2,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.0
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 11,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 26,
+                "mean_views_per_scene": 1.962962962962963,
+                "mean_added_map_compute_ms": 196.86229999998702,
+                "mean_total_map_compute_ms": 402.2055518518452
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.037037037037037,
+                "mean_added_map_compute_ms": 7.917948148150134,
+                "mean_total_map_compute_ms": 213.2612000000083
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 6,
+                "correct_to_error": 1,
+                "error_to_correct": 4,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 6,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.7407407407407407,
+                "mean_added_map_compute_ms": 152.08434444444822,
+                "mean_total_map_compute_ms": 357.4275962963064
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2592592592592593,
+                "mean_added_map_compute_ms": 52.695903703688934,
+                "mean_total_map_compute_ms": 258.0391555555471
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 3,
+                "extra_captures": 26,
+                "mean_views_per_scene": 1.962962962962963,
+                "mean_added_map_compute_ms": 200.00608518519888,
+                "mean_total_map_compute_ms": 405.34933703705707
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.037037037037037,
+                "mean_added_map_compute_ms": 7.5223555555583985,
+                "mean_total_map_compute_ms": 212.86560740741658
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 3
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 1,
+                "error_to_correct": 5,
+                "error_to_error": 8
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 8,
+                "false_rejects": 5,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.7407407407407407,
+                "mean_added_map_compute_ms": 153.58214444446546,
+                "mean_total_map_compute_ms": 358.92539629632364
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 3,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2592592592592593,
+                "mean_added_map_compute_ms": 53.94629629629182,
+                "mean_total_map_compute_ms": 259.28954814815
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 11,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 26,
+                "mean_views_per_scene": 1.962962962962963,
+                "mean_added_map_compute_ms": 199.69719259257477,
+                "mean_total_map_compute_ms": 405.0404444444329
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.037037037037037,
+                "mean_added_map_compute_ms": 7.71534814815048,
+                "mean_total_map_compute_ms": 213.05860000000865
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 6,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 11
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 11,
+                "false_rejects": 6,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.7407407407407407,
+                "mean_added_map_compute_ms": 153.66301111110394,
+                "mean_total_map_compute_ms": 359.0062629629621
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 2,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2592592592592593,
+                "mean_added_map_compute_ms": 53.7495296296213,
+                "mean_total_map_compute_ms": 259.09278148147945
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 3,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 3,
+                "extra_captures": 26,
+                "mean_views_per_scene": 1.962962962962963,
+                "mean_added_map_compute_ms": 200.31201481482537,
+                "mean_total_map_compute_ms": 405.65526666668353
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.037037037037037,
+                "mean_added_map_compute_ms": 7.851785185182423,
+                "mean_total_map_compute_ms": 213.1950370370406
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 6,
+                "correct_to_error": 1,
+                "error_to_correct": 4,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 3,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 6,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.7407407407407407,
+                "mean_added_map_compute_ms": 154.50166666667226,
+                "mean_total_map_compute_ms": 359.84491851853045
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2592592592592593,
+                "mean_added_map_compute_ms": 53.66213333333555,
+                "mean_total_map_compute_ms": 259.00538518519375
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 11,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 26,
+                "mean_views_per_scene": 1.962962962962963,
+                "mean_added_map_compute_ms": 203.16588888886986,
+                "mean_total_map_compute_ms": 408.509140740728
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.037037037037037,
+                "mean_added_map_compute_ms": 7.74508148147443,
+                "mean_total_map_compute_ms": 213.0883333333326
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 5
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 5,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.7407407407407407,
+                "mean_added_map_compute_ms": 156.6858740740608,
+                "mean_total_map_compute_ms": 362.02912592591895
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 5,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2592592592592593,
+                "mean_added_map_compute_ms": 54.22509629628352,
+                "mean_total_map_compute_ms": 259.5683481481417
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/fabric": {
+      "category": "fabric",
+      "treatment": "native",
+      "thresholds": {
+        "context": 2.778901290893555,
+        "fusion": 0.9424289464950562
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 11,
+            "captures": 55,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.23636363636363636
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.18181818181818182
+            },
+            "fusion_minus_context": -0.05454545454545454,
+            "fusion_minus_context_95_ci": [
+              -0.23636363636363636,
+              0.12727272727272726
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 42,
+              "error_rate": 0.56
+            },
+            "fusion": {
+              "errors": 37,
+              "error_rate": 0.49333333333333335
+            },
+            "fusion_minus_context": -0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.30666666666666664,
+              0.16
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.09090909090909091
+            },
+            "fusion_minus_context": 0.09090909090909091,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2727272727272727
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": -0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.3333333333333333,
+              0.2
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.2727272727272727
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.09090909090909091
+            },
+            "fusion_minus_context": -0.18181818181818182,
+            "fusion_minus_context_95_ci": [
+              -0.45454545454545453,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion": {
+              "errors": 6,
+              "error_rate": 0.4
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.4666666666666667,
+              0.26666666666666666
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.18181818181818182
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.09090909090909091
+            },
+            "fusion_minus_context": -0.09090909090909091,
+            "fusion_minus_context_95_ci": [
+              -0.36363636363636365,
+              0.18181818181818182
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion": {
+              "errors": 6,
+              "error_rate": 0.4
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.4666666666666667,
+              0.2
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 4,
+              "error_rate": 0.36363636363636365
+            },
+            "fusion": {
+              "errors": 5,
+              "error_rate": 0.45454545454545453
+            },
+            "fusion_minus_context": 0.09090909090909091,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2727272727272727
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion": {
+              "errors": 6,
+              "error_rate": 0.4
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.4666666666666667,
+              0.2
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 4,
+              "error_rate": 0.36363636363636365
+            },
+            "fusion": {
+              "errors": 2,
+              "error_rate": 0.18181818181818182
+            },
+            "fusion_minus_context": -0.18181818181818182,
+            "fusion_minus_context_95_ci": [
+              -0.5454545454545454,
+              0.18181818181818182
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 7,
+              "error_rate": 0.4666666666666667
+            },
+            "fusion": {
+              "errors": 7,
+              "error_rate": 0.4666666666666667
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.3333333333333333,
+              0.3333333333333333
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 11,
+            "captures": 11,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.09090909090909091
+            },
+            "fusion_minus_context": 0.09090909090909091,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2727272727272727
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 11,
+              "error_rate": 0.7333333333333333
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.2,
+              0.3333333333333333
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 8,
+                "correct_to_error": 3,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 3,
+                "extra_captures": 21,
+                "mean_views_per_scene": 1.8076923076923077,
+                "mean_added_map_compute_ms": 381.2464230769417,
+                "mean_total_map_compute_ms": 855.1900538461634
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.1923076923076923,
+                "mean_added_map_compute_ms": 91.64045384615677,
+                "mean_total_map_compute_ms": 565.5840846153786
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 6,
+                "correct_to_error": 0,
+                "error_to_correct": 3,
+                "error_to_error": 6
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 6,
+                "false_rejects": 1,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.7307692307692308,
+                "mean_added_map_compute_ms": 344.94090769232326,
+                "mean_total_map_compute_ms": 818.8845384615452
+              },
+              "two_vote": {
+                "misses": 9,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2692307692307692,
+                "mean_added_map_compute_ms": 127.94596923077523,
+                "mean_total_map_compute_ms": 601.889599999997
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 8
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 8,
+                "false_rejects": 2,
+                "extra_captures": 21,
+                "mean_views_per_scene": 1.8076923076923077,
+                "mean_added_map_compute_ms": 386.05186153845,
+                "mean_total_map_compute_ms": 859.9954923076718
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.1923076923076923,
+                "mean_added_map_compute_ms": 91.52131538460777,
+                "mean_total_map_compute_ms": 565.4649461538296
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 6,
+                "correct_to_error": 0,
+                "error_to_correct": 3,
+                "error_to_error": 6
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 6,
+                "false_rejects": 1,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.7307692307692308,
+                "mean_added_map_compute_ms": 349.0150769230765,
+                "mean_total_map_compute_ms": 822.9587076922983
+              },
+              "two_vote": {
+                "misses": 9,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2692307692307692,
+                "mean_added_map_compute_ms": 128.5580999999813,
+                "mean_total_map_compute_ms": 602.5017307692032
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 4,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 4,
+                "extra_captures": 21,
+                "mean_views_per_scene": 1.8076923076923077,
+                "mean_added_map_compute_ms": 383.08950384615713,
+                "mean_total_map_compute_ms": 857.033134615379
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.1923076923076923,
+                "mean_added_map_compute_ms": 92.51537692307465,
+                "mean_total_map_compute_ms": 566.4590076922965
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 6,
+                "correct_to_error": 4,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 1,
+                "error_to_correct": 4,
+                "error_to_error": 5
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 5,
+                "false_rejects": 5,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.7307692307692308,
+                "mean_added_map_compute_ms": 347.3440115384567,
+                "mean_total_map_compute_ms": 821.2876423076784
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2692307692307692,
+                "mean_added_map_compute_ms": 128.2608692307751,
+                "mean_total_map_compute_ms": 602.204499999997
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 4,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 4,
+                "error_to_error": 6
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 6,
+                "false_rejects": 4,
+                "extra_captures": 21,
+                "mean_views_per_scene": 1.8076923076923077,
+                "mean_added_map_compute_ms": 388.2694807692115,
+                "mean_total_map_compute_ms": 862.2131115384334
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.1923076923076923,
+                "mean_added_map_compute_ms": 91.38594615384275,
+                "mean_total_map_compute_ms": 565.3295769230646
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 6
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 6,
+                "false_rejects": 2,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.7307692307692308,
+                "mean_added_map_compute_ms": 350.78131538459553,
+                "mean_total_map_compute_ms": 824.7249461538174
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2692307692307692,
+                "mean_added_map_compute_ms": 128.87411153845872,
+                "mean_total_map_compute_ms": 602.8177423076805
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 11,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 21,
+                "mean_views_per_scene": 1.8076923076923077,
+                "mean_added_map_compute_ms": 391.7274423076833,
+                "mean_total_map_compute_ms": 865.6710730769051
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.1923076923076923,
+                "mean_added_map_compute_ms": 93.7403807692345,
+                "mean_total_map_compute_ms": 567.6840115384564
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 3,
+                "correct_to_error": 3,
+                "error_to_correct": 0,
+                "error_to_error": 9
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 9,
+                "false_rejects": 1,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.7307692307692308,
+                "mean_added_map_compute_ms": 354.96519230768905,
+                "mean_total_map_compute_ms": 828.908823076911
+              },
+              "two_vote": {
+                "misses": 12,
+                "false_rejects": 1,
+                "extra_captures": 7,
+                "mean_views_per_scene": 1.2692307692307692,
+                "mean_added_map_compute_ms": 130.50263076922874,
+                "mean_total_map_compute_ms": 604.4462615384506
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/fruit_jelly": {
+      "category": "fruit_jelly",
+      "treatment": "native",
+      "thresholds": {
+        "context": 3.4797353744506836,
+        "fusion": 0.9770872831344605
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 5,
+            "captures": 15,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.06666666666666667
+            },
+            "fusion": {
+              "errors": 2,
+              "error_rate": 0.13333333333333333
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.13333333333333333,
+              0.26666666666666666
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 45,
+            "context": {
+              "errors": 39,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 40,
+              "error_rate": 0.8888888888888888
+            },
+            "fusion_minus_context": 0.022222222222222223,
+            "fusion_minus_context_95_ci": [
+              -0.08888888888888889,
+              0.15555555555555556
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.6
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": -0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              -0.3333333333333333,
+              0.0
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.6
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": -0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.2,
+              0.0
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion_minus_context": 0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3333333333333333
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.6,
+              0.6
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.2,
+              0.2
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 14
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.95,
+                "mean_added_map_compute_ms": 280.3279900000234,
+                "mean_total_map_compute_ms": 572.3465000000147
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.05,
+                "mean_added_map_compute_ms": 14.835825000000114,
+                "mean_total_map_compute_ms": 306.85433499999135
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 1,
+                "extra_captures": 16,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 235.6679850000205,
+                "mean_total_map_compute_ms": 527.6864950000117
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 1,
+                "extra_captures": 4,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 59.495830000003025,
+                "mean_total_map_compute_ms": 351.51433999999426
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.95,
+                "mean_added_map_compute_ms": 276.33609999993496,
+                "mean_total_map_compute_ms": 568.3546099999262
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.05,
+                "mean_added_map_compute_ms": 14.82850499999131,
+                "mean_total_map_compute_ms": 306.84701499998255
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 1,
+                "extra_captures": 16,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 233.15874499994607,
+                "mean_total_map_compute_ms": 525.1772549999373
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 4,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 58.0058599999802,
+                "mean_total_map_compute_ms": 350.02436999997144
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 1,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.95,
+                "mean_added_map_compute_ms": 284.82397499997205,
+                "mean_total_map_compute_ms": 576.8424849999633
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.05,
+                "mean_added_map_compute_ms": 14.69862500000545,
+                "mean_total_map_compute_ms": 306.7171349999967
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 1,
+                "error_to_correct": 1,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 2,
+                "extra_captures": 16,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 239.94668000000274,
+                "mean_total_map_compute_ms": 531.965189999994
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 4,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 59.57591999997476,
+                "mean_total_map_compute_ms": 351.594429999966
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/rice": {
+      "category": "rice",
+      "treatment": "native",
+      "thresholds": {
+        "context": 2.7635523319244384,
+        "fusion": 0.9277514219284058
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 7,
+            "captures": 35,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.02857142857142857
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.02857142857142857,
+            "fusion_minus_context_95_ci": [
+              -0.08571428571428572,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 59,
+              "error_rate": 0.7866666666666666
+            },
+            "fusion": {
+              "errors": 62,
+              "error_rate": 0.8266666666666667
+            },
+            "fusion_minus_context": 0.04,
+            "fusion_minus_context_95_ci": [
+              -0.02666666666666667,
+              0.12
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": -0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.2,
+              0.0
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 1,
+              "error_rate": 0.14285714285714285
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.14285714285714285,
+            "fusion_minus_context_95_ci": [
+              -0.42857142857142855,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": 0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3333333333333333
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion_minus_context": 0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3333333333333333
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 7,
+            "captures": 7,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.8636363636363635,
+                "mean_added_map_compute_ms": 450.7858954545389,
+                "mean_total_map_compute_ms": 988.7457454545835
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.1363636363636365,
+                "mean_added_map_compute_ms": 71.0135272727257,
+                "mean_total_map_compute_ms": 608.9733772727703
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.9090909090909092,
+                "mean_added_map_compute_ms": 475.6393227272714,
+                "mean_total_map_compute_ms": 1013.5991727273159
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 2,
+                "mean_views_per_scene": 1.0909090909090908,
+                "mean_added_map_compute_ms": 46.16009999999319,
+                "mean_total_map_compute_ms": 584.1199500000378
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.8636363636363635,
+                "mean_added_map_compute_ms": 459.13033181814586,
+                "mean_total_map_compute_ms": 997.0901818181904
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.1363636363636365,
+                "mean_added_map_compute_ms": 74.37764545455717,
+                "mean_total_map_compute_ms": 612.3374954546017
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.9090909090909092,
+                "mean_added_map_compute_ms": 482.7650318181482,
+                "mean_total_map_compute_ms": 1020.7248818181928
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 2,
+                "mean_views_per_scene": 1.0909090909090908,
+                "mean_added_map_compute_ms": 50.742945454554835,
+                "mean_total_map_compute_ms": 588.7027954545994
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 6,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 9
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 9,
+                "false_rejects": 1,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.8636363636363635,
+                "mean_added_map_compute_ms": 448.70176818180465,
+                "mean_total_map_compute_ms": 986.6616181818492
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.1363636363636365,
+                "mean_added_map_compute_ms": 66.5788136363765,
+                "mean_total_map_compute_ms": 604.5386636364211
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.9090909090909092,
+                "mean_added_map_compute_ms": 471.82159999998805,
+                "mean_total_map_compute_ms": 1009.7814500000327
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 2,
+                "mean_views_per_scene": 1.0909090909090908,
+                "mean_added_map_compute_ms": 43.45898181819311,
+                "mean_total_map_compute_ms": 581.4188318182377
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 9
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 9,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.8636363636363635,
+                "mean_added_map_compute_ms": 409.6741227272312,
+                "mean_total_map_compute_ms": 947.6339727272757
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.1363636363636365,
+                "mean_added_map_compute_ms": 64.34323636364587,
+                "mean_total_map_compute_ms": 602.3030863636905
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.9090909090909092,
+                "mean_added_map_compute_ms": 431.30935909086725,
+                "mean_total_map_compute_ms": 969.2692090909118
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 2,
+                "mean_views_per_scene": 1.0909090909090908,
+                "mean_added_map_compute_ms": 42.7080000000098,
+                "mean_total_map_compute_ms": 580.6678500000544
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 19,
+                "mean_views_per_scene": 1.8636363636363635,
+                "mean_added_map_compute_ms": 482.1037909091501,
+                "mean_total_map_compute_ms": 1020.0636409091948
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.1363636363636365,
+                "mean_added_map_compute_ms": 80.74629545454958,
+                "mean_total_map_compute_ms": 618.7061454545942
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 7,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.9090909090909092,
+                "mean_added_map_compute_ms": 504.2275681818906,
+                "mean_total_map_compute_ms": 1042.187418181935
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 2,
+                "mean_views_per_scene": 1.0909090909090908,
+                "mean_added_map_compute_ms": 58.62251818180911,
+                "mean_total_map_compute_ms": 596.5823681818537
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/sheet_metal": {
+      "category": "sheet_metal",
+      "treatment": "native",
+      "thresholds": {
+        "context": 3.2596566677093506,
+        "fusion": 0.9464444637298584
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 4,
+            "captures": 20,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 3,
+              "error_rate": 0.15
+            },
+            "fusion_minus_context": 0.15,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.45
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 41,
+              "error_rate": 0.5466666666666666
+            },
+            "fusion": {
+              "errors": 45,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": 0.05333333333333334,
+            "fusion_minus_context_95_ci": [
+              -0.10666666666666667,
+              0.21333333333333335
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 7,
+              "error_rate": 0.4666666666666667
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.4
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 7,
+              "error_rate": 0.4666666666666667
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              -0.06666666666666667,
+              0.4666666666666667
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.25,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.75
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.13333333333333333,
+              0.26666666666666666
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.25,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.75
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.2,
+              0.2
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.25
+            },
+            "fusion_minus_context": 0.25,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.75
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.13333333333333333,
+              0.26666666666666666
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 4,
+            "captures": 4,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion": {
+              "errors": 8,
+              "error_rate": 0.5333333333333333
+            },
+            "fusion_minus_context": -0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.26666666666666666,
+              0.13333333333333333
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 8,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 11,
+                "mean_views_per_scene": 1.5789473684210527,
+                "mean_added_map_compute_ms": 284.147610526325,
+                "mean_total_map_compute_ms": 764.4739315789808
+              },
+              "two_vote": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 8,
+                "mean_views_per_scene": 1.4210526315789473,
+                "mean_added_map_compute_ms": 202.8011473684465,
+                "mean_total_map_compute_ms": 683.1274684211023
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 1,
+                "error_to_error": 9
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 9,
+                "false_rejects": 0,
+                "extra_captures": 14,
+                "mean_views_per_scene": 1.736842105263158,
+                "mean_added_map_compute_ms": 360.0615473684397,
+                "mean_total_map_compute_ms": 840.3878684210955
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.263157894736842,
+                "mean_added_map_compute_ms": 126.88721052633187,
+                "mean_total_map_compute_ms": 607.2135315789877
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 7,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 11,
+                "mean_views_per_scene": 1.5789473684210527,
+                "mean_added_map_compute_ms": 268.31017368420504,
+                "mean_total_map_compute_ms": 748.6364947368609
+              },
+              "two_vote": {
+                "misses": 8,
+                "false_rejects": 0,
+                "extra_captures": 8,
+                "mean_views_per_scene": 1.4210526315789473,
+                "mean_added_map_compute_ms": 195.21724210525653,
+                "mean_total_map_compute_ms": 675.5435631579123
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 2,
+                "error_to_error": 8
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 8,
+                "false_rejects": 1,
+                "extra_captures": 14,
+                "mean_views_per_scene": 1.736842105263158,
+                "mean_added_map_compute_ms": 341.8218157894683,
+                "mean_total_map_compute_ms": 822.1481368421241
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.263157894736842,
+                "mean_added_map_compute_ms": 121.7055999999933,
+                "mean_total_map_compute_ms": 602.0319210526491
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 7,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 11,
+                "mean_views_per_scene": 1.5789473684210527,
+                "mean_added_map_compute_ms": 261.42770526316303,
+                "mean_total_map_compute_ms": 741.7540263158188
+              },
+              "two_vote": {
+                "misses": 8,
+                "false_rejects": 0,
+                "extra_captures": 8,
+                "mean_views_per_scene": 1.4210526315789473,
+                "mean_added_map_compute_ms": 192.4980578947294,
+                "mean_total_map_compute_ms": 672.8243789473852
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 3,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 1,
+                "extra_captures": 14,
+                "mean_views_per_scene": 1.736842105263158,
+                "mean_added_map_compute_ms": 332.82015789474207,
+                "mean_total_map_compute_ms": 813.1464789473979
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.263157894736842,
+                "mean_added_map_compute_ms": 121.1056052631504,
+                "mean_total_map_compute_ms": 601.4319263158062
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 6,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 11,
+                "mean_views_per_scene": 1.5789473684210527,
+                "mean_added_map_compute_ms": 262.1511000000187,
+                "mean_total_map_compute_ms": 742.4774210526745
+              },
+              "two_vote": {
+                "misses": 9,
+                "false_rejects": 0,
+                "extra_captures": 8,
+                "mean_views_per_scene": 1.4210526315789473,
+                "mean_added_map_compute_ms": 190.14781052628916,
+                "mean_total_map_compute_ms": 670.4741315789449
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 3,
+                "correct_to_error": 2,
+                "error_to_correct": 2,
+                "error_to_error": 8
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 8,
+                "false_rejects": 1,
+                "extra_captures": 14,
+                "mean_views_per_scene": 1.736842105263158,
+                "mean_added_map_compute_ms": 333.72374736842704,
+                "mean_total_map_compute_ms": 814.0500684210829
+              },
+              "two_vote": {
+                "misses": 12,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.263157894736842,
+                "mean_added_map_compute_ms": 118.57516315788081,
+                "mean_total_map_compute_ms": 598.9014842105366
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 6,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 7
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 11,
+                "mean_views_per_scene": 1.5789473684210527,
+                "mean_added_map_compute_ms": 267.52513684207196,
+                "mean_total_map_compute_ms": 747.8514578947278
+              },
+              "two_vote": {
+                "misses": 9,
+                "false_rejects": 0,
+                "extra_captures": 8,
+                "mean_views_per_scene": 1.4210526315789473,
+                "mean_added_map_compute_ms": 200.2694315789253,
+                "mean_total_map_compute_ms": 680.5957526315811
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 8
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 8,
+                "false_rejects": 0,
+                "extra_captures": 14,
+                "mean_views_per_scene": 1.736842105263158,
+                "mean_added_map_compute_ms": 340.9301526315439,
+                "mean_total_map_compute_ms": 821.2564736841997
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.263157894736842,
+                "mean_added_map_compute_ms": 126.86441578945337,
+                "mean_total_map_compute_ms": 607.1907368421092
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/vial": {
+      "category": "vial",
+      "treatment": "native",
+      "thresholds": {
+        "context": 3.6715710163116455,
+        "fusion": 0.9732483625411987
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 5,
+            "captures": 30,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.3333333333333333
+            },
+            "fusion": {
+              "errors": 5,
+              "error_rate": 0.16666666666666666
+            },
+            "fusion_minus_context": -0.16666666666666666,
+            "fusion_minus_context_95_ci": [
+              -0.6,
+              0.26666666666666666
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 90,
+            "context": {
+              "errors": 80,
+              "error_rate": 0.8888888888888888
+            },
+            "fusion": {
+              "errors": 87,
+              "error_rate": 0.9666666666666667
+            },
+            "fusion_minus_context": 0.07777777777777778,
+            "fusion_minus_context_95_ci": [
+              -0.03333333333333333,
+              0.23333333333333334
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.4,
+            "fusion_minus_context_95_ci": [
+              -0.8,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 3,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.8
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              -0.26666666666666666,
+              0.26666666666666666
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": -0.2,
+            "fusion_minus_context_95_ci": [
+              -0.8,
+              0.4
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 12,
+              "error_rate": 0.8
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.4
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.4,
+            "fusion_minus_context_95_ci": [
+              -0.8,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.4,
+            "fusion_minus_context_95_ci": [
+              -0.8,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2
+            ]
+          }
+        },
+        "shift_4": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.4
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": -0.2,
+            "fusion_minus_context_95_ci": [
+              -0.8,
+              0.4
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              -0.13333333333333333,
+              0.26666666666666666
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 5,
+            "captures": 5,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": 0.0,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 14,
+              "error_rate": 0.9333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.06666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.2
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 276.85214999994514,
+                "mean_total_map_compute_ms": 635.9057599999915
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 55.535759999997936,
+                "mean_total_map_compute_ms": 414.58937000004425
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 2,
+                "correct_to_error": 3,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 3,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 332.3879099999431,
+                "mean_total_map_compute_ms": 691.4415199999894
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 12
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 12,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 275.78819999994266,
+                "mean_total_map_compute_ms": 634.841809999989
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 51.602310000021134,
+                "mean_total_map_compute_ms": 410.65592000006745
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 327.3905099999638,
+                "mean_total_map_compute_ms": 686.4441200000101
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 14
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 269.58230499999445,
+                "mean_total_map_compute_ms": 628.6359150000408
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 41.596720000006826,
+                "mean_total_map_compute_ms": 400.65033000005315
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 311.1790250000013,
+                "mean_total_map_compute_ms": 670.2326350000476
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 14
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 266.56176499996036,
+                "mean_total_map_compute_ms": 625.6153750000067
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 52.044389999991836,
+                "mean_total_map_compute_ms": 411.09800000003816
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 318.6061549999522,
+                "mean_total_map_compute_ms": 677.6597649999985
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        },
+        "shift_4": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 2
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 13
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 13,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 293.63146999996843,
+                "mean_total_map_compute_ms": 652.6850800000148
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 53.05511500000648,
+                "mean_total_map_compute_ms": 412.1087250000528
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 14
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 14,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 346.6865849999749,
+                "mean_total_map_compute_ms": 705.7401950000212
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 3,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 1,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 14
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 14,
+                "false_rejects": 2,
+                "extra_captures": 17,
+                "mean_views_per_scene": 1.85,
+                "mean_added_map_compute_ms": 297.6466300000084,
+                "mean_total_map_compute_ms": 656.7002400000547
+              },
+              "two_vote": {
+                "misses": 14,
+                "false_rejects": 0,
+                "extra_captures": 3,
+                "mean_views_per_scene": 1.15,
+                "mean_added_map_compute_ms": 46.425505000001976,
+                "mean_total_map_compute_ms": 405.4791150000483
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 2.0,
+                "mean_added_map_compute_ms": 344.07213500001035,
+                "mean_total_map_compute_ms": 703.1257450000567
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 0,
+                "mean_views_per_scene": 1.0,
+                "mean_added_map_compute_ms": 0.0,
+                "mean_total_map_compute_ms": 359.0536100000463
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/wallplugs": {
+      "category": "wallplugs",
+      "treatment": "native",
+      "thresholds": {
+        "context": 3.321589994430542,
+        "fusion": 1.0388432025909424
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 10,
+            "captures": 50,
+            "context": {
+              "errors": 23,
+              "error_rate": 0.46
+            },
+            "fusion": {
+              "errors": 3,
+              "error_rate": 0.06
+            },
+            "fusion_minus_context": -0.4,
+            "fusion_minus_context_95_ci": [
+              -0.48,
+              -0.32
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 33,
+              "error_rate": 0.44
+            },
+            "fusion": {
+              "errors": 75,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.56,
+            "fusion_minus_context_95_ci": [
+              0.44,
+              0.68
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.3333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.13333333333333333,
+              0.6
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 2,
+              "error_rate": 0.2
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.5
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.3333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.13333333333333333,
+              0.6
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 8,
+              "error_rate": 0.8
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.8,
+            "fusion_minus_context_95_ci": [
+              -1.0,
+              -0.5
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.8,
+            "fusion_minus_context_95_ci": [
+              0.6,
+              1.0
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 9,
+              "error_rate": 0.9
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.9,
+            "fusion_minus_context_95_ci": [
+              -1.0,
+              -0.7
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.13333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.8666666666666667,
+            "fusion_minus_context_95_ci": [
+              0.6666666666666666,
+              1.0
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 6,
+              "error_rate": 0.6
+            },
+            "fusion": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion_minus_context": -0.6,
+            "fusion_minus_context_95_ci": [
+              -0.9,
+              -0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 5,
+              "error_rate": 0.3333333333333333
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.6666666666666666,
+            "fusion_minus_context_95_ci": [
+              0.4,
+              0.8666666666666667
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion": {
+              "errors": 15,
+              "error_rate": 1.0
+            },
+            "fusion_minus_context": 0.13333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3333333333333333
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 378.8535360000242,
+                "mean_total_map_compute_ms": 853.6018720000267
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 95.41474000000562,
+                "mean_total_map_compute_ms": 570.163076000008
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 8,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 2,
+                "extra_captures": 24,
+                "mean_views_per_scene": 1.96,
+                "mean_added_map_compute_ms": 455.33976400002757,
+                "mean_total_map_compute_ms": 930.08810000003
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.04,
+                "mean_added_map_compute_ms": 18.92851200000223,
+                "mean_total_map_compute_ms": 493.6768480000046
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 2,
+                "correct_to_error": 8,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 8,
+                "error_to_error": 2
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 2,
+                "false_rejects": 8,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 381.0206520000247,
+                "mean_total_map_compute_ms": 855.768988000027
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 95.0785039999937,
+                "mean_total_map_compute_ms": 569.8268399999961
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 24,
+                "mean_views_per_scene": 1.96,
+                "mean_added_map_compute_ms": 456.8691000000126,
+                "mean_total_map_compute_ms": 931.617436000015
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.04,
+                "mean_added_map_compute_ms": 19.23005600000579,
+                "mean_total_map_compute_ms": 493.97839200000817
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 1,
+                "correct_to_error": 9,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 1,
+                "error_to_correct": 9,
+                "error_to_error": 1
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 1,
+                "false_rejects": 9,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 379.08395199999177,
+                "mean_total_map_compute_ms": 853.832287999994
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 94.22026799999912,
+                "mean_total_map_compute_ms": 568.9686040000015
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 24,
+                "mean_views_per_scene": 1.96,
+                "mean_added_map_compute_ms": 454.01237999999466,
+                "mean_total_map_compute_ms": 928.760715999997
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.04,
+                "mean_added_map_compute_ms": 19.291839999996228,
+                "mean_total_map_compute_ms": 494.0401759999986
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 4,
+                "correct_to_error": 6,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 5,
+                "correct_to_error": 0,
+                "error_to_correct": 5,
+                "error_to_error": 5
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 5,
+                "false_rejects": 6,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 378.1844760000058,
+                "mean_total_map_compute_ms": 852.9328120000083
+              },
+              "two_vote": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 93.95402399997693,
+                "mean_total_map_compute_ms": 568.7023599999793
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 24,
+                "mean_views_per_scene": 1.96,
+                "mean_added_map_compute_ms": 452.8085679999822,
+                "mean_total_map_compute_ms": 927.5569039999847
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 0,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.04,
+                "mean_added_map_compute_ms": 19.329932000000554,
+                "mean_total_map_compute_ms": 494.07826800000294
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 3,
+                "error_to_correct": 0,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 0,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 378.9304999999604,
+                "mean_total_map_compute_ms": 853.6788359999628
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 0,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 93.71200399999907,
+                "mean_total_map_compute_ms": 568.4603400000015
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 0,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 15
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 24,
+                "mean_views_per_scene": 1.96,
+                "mean_added_map_compute_ms": 453.50787199996375,
+                "mean_total_map_compute_ms": 928.2562079999661
+              },
+              "two_vote": {
+                "misses": 15,
+                "false_rejects": 1,
+                "extra_captures": 1,
+                "mean_views_per_scene": 1.04,
+                "mean_added_map_compute_ms": 19.13463199999569,
+                "mean_total_map_compute_ms": 493.8829679999981
+              }
+            }
+          }
+        }
+      }
+    },
+    "native/walnuts": {
+      "category": "walnuts",
+      "treatment": "native",
+      "thresholds": {
+        "context": 2.983451557159424,
+        "fusion": 1.0415380239486696
+      },
+      "paired_error_rates": {
+        "changed_lights": {
+          "good": {
+            "scenes": 10,
+            "captures": 50,
+            "context": {
+              "errors": 6,
+              "error_rate": 0.12
+            },
+            "fusion": {
+              "errors": 5,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": -0.02,
+            "fusion_minus_context_95_ci": [
+              -0.24,
+              0.26
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 75,
+            "context": {
+              "errors": 24,
+              "error_rate": 0.32
+            },
+            "fusion": {
+              "errors": 48,
+              "error_rate": 0.64
+            },
+            "fusion_minus_context": 0.32,
+            "fusion_minus_context_95_ci": [
+              0.16,
+              0.48
+            ]
+          }
+        },
+        "regular": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 11,
+              "error_rate": 0.7333333333333333
+            },
+            "fusion_minus_context": 0.5333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.26666666666666666,
+              0.8
+            ]
+          }
+        },
+        "overexposed": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": -0.1,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.2
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 3,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 6,
+              "error_rate": 0.4
+            },
+            "fusion_minus_context": 0.2,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.4
+            ]
+          }
+        },
+        "shift_1": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": -0.1,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.2
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 5,
+              "error_rate": 0.3333333333333333
+            },
+            "fusion": {
+              "errors": 9,
+              "error_rate": 0.6
+            },
+            "fusion_minus_context": 0.26666666666666666,
+            "fusion_minus_context_95_ci": [
+              0.06666666666666667,
+              0.4666666666666667
+            ]
+          }
+        },
+        "shift_2": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 2,
+              "error_rate": 0.2
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": -0.1,
+            "fusion_minus_context_95_ci": [
+              -0.4,
+              0.2
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 4,
+              "error_rate": 0.26666666666666666
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": 0.4,
+            "fusion_minus_context_95_ci": [
+              0.13333333333333333,
+              0.6666666666666666
+            ]
+          }
+        },
+        "shift_3": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 5,
+              "error_rate": 0.3333333333333333
+            },
+            "fusion": {
+              "errors": 10,
+              "error_rate": 0.6666666666666666
+            },
+            "fusion_minus_context": 0.3333333333333333,
+            "fusion_minus_context_95_ci": [
+              0.13333333333333333,
+              0.6
+            ]
+          }
+        },
+        "underexposed": {
+          "good": {
+            "scenes": 10,
+            "captures": 10,
+            "context": {
+              "errors": 0,
+              "error_rate": 0.0
+            },
+            "fusion": {
+              "errors": 1,
+              "error_rate": 0.1
+            },
+            "fusion_minus_context": 0.1,
+            "fusion_minus_context_95_ci": [
+              0.0,
+              0.3
+            ]
+          },
+          "defective": {
+            "scenes": 15,
+            "captures": 15,
+            "context": {
+              "errors": 7,
+              "error_rate": 0.4666666666666667
+            },
+            "fusion": {
+              "errors": 13,
+              "error_rate": 0.8666666666666667
+            },
+            "fusion_minus_context": 0.4,
+            "fusion_minus_context_95_ci": [
+              0.13333333333333333,
+              0.6666666666666666
+            ]
+          }
+        }
+      },
+      "regular_to_shifted": {
+        "overexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 8,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 12,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 3
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 3,
+                "false_rejects": 2,
+                "extra_captures": 13,
+                "mean_views_per_scene": 1.52,
+                "mean_added_map_compute_ms": 322.172952000019,
+                "mean_total_map_compute_ms": 890.4135160000078
+              },
+              "two_vote": {
+                "misses": 3,
+                "false_rejects": 0,
+                "extra_captures": 12,
+                "mean_views_per_scene": 1.48,
+                "mean_added_map_compute_ms": 290.05271999996694,
+                "mean_total_map_compute_ms": 858.2932839999557
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 5,
+                "error_to_error": 6
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 6,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 488.54773200000636,
+                "mean_total_map_compute_ms": 1056.7882959999952
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 1,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 123.67793999997957,
+                "mean_total_map_compute_ms": 691.9185039999684
+              }
+            }
+          }
+        },
+        "shift_1": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 8,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 10,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 3
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 3,
+                "false_rejects": 2,
+                "extra_captures": 13,
+                "mean_views_per_scene": 1.52,
+                "mean_added_map_compute_ms": 308.03200799999104,
+                "mean_total_map_compute_ms": 876.2725719999798
+              },
+              "two_vote": {
+                "misses": 5,
+                "false_rejects": 0,
+                "extra_captures": 12,
+                "mean_views_per_scene": 1.48,
+                "mean_added_map_compute_ms": 294.1283879999719,
+                "mean_total_map_compute_ms": 862.3689519999607
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 2,
+                "error_to_error": 9
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 9,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 482.0083119999799,
+                "mean_total_map_compute_ms": 1050.2488759999687
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 1,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 120.152083999983,
+                "mean_total_map_compute_ms": 688.3926479999718
+              }
+            }
+          }
+        },
+        "shift_2": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 8,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 11,
+                "correct_to_error": 1,
+                "error_to_correct": 0,
+                "error_to_error": 3
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 3,
+                "false_rejects": 2,
+                "extra_captures": 13,
+                "mean_views_per_scene": 1.52,
+                "mean_added_map_compute_ms": 306.44696000001204,
+                "mean_total_map_compute_ms": 874.6875240000008
+              },
+              "two_vote": {
+                "misses": 4,
+                "false_rejects": 0,
+                "extra_captures": 12,
+                "mean_views_per_scene": 1.48,
+                "mean_added_map_compute_ms": 292.2449200000119,
+                "mean_total_map_compute_ms": 860.4854840000007
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 477.53201600004104,
+                "mean_total_map_compute_ms": 1045.7725800000298
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 1,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 121.15986399998292,
+                "mean_total_map_compute_ms": 689.4004279999717
+              }
+            }
+          }
+        },
+        "shift_3": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 10,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 3
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 3,
+                "false_rejects": 0,
+                "extra_captures": 13,
+                "mean_views_per_scene": 1.52,
+                "mean_added_map_compute_ms": 298.2355319999988,
+                "mean_total_map_compute_ms": 866.4760959999876
+              },
+              "two_vote": {
+                "misses": 5,
+                "false_rejects": 0,
+                "extra_captures": 12,
+                "mean_views_per_scene": 1.48,
+                "mean_added_map_compute_ms": 302.3399320000499,
+                "mean_total_map_compute_ms": 870.5804960000387
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 4,
+                "correct_to_error": 0,
+                "error_to_correct": 1,
+                "error_to_error": 10
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 10,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 480.61124000003474,
+                "mean_total_map_compute_ms": 1048.8518040000235
+              },
+              "two_vote": {
+                "misses": 11,
+                "false_rejects": 1,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 119.96422400001393,
+                "mean_total_map_compute_ms": 688.2047880000027
+              }
+            }
+          }
+        },
+        "underexposed": {
+          "context": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 10,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 0
+              },
+              "defective": {
+                "correct_to_correct": 8,
+                "correct_to_error": 4,
+                "error_to_correct": 0,
+                "error_to_error": 3
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 3,
+                "false_rejects": 0,
+                "extra_captures": 13,
+                "mean_views_per_scene": 1.52,
+                "mean_added_map_compute_ms": 313.68926800001645,
+                "mean_total_map_compute_ms": 881.9298320000053
+              },
+              "two_vote": {
+                "misses": 7,
+                "false_rejects": 0,
+                "extra_captures": 12,
+                "mean_views_per_scene": 1.48,
+                "mean_added_map_compute_ms": 285.25371200001246,
+                "mean_total_map_compute_ms": 853.4942760000013
+              }
+            }
+          },
+          "fusion": {
+            "transitions": {
+              "good": {
+                "correct_to_correct": 9,
+                "correct_to_error": 0,
+                "error_to_correct": 0,
+                "error_to_error": 1
+              },
+              "defective": {
+                "correct_to_correct": 2,
+                "correct_to_error": 2,
+                "error_to_correct": 0,
+                "error_to_error": 11
+              }
+            },
+            "reinspection": {
+              "or": {
+                "misses": 11,
+                "false_rejects": 1,
+                "extra_captures": 20,
+                "mean_views_per_scene": 1.8,
+                "mean_added_map_compute_ms": 478.5437560000355,
+                "mean_total_map_compute_ms": 1046.7843200000243
+              },
+              "two_vote": {
+                "misses": 13,
+                "false_rejects": 1,
+                "extra_captures": 5,
+                "mean_views_per_scene": 1.2,
+                "mean_added_map_compute_ms": 120.39922399999341,
+                "mean_total_map_compute_ms": 688.6397879999822
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,63 +1,74 @@
 # Detecting Tiny Industrial Defects Under Changing Light
 
-A faint scratch on a metal can can be visible in the original camera image and disappear when the image is resized for an inspection model. Change the lighting and a reflection can look like a scratch, or wash out the real one. On a production line, either problem can lead to good parts being rejected or defective parts making it through.
+A faint scratch can disappear when a camera image is resized for a vision model. A different light can wash out that same scratch or turn a reflection into a false alarm. This project measures both failures on manufactured parts photographed repeatedly under controlled changes in lighting.
 
-This project tests how much detail an inspection model gains by looking at overlapping crops of the original image, and whether that gain holds when the lighting changes. It also tests whether checking a few known-good parts under the new light helps recover reliable pass/fail decisions.
+The inspector models normal appearance from defect-free images. It scans overlapping crops of each full-resolution capture, scores fine detail and surrounding context, and stitches the scores back into the camera coordinates. The experiments track localization and part decisions separately. A heatmap can point to the right scratch even when an inspection threshold passes the defective part.
 
-## First results
+## Results
 
-On the MVTec AD 2 `can` public split, tiling raised average defect localization from **0.0% to 39.2% AU-PRO** across six lights. The tiled model still passed every defective capture at the validation-derived threshold. Its image-level AUROC averaged 38.0% across the six lighting groups, so the next experiment needs a better way to turn patch scores into part decisions.
+![Shifted-light localization across eight categories and Can ablations](results/multiscale.png)
 
-![Can localization and missed defects for three model variants across six lighting conditions](results/can_baseline.png)
+- **Can localization:** Tiled ResNet fusion reached **46.4% AU-PRO** under changed lighting versus **4.6%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
+- **Transfer:** Across eight categories, fusion raised mean tiny-region overlap from **63.7% to 73.2%**. Mean AU-PRO moved from **39.7% to 39.9%**. Under the fixed thresholds, fusion missed 448 of 585 shifted defective captures versus 388 for context, while falsely rejecting 43 of 315 good captures versus 63.
+- **Adaptation:** Neither median-offset nor bounded affine score calibration jointly reduced misses and false rejects across the 495 Can support sets. An independent acquisition audit found reduced median defect contrast after resizing in all 47 category-light groups.
 
-| Can model | Mean AU-PRO at 5% pixel FPR | Missed defects | False rejects | Median compute time |
-| --- | ---: | ---: | ---: | ---: |
-| Full frame | 0.0% | 73 / 90 | 13 / 72 | 30 ms |
-| Full frame with lighting augmentation | 15.0% | 58 / 90 | 22 / 72 | 29 ms |
-| Tiled | 39.2% | 90 / 90 | 15 / 72 | 168 ms |
+[Full results, limits, and how to repeat the comparisons](results/experiments.md)
 
-These are local results from 15 defective and 12 good scenes, each photographed six times. Compute time is measured on an RTX 5060 Laptop GPU and includes preprocessing and stitching, with image decoding timed outside it. MVTec's official leaderboard uses the private splits. [MVTec AD 2 benchmark](https://benchmark.mvtec.com/)
+The MVTec AD 2 public split has 1,084 captures of 184 scenes across eight categories. For the main comparison, both branches saw the same 96 evenly spaced good training images per category. Each branch used the good regular-light validation split to set a fixed threshold. Defect masks were used to score the outputs. AU-PRO here is the per-region overlap area up to 5% pixel false positives, estimated with 4,096 score bins. Each lighting group gets equal weight within a category. The private benchmark is evaluated by MVTec. [Paper and benchmark protocol](https://link.springer.com/article/10.1007/s11263-026-02743-0) · [Official leaderboard](https://benchmark.mvtec.com/)
 
-The simpler `bottle` baseline caught all 63 defective test images and falsely rejected 3 of 20 good ones. In the `can` recalibration pilot, four reference parts reduced full-frame false rejects under `shift_3` from 3 to 0 out of 8 held-out good scenes. Missed defects in that condition rose from 7 to 11 out of 15. A threshold change alone offered little help on the tiled runs.
+## Reproduce the study
 
-In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same pooled false-reject counts. The original tiled heatmaps still gave the strongest localization.
-
-The [transfer test on fabric and wall plugs](results/hybrid_transfer.md) kept those raw heatmaps and used local contrast only for part decisions. It produced fewer false rejects and more missed defects in both new categories at the tested thresholds.
-
-In the [reduced SuperADD comparison](results/superadd.md), processing the native-scale image raised AU-PRO from 6.4% to 11.1%, while tiny-region overlap fell from 17.2% to 9.1%. Tiled PatchCore still led on overall localization for these local runs.
-
-## The experiment
-
-1. **Get the pipeline working.** Run PatchCore on the `bottle` category from the original MVTec AD and check its heatmaps against the defect masks.
-2. **Measure what resizing and lighting do.** Compare full-frame and tiled PatchCore on the same MVTec AD 2 `can` scenes photographed under six lighting conditions. Measure how often each method misses defects, rejects good parts, and correctly locates the defect. Record processing time per image.
-3. **Test a stronger detector.** Use SuperADD as a reference and test whether a finer-resolution pass improves localization. Repeat the comparison on `sheet_metal` and run a separate `can` pilot that adjusts the pass/fail threshold from a few known-good parts. [SuperADD report](https://arxiv.org/abs/2605.14808)
-
-## Run the baseline
-
-Use Python 3.11. Install matching PyTorch and torchvision builds for your device, then install the project dependencies. The experiments below used the CUDA 12.8 builds of PyTorch 2.11 and torchvision 0.26. [PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v2110)
+Use Python 3.11 and the matching PyTorch and torchvision builds for your device. The main experiments used CUDA 12.8 on an RTX 5060 Laptop GPU. [PyTorch installation](https://pytorch.org/get-started/previous-versions/#v2110)
 
 ```sh
 python -m pip install -r requirements.txt
 ```
 
-Extract the original MVTec AD to `MVTECH_ANAMOLY_DATASET` and MVTec AD 2 to `mvtec_ad_2_dataset`. You can pass `--dataset` to use a different folder.
+Extract MVTec AD 2 into `mvtec_ad_2_dataset`. Extract the original MVTec AD into `MVTECH_ANAMOLY_DATASET` if you want to reproduce the Bottle pipeline check. The programs also accept `--dataset`. Both datasets are available for noncommercial research under CC BY-NC-SA 4.0. [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2) · [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
 
 ```sh
-python build_scene_manifest.py
 python run_experiment.py bottle
-python run_experiment.py can
-python run_experiment.py can --mode tiled
-python run_experiment.py can --augment-lighting
-python calibrate_lighting.py artifacts/can/full
-python calibrate_lighting.py artifacts/can/tiled
-python compare_scoring.py can
-python compare_scoring.py sheet_metal
+python multiscale_experiment.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts --previews
+python multiscale_experiment.py can --treatment full --device cpu
+python multiscale_experiment.py can --treatment luma
+python multiscale_experiment.py can --treatment retinex
+python multiscale_experiment.py can --treatment augmented
+python multiscale_experiment.py can --treatment coreset
+python multiscale_experiment.py can --backbone gradient
+python multiscale_experiment.py can --backbone synthetic
+python multiscale_experiment.py can --backbone distillation
+python report_experiments.py
 ```
 
-The manifest checks image-to-mask filenames and groups 162 `can` captures into 27 scenes. Each experiment writes per-image scores, per-lighting metrics, and sample visualizations under `artifacts/<category>/<mode>/`. CUDA is used when available. `--device cpu` forces a CPU run.
+For the DINOv3 ConvNeXt experiment, install `timm==1.0.30` and `safetensors==0.7.0`. Download the pinned checkpoint and pass its path with `--weights`. Its SHA-256 is `a7637753a2e85d709d1a5474e13382d39e7bc581a35868b477585c970f36847f`. To render the summary chart, install `matplotlib==3.10.8` and run the report with `--chart results/multiscale.png`. [Pinned DINOv3 ConvNeXt-Tiny checkpoint](https://huggingface.co/timm/convnext_tiny.dinov3_lvd1689m/blob/39c7bb32f83c11bbb13cb23058f8852a4dac88ed/model.safetensors)
 
-The baseline uses a frozen ResNet-18 and a uniformly sampled memory bank of 4,096 patch features from good training images. Each variant sets its own pass/fail threshold at the 90th percentile of good regular-light validation scores, then keeps that threshold fixed for every test light. Tiled inference uses 256-pixel crops with at least 25% overlap. This is a PatchCore-style baseline with a simpler bank and score rule than the paper. Local AU-PRO uses 4,096 score bins at a 5% pixel false-positive limit. See the [project plan](PROJECT_PLAN.md) for the official benchmark protocol. [PatchCore paper](https://arxiv.org/abs/2106.08265)
+```sh
+python multiscale_experiment.py can --backbone convnext --weights artifacts/backbones/convnext_tiny_dinov3.safetensors
+python lighting_study.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
+python paired_robustness.py artifacts/multiscale/native/can
+python support_adaptation.py artifacts/multiscale/native/can --lighting-audit artifacts/lighting_study/can
+```
 
-## Datasets
+The experiment writes per-image decisions, normal validation scores, and per-light metrics under `artifacts/multiscale`. Model weights and data stay outside Git. Set `--train-limit 0` to use every good training image. Source dependence, few-part adaptation, and extra-view analysis are described in the [acquisition and adaptation report](results/acquisition_and_adaptation.md).
 
-Download the datasets from MVTec. Both are released under CC BY-NC-SA 4.0. [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad) · [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
+## Score images and export for MVTec
+
+Fit a category reference once per invocation, score a batch of images, and save inspection previews and decisions. The optional review flag defers images where the fine and context decisions disagree.
+
+```sh
+python inspection.py score can mvtec_ad_2_dataset/can/test_public/good/000_regular.png --method fusion --output artifacts/inspection
+```
+
+The benchmark command fits each category using its good train and validation images, then generates continuous float16 TIFF maps for both private splits. By default the maps retain native image dimensions. `--with-masks` adds binary maps made with the normal-validation threshold. `--resume` continues the same settings after an interrupted run. Add `--checker MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py` to also run the organizer's local checker before packaging. [Official submission instructions](https://benchmark.mvtec.com/submit)
+
+```sh
+python inspection.py benchmark --method fusion --with-masks --output artifacts/submission --archive artifacts/submission.tar.gz
+```
+
+## Research notes
+
+- [Full experimental results](results/experiments.md)
+- [Acquisition and adaptation](results/acquisition_and_adaptation.md)
+- [Literature review and experimental rationale](RESEARCH.md)
+- [Original protocol and MVTec dataset inventory](PROJECT_PLAN.md)
+- [Earlier part-scoring comparison](results/scoring_comparison.md), [public transfer pilot](results/hybrid_transfer.md), and [reduced SuperADD runs](results/superadd.md)
