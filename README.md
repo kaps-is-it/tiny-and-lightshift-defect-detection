@@ -43,8 +43,9 @@ The single most important fact of this study: **14 of 16 defect regions are dark
 | Full-frame + lighting augmentation | 15.0 |
 | Tiled ResNet-18 (control) | 39.2 |
 | **Tiled ResNet-18 + detail branch** | **48.7** |
+| **Tiled ResNet-18, 3-seed ensemble + branch** | **49.8** |
 
-Seed stability (paired, three seeds): +9.5 (42), +11.2 (7), +7.6 (1234) vs the control, with the worst lighting condition improving from 32.6% to 46.1% at seed 42.
+Single-seed paired gains on three seeds: +9.5 (42), +11.2 (7), +7.6 (1234) vs the control, with the worst lighting condition improving from 32.6% to 46.1% at seed 42. Ensembling the three seeds adds another ≈+1.1 on top of the single-seed branch result and transfers free of charge to every category measured so far: `sheet_metal` 42.9 → 47.3, `fabric` 36.1 → 38.1.
 
 ![Per-lighting AU-PRO](results/figures/per_lighting.png)
 
@@ -52,8 +53,11 @@ Seed stability (paired, three seeds): +9.5 (42), +11.2 (7), +7.6 (1234) vs the c
 
 - Larger reference banks do **not** help (4,096 → 131,072 entries: 39.9 / 35.1 / 37.3).
 - Higher-resolution backbones do **not** help — stride-8 features beat any upscaling strategy (coarse 39.9 vs 2×-upscaled 23.1).
+- Feature quality alone is **not** the bottleneck. A frozen DINOv3 ViT-S/16 bank gives AU-PRO ≈ 0 on this set; stronger frozen semantics do not rescue the benchmark the way they do on texture-dominated datasets. What wins is an architecture that suppresses print-texture noise, not a larger backbone — see `dinov3_probe.py`.
+- **Per-cell (PaDiM-style) position conditioning** also failed: ResNet-18 feature channels are mostly near-constant (175/384 have variance < 0.01), so the diagonal-Gaussian scoring blew up numerically and the resulting maps were flat or worse. Documented as a negative result; `position_map.py` is kept for the record.
 - The published **SuperADD** recipe, both the reduced and the released ViT-H+ configuration, does not beat simple tiling here (reduced native 11.1%; released 5.0%).
-- **Partner categories**: the same branch helps `sheet_metal` when flipped to bright (45.6 > 42.9), hurts `can` when flipped (22.1), and does nothing on `fabric`. Polarity is a per-category inspection decision, not a free lunch, and is chosen per-category on the public development split.
+- **Ensembles** of three seeds are the only strictly free improvement we found: +1.4–2.5 AU-PRO on every category measured, at zero extra data cost. `ensemble.py` fused on the branch.
+- **Partner categories**: the branch helps `sheet_metal` when flipped to bright (45.6 > 42.9, ensemble 47.3), hurts `can` when flipped (22.1), and does nothing on `fabric`. Polarity is a per-category inspection decision, not a free lunch, and is chosen per-category on the public development split.
 - **A learned linear combiner** trained on synthetic defects is worse than the hand-tuned branch in every configuration tested.
 
 ## Failure cases kept on record
@@ -79,12 +83,16 @@ fusion.py              learned (and rejected) pixel combiner
 benchmark.py           floors, worst-light, paired-region statistics
 run_experiment.py      the original tiled-vs-full comparator
 run_detail.py          the branch, its calibration and its metrics
+run_position.py        position-conditioned bank experiment (negative result)
+dinov3_probe.py        frozen DINOv3 bank experiment (negative result)
+ensemble.py            3-seed ensemble + branch fusion experiment
 prepare_submission.py  builds the 4,090-map archive for the whole board
 render_figures.py      regenerates every figure in this README
 build_report.py        regenerates the report's tables
 smoke_test.py          deterministic checks, no dataset needed
 results/               figures, the report, per-condition tables
 submission/            local benchmark archive — never committed, never uploaded
+submission_ensemble/   same, built with the 3-seed ensemble — gitignored
 ```
 
 ### Reproduce

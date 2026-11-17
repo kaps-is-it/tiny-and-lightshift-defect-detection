@@ -145,9 +145,25 @@ Across all three seeds this is a paired, physically-motivated gain — the branc
 
 ### 3.11 Honest non-results that guided the design
 
+- **Frozen DINOv3 ViT-S/16 feature banks** (blocks 8/10/11 or any subset, cosine-normalized kNN) produce a flat map — defect and background score within 0.01 of each other. Feature quality alone is not the bottleneck on this benchmark.
+- **Per-cell PaDiM-style diagonal-Gaussian conditioning** numerically diverges: 175 of 384 feature channels have near-zero variance on this dataset (all good images are nearly identical at each cell), so the Mahalanobis distance explodes for nearly every pixel and the map carries no signal. The approach needs a full covariance model; a diagonal one here does not survive contact with this data.
 - **A learned pixel-combiner trained on synthetic defects** underperformed the control everywhere (−9 to −28 AU-PRO). Its training data could not beat what the deep model already knew.
 - **Static-backdrop suppression** (scoring only the can, not the white paper behind it) raises defect ranking in 67 of 96 cases, but the AU-PRO gain is zero — the backdrop occupies 31% of the frame and costs nothing once the deep map already ranks it last. I kept it as a documented observation, not as a construction.
 - **Trivial detectors** reach 26.2% (Sobel) and 25.8% (darkness). That floor matters; our control is 39.2% and our branch lands 48.7%. We report the floor in every benchmark.
+
+### 3.12 Seed-ensembling — the only strictly free improvement found
+
+Averaging the anomaly maps of three independently-fitted detectors (seeds 42, 7 and 1234) lifts every category at zero data cost:
+
+| Category | Single-seed | Ensemble | Δ |
+| --- | ---: | ---: | ---: |
+| can · control | 39.2 | 40.6 | +1.4 |
+| can · + branch (w 0.5) | 49.2 | **49.8** | +0.6 |
+| sheet_metal · control | 42.9 | 44.8 | +1.9 |
+| sheet_metal · + bright branch | 45.6 | **47.3** | +1.7 |
+| fabric · control | 36.1 | 38.1 | +2.0 |
+
+The ensemble changes no decision rule and adds no data; it just refuses to trust one random bank. It is folded into the submission build with `--ensemble-seeds 42 7 1234` and is the configuration recorded in `artifacts/submission_ensemble/config.json`.
 
 ---
 
@@ -158,7 +174,7 @@ Across all three seeds this is a paired, physically-motivated gain — the branc
 The final configuration for `can` is deliberately minimal:
 
 1. Tiled ResNet-18 (layer2 + layer3), frozen, 256-pixel windows with 25% overlap;
-2. Uniformly sampled 4,096-vector reference bank, fitted on 412 good training images;
+2. Uniformly sampled 4,096-vector reference bank, fitted on 412 good training images (or, in `submission_ensemble/`, three banks from seeds 42, 7 and 1234, maps averaged);
 3. Native-resolution detail branch — one-sided local-background subtraction on luminance, standardized against the 46 good validation captures;
 4. Fused map = deep map standardized + 0.5 × branch standardized;
 5. Every metric reported at a 5% pixel false-positive cap, with per-light, mean, and **worst-light** figures, plus paired per-region comparisons and a sign test.

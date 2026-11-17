@@ -65,9 +65,9 @@ def downscale_map(map_: np.ndarray, factor: float) -> np.ndarray:
     )
 
 
-def public_report(detector, fusion, captures, masks, test_arrays, args, tile_size):
+def public_report(predict_for, fusion, captures, masks, test_arrays, args, tile_size):
     """Evaluate baseline and both polarity branches on the public test split."""
-    deep_maps = [predict_map(detector, uint8(im), tile_size, args.batch_size) for im in test_arrays]
+    deep_maps = [predict_for(uint8(im)) for im in test_arrays]
 
     def score_capture(anomaly_map, capture, mask):
         return ImageResult(capture.image.name, capture.scene, capture.lighting,
@@ -113,8 +113,16 @@ def main() -> None:
                              "(default), 99th percentile, or the FAQ's good-validation mean + 3*sigma.")
     parser.add_argument("--output", type=Path, default=Path("submission"))
     parser.add_argument("--device", choices=("cpu", "cuda"))
+    parser.add_argument("--ensemble-seeds", type=int, nargs="*", default=None,
+                        help="Default: single-seed run. If set, each category fits one detector per seed "
+                             "and averages the anomaly maps before calibration; the polarity is still chosen "
+                             "on the public development split after the ensemble is built.")
     parser.add_argument("--compress", action="store_true", help="Also create submission.tar.gz")
     args = parser.parse_args()
+    if args.ensemble_seeds:
+        seeds = list(args.ensemble_seeds)
+        if len(seeds) < 2 or len(set(seeds)) != len(seeds):
+            parser.error("--ensemble-seeds needs at least two distinct seeds")
 
     image_dir = args.output / "anomaly_images"
     binary_dir = args.output / "anomaly_images_thresholded"
@@ -124,16 +132,27 @@ def main() -> None:
         print(f"\n########## {category} ##########", flush=True)
         training, validation, captures = load_splits(args.dataset, category, args.seed)
         device = args.device or ("cuda" if torch.cuda.is_available() else "cpu")
-        detector = PatchDetector(device=device, bank_size=args.bank_size, seed=args.seed)
         from run_experiment import training_batches, training_views
-        print(f"fitting reference bank on {len(training)} images", flush=True)
-        started = time.perf_counter()
-        detector.fit(training_batches(training_views(training, False, args.seed), args.tile_size, args.batch_size))
-        print(f"fit took {time.perf_counter() - started:.0f}s", flush=True)
+        fit_seeds = args.ensemble_seeds or [args.seed]
+        detectors = []
+        for seed in fit_seeds:
+            det = PatchDetector(device=device, bank_size=args.bank_size, seed=seed)
+            t0 = time.perf_counter()
+            det.fit(training_batches(training_views(training, False, seed), args.tile_size, args.batch_size))
+            print(f"detector seed {seed} fitted in {time.perf_counter() - t0:.0f}s", flush=True)
+            detectors.append(det)
+
+        def predict_for(image):
+            if isinstance(image, np.ndarray):
+                image = Image.fromarray(image.clip(0, 255).astype(np.uint8))
+            if len(detectors) == 1:
+                return predict_map(detectors[0], image, args.tile_size, args.batch_size)
+            maps = [predict_map(d, image, args.tile_size, args.batch_size) for d in detectors]
+            return np.mean(maps, axis=0).astype(np.float32)
 
         print("mapping good validation captures", flush=True)
         validation_images = [np.asarray(read_image(p), dtype=np.float32) for p in validation]
-        val_deep = [predict_map(detector, uint8(im), args.tile_size, args.batch_size) for im in validation_images]
+        val_deep = [predict_for(im) for im in validation_images]
         fusion = BranchFusion().fit(val_deep, validation_images)
 
         masks = []
@@ -146,7 +165,7 @@ def main() -> None:
         test_arrays = [np.asarray(read_image(c.image), dtype=np.float32) for c in captures]
 
         print("calibrating on the public test split (development)", flush=True)
-        results = public_report(detector, fusion, captures, masks, test_arrays, args, args.tile_size)
+        results = public_report(predict_for, fusion, captures, masks, test_arrays, args, args.tile_size)
         for name, summary in results.items():
             print(f"    {name:<16} AU-PRO {summary['au_pro_mean']*100:5.1f}%  worst {summary['au_pro_worst']*100:5.1f}%")
         chosen, weight, polarity = best_variant(results)
@@ -179,7 +198,7 @@ def main() -> None:
             print(f"    scoring {len(images)} {split} images", flush=True)
             for path in images:
                 image = read_image(path)
-                raw = predict_map(detector, image, args.tile_size, args.batch_size)
+                raw = predict_for(image)
                 if weight == 0.0:
                     fused = raw
                 else:
@@ -195,6 +214,7 @@ def main() -> None:
             "binarisation_threshold": threshold,
             "thresholds": rules,
             "seed": args.seed, "device": device,
+            "ensemble_seeds": list(fit_seeds),
             "public_au_pro": {k: {"mean": v["au_pro_mean"], "worst": v["au_pro_worst"],
                                   "tiny": v["tiny_pro_mean"]} for k, v in results.items()},
         }
