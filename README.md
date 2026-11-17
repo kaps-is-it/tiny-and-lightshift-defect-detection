@@ -46,7 +46,7 @@ python run_detail.py sheet_metal fabric --synthetic 48
 python build_report.py
 ```
 
-`prepare_submission.py` builds a leaderboard submission directory (continuous float16 TIFF maps plus optional binary masks using the benchmark's good-validation mean + 3σ rule) for all eight categories. It does not upload anything; uploading is a manual step through the benchmark website.
+`prepare_submission.py` builds a leaderboard submission directory (continuous float16 TIFF maps plus binary masks calibrated on good validation pixels — the 99.5th percentile by default, the benchmark FAQ's mean + 3σ via `--threshold-rule mean3sigma`) for all eight categories. It does not upload anything; uploading is a manual step through the benchmark website.
 
 ## Run the baseline
 
