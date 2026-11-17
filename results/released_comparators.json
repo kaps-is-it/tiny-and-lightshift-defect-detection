@@ -1,0 +1,121 @@
+{
+  "dataset": "MVTec AD 2 public Can, 27 scenes and six lighting conditions",
+  "aggregation": "Equal weight per light for AU-PRO, tiny-region overlap, AUROC and pixel F1. Part counts pool captures.",
+  "part_decisions": {
+    "native_rgb_fusion": "Native score threshold from the 90th percentile of good regular-light validation image maxima",
+    "superadd_release": "Any positive pixel in the released postprocessed mask",
+    "cat_release": "Any positive pixel after applying the released fixed threshold and component cleanup"
+  },
+  "results": {
+    "native_rgb_fusion": {
+      "all_lights": {
+        "au_pro_05": 0.46717292250989073,
+        "tiny_pro_at_05": 0.7384678215865565,
+        "image_auroc": 0.4444444444444444,
+        "pixel_f1": 0.02980205435402365,
+        "part_fn": 67,
+        "part_fp": 20,
+        "defective_captures": 90,
+        "good_captures": 72,
+        "median_image_compute_ms": 215.15995000027033
+      },
+      "changed_lights": {
+        "au_pro_05": 0.4638837535464068,
+        "tiny_pro_at_05": 0.731442987185029,
+        "image_auroc": 0.45111111111111113,
+        "pixel_f1": 0.02888909951694642,
+        "part_fn": 54,
+        "part_fp": 15,
+        "defective_captures": 75,
+        "good_captures": 60,
+        "median_image_compute_ms": 215.21770000072138
+      }
+    },
+    "superadd_release": {
+      "all_lights": {
+        "au_pro_05": 0.049502806684486325,
+        "tiny_pro_at_05": 0.09048355288925794,
+        "image_auroc": 0.6055555555555556,
+        "pixel_f1": 0.0,
+        "part_fn": 45,
+        "part_fp": 29,
+        "defective_captures": 90,
+        "good_captures": 72,
+        "median_image_compute_ms": 3142.354200000227
+      },
+      "changed_lights": {
+        "au_pro_05": 0.04911011146145446,
+        "tiny_pro_at_05": 0.09039844528529133,
+        "image_auroc": 0.6044444444444445,
+        "pixel_f1": 0.0,
+        "part_fn": 34,
+        "part_fp": 28,
+        "defective_captures": 75,
+        "good_captures": 60,
+        "median_image_compute_ms": 3141.310500000145
+      }
+    },
+    "cat_release": {
+      "all_lights": {
+        "au_pro_05": 0.3485677674767918,
+        "tiny_pro_at_05": 0.4276038414863982,
+        "image_auroc": 0.5476851851851852,
+        "pixel_f1": 0.050307505921000986,
+        "part_fn": 38,
+        "part_fp": 34,
+        "defective_captures": 90,
+        "good_captures": 72,
+        "median_image_compute_ms": 2026.162949999616
+      },
+      "changed_lights": {
+        "au_pro_05": 0.3386840466827535,
+        "tiny_pro_at_05": 0.42004268642431564,
+        "image_auroc": 0.5377777777777778,
+        "pixel_f1": 0.04207233971247629,
+        "part_fn": 27,
+        "part_fp": 32,
+        "defective_captures": 75,
+        "good_captures": 60,
+        "median_image_compute_ms": 2026.651199999833
+      }
+    }
+  },
+  "changed_lights_paired_part_deltas": {
+    "superadd_release": {
+      "defective": {
+        "independent_scenes": 15,
+        "comparator_minus_fusion_error_rate": -0.26666666666666666,
+        "paired_scene_bootstrap_95_percent_interval": [
+          -0.44,
+          -0.09333333333333332
+        ]
+      },
+      "good": {
+        "independent_scenes": 12,
+        "comparator_minus_fusion_error_rate": 0.21666666666666665,
+        "paired_scene_bootstrap_95_percent_interval": [
+          0.049999999999999996,
+          0.3666666666666667
+        ]
+      }
+    },
+    "cat_release": {
+      "defective": {
+        "independent_scenes": 15,
+        "comparator_minus_fusion_error_rate": -0.36000000000000004,
+        "paired_scene_bootstrap_95_percent_interval": [
+          -0.5200000000000001,
+          -0.18666666666666668
+        ]
+      },
+      "good": {
+        "independent_scenes": 12,
+        "comparator_minus_fusion_error_rate": 0.2833333333333334,
+        "paired_scene_bootstrap_95_percent_interval": [
+          0.0666666666666667,
+          0.4666666666666666
+        ]
+      }
+    }
+  }
+}

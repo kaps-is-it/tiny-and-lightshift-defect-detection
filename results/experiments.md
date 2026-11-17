@@ -68,7 +68,7 @@ A second commissioning replay mapped shifted patch features toward matched regul
 
 ## Released comparison and station protocol
 
-The released SuperADD Can configuration was run on the same 162 public captures. It reached 4.91% mean AU-PRO under the five changed lights, with 34 of 75 defective captures missed and 28 of 60 good captures rejected under its published mask rule. [SuperADD reproduction and per-light results](superadd.md)
+The released CAT and SuperADD Can configurations scored the same 162 public captures. Under the five changed lights, native RGB fusion reached 46.39% AU-PRO, CAT reached 33.87%, and SuperADD reached 4.91%. The released binary rules missed fewer defective captures and rejected more good captures than native fusion. [Matched released-model comparison](released_comparators.md)
 
 The station workflow validates disjoint physical parts, matching lighting views, recorded exposure and gain, and native image and mask geometry. It also measures contrast and can score each lighting condition using the same frozen nominal-light threshold. The workflow passed synthetic input and inference checks. Station measurements require independent captures of verified parts. [Station protocol and commands](../STATION_PROTOCOL.md)
 

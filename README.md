@@ -72,6 +72,7 @@ The exported native RGB fusion archive contains maps and masks for all 4,090 pri
 
 - [Full experimental results](results/experiments.md)
 - [Acquisition and adaptation](results/acquisition_and_adaptation.md)
+- [Released CAT and SuperADD on the same Can captures](results/released_comparators.md)
 - [Physical station capture protocol and analysis CLI](STATION_PROTOCOL.md)
 - [Literature review and experimental rationale](RESEARCH.md)
 - [Original protocol and MVTec dataset inventory](PROJECT_PLAN.md)
