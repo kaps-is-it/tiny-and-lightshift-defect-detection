@@ -111,3 +111,19 @@ Report how much tiling changes tiny-defect detection and localization, what it c
 7. **Package the study.** Publish runnable code, pinned dependencies, configs, per-condition tables, and a short report. Show the same part under regular light and glare, with an original-resolution crop, both heatmaps, and the decision before and after recalibration. Include a failure case. Keep downloads out of Git and link to the official sources. Both datasets use CC BY-NC-SA 4.0. [MVTec AD license](https://www.mvtec.com/research-teaching/datasets/mvtec-ad) · [MVTec AD 2 license](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
 
 The first build milestone is a verified `bottle` run and the `can` scene manifest. The first research result is the paired full-frame versus tiled comparison, with tiny-defect localization, misses, false rejects, and runtime under all six lighting conditions.
+
+## Detail branch study (appended after the first run)
+
+The detector ranks the `can` defect at about the 94th percentile of its own background. This is not subtle enough to act on, so the project added a second, native-resolution branch and measured it against the control before adopting it.
+
+**Reference implementation in this repo.** The baseline is the tiled PatchCore variant fit on good regular-light training images only. `detail_branch.py` adds a one-sided residual of the local surround at native resolution; `fusion.py` adds a learned linear combiner trained on synthetic defects; `benchmark.py` adds the trivial-floor baselines, worst-light AU-PRO, cross-light false-positive agreement, and per-region percentile comparisons with a sign test. Every result is a Python-averaged panel over the same evaluation scenes.
+
+**Public-split results (AU-PRO @ 5% FPR).** `can`: control 39.2%; `hand_dark_w0.75` 48.7%, 48.1%, 42.8% across seeds 42, 7, 1234, i.e. +9.5, +11.2, +7.6 paired; seed-42 worst light improves from 32.6 to 46.1. `sheet_metal`: control 42.9%, `bright` 45.6%, `dark` collapses to 25.9%. `fabric`: control 36.1%, no branch helps. The polarity is a per-category inspection decision, not a universal rule.
+
+**Order of operations that led here.** (1) The trivial `sobel`/`darkness` maps reach 26.2%/25.8%, which shows the existing maps are not far above a no-learning edge detector. (2) The reference bank size is not the limitation (4,096 / 32k / 131k give 39.9 / 35.1 / 37.3). (3) The polarity shows up both ways: 14/16 `can` defect regions are darker than the surround in all 6 lightings; `sheet_metal` scratches are brighter. (4) The learned combiner underperforms the hand branch; see the negative results in `results/detail_branch.md`.
+
+**The SuperADD comparator.** Using the authors' released ViT-H+ configuration on the same public split yields a mean AU-PRO near 5.0%, below the reduced native-scale ViT-S/16 (11.1%) and far below the tiled PatchCore baseline (39.2%). This is a comparator the project previously did not have (the reduced SuperADD was not comparable to the published setting).
+
+**Preparing the official submission.** `prepare_submission.py` maps the private splits for all eight categories, calibrates the threshold on good validation captures using the 99.5th percentile of the validation-map pixels, and falls back through modifier flags to the FAQ's good-validation mean + 3*sigma. The build is local; upload remains a manual step on the benchmark website and has not been done.
+
+**What is still open.** The four good `sheet_metal` reference scenes and the two tiny-only `fabric` regions are too few for a recalibration pilot there. The public split is a development set; the only out-of-sample gates are the reserved good scenes and the 4,090-map private submission. SPARC-style per-location nuisance estimation from a handful of verified-good captures is the remaining item before the final official run.

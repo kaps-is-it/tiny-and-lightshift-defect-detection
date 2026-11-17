@@ -18,6 +18,10 @@ from build_scene_manifest import build_manifest
 from evaluation import ImageResult, summarize
 
 
+_DEPS = Path(__file__).resolve().parent / "artifacts" / "superadd-deps"
+if _DEPS.is_dir():
+    sys.path.insert(0, str(_DEPS))
+
 TIMM_MODELS = {
     "dinov3_vith16plus": "vit_huge_plus_patch16_dinov3_qkvb.lvd1689m",
     "dinov3_vits16": "vit_small_patch16_dinov3_qkvb.lvd1689m",

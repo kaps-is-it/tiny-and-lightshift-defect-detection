@@ -32,6 +32,22 @@ In the [reduced SuperADD comparison](results/superadd.md), processing the native
 2. **Measure what resizing and lighting do.** Compare full-frame and tiled PatchCore on the same MVTec AD 2 `can` scenes photographed under six lighting conditions. Measure how often each method misses defects, rejects good parts, and correctly locates the defect. Record processing time per image.
 3. **Test a stronger detector.** Use SuperADD as a reference and test whether a finer-resolution pass improves localization. Repeat the comparison on `sheet_metal` and run a separate `can` pilot that adjusts the pass/fail threshold from a few known-good parts. [SuperADD report](https://arxiv.org/abs/2605.14808)
 
+## The detail branch
+
+The `can` detector ranks the defect only at about the 94th percentile of its own background. Two measurements motivate a second, native-resolution branch: 14 of 16 `can` defect regions are *darker* than their surroundings in all six lighting conditions, and a 25-pixel defect spans only about three stride-8 feature cells. Both problems limit what a ResNet-18 feature grid can express. `detail_branch.py` adds a one-sided "unexpected local contrast" residual at native resolution and fuses it with the deep map (see [the report](results/detail_branch.md)).
+
+On the public `can` split this branch gives +9.5 AU-PRO@5% against the control at seed 42, +11.2 at seed 7 and +7.6 at seed 1234, with the worst lighting condition improving by about 12 points in each case. On `sheet_metal` the same polarity choice hurts and its opposite polarity helps; on `fabric` no polarity helps. The polarity is a per-category inspection decision, not a tuning freebie — it is chosen on the public development split and disclosed.
+
+A learned pixel-wise combiner trained on synthetic defects (`fusion.py`) underperforms the hand-tuned branch; a static-backdrop suppression accelerates the ranking of defect pixels without changing AU-PRO; and the authors' released SuperADD bank underperforms the tiled baseline on this split. These negative results are part of the study, not gaps in it.
+
+```sh
+python run_detail.py can --synthetic 64
+python run_detail.py sheet_metal fabric --synthetic 48
+python build_report.py
+```
+
+`prepare_submission.py` builds a leaderboard submission directory (continuous float16 TIFF maps plus optional binary masks using the benchmark's good-validation mean + 3σ rule) for all eight categories. It does not upload anything; uploading is a manual step through the benchmark website.
+
 ## Run the baseline
 
 Use Python 3.11. Install matching PyTorch and torchvision builds for your device, then install the project dependencies. The experiments below used the CUDA 12.8 builds of PyTorch 2.11 and torchvision 0.26. [PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v2110)
@@ -52,6 +68,8 @@ python calibrate_lighting.py artifacts/can/full
 python calibrate_lighting.py artifacts/can/tiled
 python compare_scoring.py can
 python compare_scoring.py sheet_metal
+python run_detail.py can
+python prepare_submission.py --categories can
 ```
 
 The manifest checks image-to-mask filenames and groups 162 `can` captures into 27 scenes. Each experiment writes per-image scores, per-lighting metrics, and sample visualizations under `artifacts/<category>/<mode>/`. CUDA is used when available. `--device cpu` forces a CPU run.
