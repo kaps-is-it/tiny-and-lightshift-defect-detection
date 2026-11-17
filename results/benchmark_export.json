@@ -23,5 +23,5 @@
     }
   },
   "local_validation": "MVTec supplied checker and full archive inventory",
-  "official_evaluation": "Pending"
+  "scope": "Local archive verification"
 }

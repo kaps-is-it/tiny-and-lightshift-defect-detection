@@ -66,8 +66,14 @@ Across all 495 choices of four good Can support scenes, the median-offset and bo
 
 A second commissioning replay mapped shifted patch features toward matched regular features using per-channel moments from four good scenes selected with seed 42. The correction used half-strength shrinkage and clamped the spread ratio to 0.5–2.0 before shrinkage. The 115 held-out captures exclude all views of those four scenes. With the raw score threshold and fusion scales fixed, localization moved from 47.19% to 47.40% AU-PRO while part AUROC moved from 48.83% to 48.33%. Misses rose from 54 to 61 of 75 defective captures and false rejects fell from 10 to 8 of 40 good ones. Refitting reproduced the stored baseline scores exactly on the recorded GPU. [Per-light feature calibration results](feature_adaptation.json)
 
-## Benchmark status
+## Released comparison and station protocol
 
-The 19.88 GiB native RGB fusion archive passed MVTec's local checker. It contains 2,045 continuous float16 TIFF maps and 2,045 binary PNG masks for each of the two private splits. The archive stays in the local `artifacts` directory. Its [file manifest and SHA-256](benchmark_export.json) record the configuration and exact artifact. Official ranking awaits MVTec evaluation. The released SuperADD Can bank download remained incomplete after two verified resume attempts. CAT ran in the authors' larger training environment, with the checkpoint and separate backbone required for reproduction. These two full releases and a physical camera validation remain open. [MVTec upload specification](https://benchmark.mvtec.com/submit) · [SuperADD release](https://github.com/LukasRoom/SuperADD#reproduce-our-results) · [CAT release](https://github.com/VisualScienceLab-KHU/VAND2026_CAT)
+The released SuperADD Can configuration was run on the same 162 public captures. It reached 4.91% mean AU-PRO under the five changed lights, with 34 of 75 defective captures missed and 28 of 60 good captures rejected under its published mask rule. [SuperADD reproduction and per-light results](superadd.md)
+
+The station workflow validates disjoint physical parts, matching lighting views, recorded exposure and gain, and native image and mask geometry. It also measures contrast and can score each lighting condition using the same frozen nominal-light threshold. The workflow passed synthetic input and inference checks. Station measurements require independent captures of verified parts. [Station protocol and commands](../STATION_PROTOCOL.md)
+
+## Local archive
+
+The 19.88 GiB native RGB fusion archive passed MVTec's local checker. It contains 2,045 continuous float16 TIFF maps and 2,045 binary PNG masks for each of the two private splits. The archive stays in the local `artifacts` directory. Its [file manifest and SHA-256](benchmark_export.json) record the configuration and exact artifact. The portfolio results use the public labels and the archive records local format validation. [MVTec benchmark format](https://benchmark.mvtec.com/submit)
 
 [Per-light metrics and part decisions](multiscale.json) · [Paired decision and reinspection results](paired_robustness.json) · [Research and alternatives](../RESEARCH.md)
