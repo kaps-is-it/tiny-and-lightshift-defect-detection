@@ -127,3 +127,9 @@ The detector ranks the `can` defect at about the 94th percentile of its own back
 **Preparing the official submission.** `prepare_submission.py` maps the private splits for all eight categories, calibrates the threshold on good validation captures using the 99.5th percentile of the validation-map pixels, and falls back through modifier flags to the FAQ's good-validation mean + 3*sigma. The build is local; upload remains a manual step on the benchmark website and has not been done.
 
 **What is still open.** The four good `sheet_metal` reference scenes and the two tiny-only `fabric` regions are too few for a recalibration pilot there. The public split is a development set; the only out-of-sample gates are the reserved good scenes and the 4,090-map private submission. SPARC-style per-location nuisance estimation from a handful of verified-good captures is the remaining item before the final official run.
+
+## Submission verification
+
+`submission/` is a local benchmark archive: continuous maps are float16 TIFF at 1/4 native resolution, and binary masks are calibrated on good validation pixels at the 99.5th percentile of the submission-family maps. `python MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py submission` passes and produces `submission.tar.gz`. No file in the archive contains labels, and no label was used to fit the bank, the fusion statistics, or the mask thresholds; the public development split was used only to pick the per-category branch setting.
+
+The per-category choices are in `artifacts/submission_config.json`. The reference results and methods are in `results/detail_branch.md` and measured locally; the archive is not uploaded and the GitHub remote is untouched.

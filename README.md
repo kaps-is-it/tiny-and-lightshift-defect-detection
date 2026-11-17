@@ -79,3 +79,7 @@ The baseline uses a frozen ResNet-18 and a uniformly sampled memory bank of 4,09
 ## Datasets
 
 Download the datasets from MVTec. Both are released under CC BY-NC-SA 4.0. [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad) · [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
+
+## Local verification
+
+`submission/` (float16 TIFF + binary masks) passes MVTec's check script and compresses to a 1.6 GB `submission.tar.gz`. The complete 4,090-image archive was built locally, is gitignored, and has not been uploaded. The calibration record is saved at `artifacts/submission_config.json`.

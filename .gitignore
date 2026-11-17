@@ -2,9 +2,13 @@
 /mvtec_ad_2_dataset/
 /MVTecAD2_public_code_utils/
 /submission/
+/submission.tar.gz
 
 /.venv/
 /artifacts/
 __pycache__/
 *.pyc
+
+
+/submission.tar.gz
 
