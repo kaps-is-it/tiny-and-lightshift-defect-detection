@@ -1,5 +1,7 @@
 # Industrial imaging and machine learning for tiny defects under changing light
 
+The [public-split report](results/experiments.md) records the completed comparisons and their configurations.
+
 This is a research plan for the MVTec AD 2 project, with a separate path for a physical inspection station. It uses the public dataset and the project’s measured results as evidence, checked the official leaderboard, and ranks the experiments by how directly they address the observed failures. The numerical examples below identify engineering constraints. Improvements still need to be measured.
 
 ## 1. What we can infer from our own results

@@ -1,0 +1,210 @@
+{
+  "category": "can",
+  "source_training_images": 96,
+  "device": "cuda",
+  "support_seed": 42,
+  "support_scenes": [
+    "can/good/000",
+    "can/good/001",
+    "can/good/004",
+    "can/good/010"
+  ],
+  "gain_bounds_before_shrinkage": [
+    0.5,
+    2.0
+  ],
+  "shrinkage": 0.5,
+  "fixed_part_threshold": 0.97086501121521,
+  "fusion_scales": {
+    "context": 3.4079999923706055,
+    "fine": 4.896227836608887
+  },
+  "setting": "Simulated commissioning with verified same-light normal support and matched regular captures",
+  "by_lighting": {
+    "overexposed": {
+      "baseline": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 3,
+        "tn": 7,
+        "fp": 1,
+        "fn": 12,
+        "recall": 0.2,
+        "false_reject_rate": 0.125,
+        "image_f1": 0.3157894736842105,
+        "image_auroc": 0.5,
+        "au_pro_05": 0.5034148429682636,
+        "tiny_pro_at_05": 0.7752050260945142,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "feature_calibrated": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 2,
+        "tn": 8,
+        "fp": 0,
+        "fn": 13,
+        "recall": 0.13333333333333333,
+        "false_reject_rate": 0.0,
+        "image_f1": 0.23529411764705882,
+        "image_auroc": 0.49166666666666664,
+        "au_pro_05": 0.5047004880971832,
+        "tiny_pro_at_05": 0.7754482835507087,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "baseline_score_reproduction_max_abs_error": 0.0
+    },
+    "shift_1": {
+      "baseline": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 6,
+        "tn": 6,
+        "fp": 2,
+        "fn": 9,
+        "recall": 0.4,
+        "false_reject_rate": 0.25,
+        "image_f1": 0.5217391304347826,
+        "image_auroc": 0.45,
+        "au_pro_05": 0.5090439638212619,
+        "tiny_pro_at_05": 0.7098646034816251,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "feature_calibrated": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 3,
+        "tn": 6,
+        "fp": 2,
+        "fn": 12,
+        "recall": 0.2,
+        "false_reject_rate": 0.25,
+        "image_f1": 0.3,
+        "image_auroc": 0.4583333333333333,
+        "au_pro_05": 0.5098992723770496,
+        "tiny_pro_at_05": 0.7098646034816252,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "baseline_score_reproduction_max_abs_error": 0.0
+    },
+    "shift_2": {
+      "baseline": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 4,
+        "tn": 6,
+        "fp": 2,
+        "fn": 11,
+        "recall": 0.26666666666666666,
+        "false_reject_rate": 0.25,
+        "image_f1": 0.38095238095238093,
+        "image_auroc": 0.5583333333333333,
+        "au_pro_05": 0.3895034872907434,
+        "tiny_pro_at_05": 0.7196777511202456,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "feature_calibrated": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 3,
+        "tn": 6,
+        "fp": 2,
+        "fn": 12,
+        "recall": 0.2,
+        "false_reject_rate": 0.25,
+        "image_f1": 0.3,
+        "image_auroc": 0.5333333333333333,
+        "au_pro_05": 0.39576774571924156,
+        "tiny_pro_at_05": 0.728044544382755,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "baseline_score_reproduction_max_abs_error": 0.0
+    },
+    "shift_3": {
+      "baseline": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 5,
+        "tn": 7,
+        "fp": 1,
+        "fn": 10,
+        "recall": 0.3333333333333333,
+        "false_reject_rate": 0.125,
+        "image_f1": 0.47619047619047616,
+        "image_auroc": 0.55,
+        "au_pro_05": 0.4793310427644444,
+        "tiny_pro_at_05": 0.7085287465297364,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "feature_calibrated": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 2,
+        "tn": 8,
+        "fp": 0,
+        "fn": 13,
+        "recall": 0.13333333333333333,
+        "false_reject_rate": 0.0,
+        "image_f1": 0.23529411764705882,
+        "image_auroc": 0.55,
+        "au_pro_05": 0.48334696766331675,
+        "tiny_pro_at_05": 0.7085287465297365,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "baseline_score_reproduction_max_abs_error": 0.0
+    },
+    "underexposed": {
+      "baseline": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 3,
+        "tn": 4,
+        "fp": 4,
+        "fn": 12,
+        "recall": 0.2,
+        "false_reject_rate": 0.5,
+        "image_f1": 0.2727272727272727,
+        "image_auroc": 0.38333333333333336,
+        "au_pro_05": 0.4779920006318282,
+        "tiny_pro_at_05": 0.7655404062880372,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "feature_calibrated": {
+        "images": 23,
+        "defective": 15,
+        "good": 8,
+        "tp": 4,
+        "tn": 4,
+        "fp": 4,
+        "fn": 11,
+        "recall": 0.26666666666666666,
+        "false_reject_rate": 0.5,
+        "image_f1": 0.34782608695652173,
+        "image_auroc": 0.38333333333333336,
+        "au_pro_05": 0.4763766171010904,
+        "tiny_pro_at_05": 0.766392275051355,
+        "defect_regions": 16,
+        "tiny_regions": 11
+      },
+      "baseline_score_reproduction_max_abs_error": 0.0
+    }
+  }
+}

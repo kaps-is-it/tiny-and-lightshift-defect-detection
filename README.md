@@ -8,9 +8,9 @@ The inspector models normal appearance from defect-free images. It scans overlap
 
 ![Shifted-light localization across eight categories and Can ablations](results/multiscale.png)
 
-- **Can localization:** Tiled ResNet fusion reached **46.4% AU-PRO** under changed lighting versus **4.6%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
-- **Transfer:** Across eight categories, fusion raised mean tiny-region overlap from **63.7% to 73.2%**. Mean AU-PRO moved from **39.7% to 39.9%**. Under the fixed thresholds, fusion missed 448 of 585 shifted defective captures versus 388 for context, while falsely rejecting 43 of 315 good captures versus 63.
-- **Adaptation:** Neither median-offset nor bounded affine score calibration jointly reduced misses and false rejects across the 495 Can support sets. An independent acquisition audit found reduced median defect contrast after resizing in all 47 category-light groups.
+- Tiled ResNet fusion reached **46.4% AU-PRO** on **Can** under changed lighting versus **4.6%** for its matched full-frame control. Tiny-region overlap reached **73.1%** at 5% pixel FPR. Mild Retinex nudged AU-PRO to 46.9% and missed more defective parts at the fixed threshold.
+- Across eight categories, fusion raised mean tiny-region overlap from **63.7% to 73.2%**. Mean AU-PRO moved from **39.7% to 39.9%**. Under the fixed thresholds, fusion missed 448 of 585 shifted defective captures versus 388 for context, while falsely rejecting 43 of 315 good captures versus 63.
+- In the **Can adaptation replay**, neither median-offset nor bounded affine score calibration jointly reduced average misses and false rejects across 495 support sets. Feature calibration also left more defects undetected at the fixed threshold. An independent acquisition audit found reduced median defect contrast after resizing in all 47 category-light groups.
 
 [Full results, limits, and how to repeat the comparisons](results/experiments.md)
 
@@ -33,7 +33,7 @@ python multiscale_experiment.py can --treatment full --device cpu
 python multiscale_experiment.py can --treatment luma
 python multiscale_experiment.py can --treatment retinex
 python multiscale_experiment.py can --treatment augmented
-python multiscale_experiment.py can --treatment coreset
+python multiscale_experiment.py can fabric wallplugs --treatment coreset
 python multiscale_experiment.py can --backbone gradient
 python multiscale_experiment.py can --backbone synthetic
 python multiscale_experiment.py can --backbone distillation
@@ -47,6 +47,7 @@ python multiscale_experiment.py can --backbone convnext --weights artifacts/back
 python lighting_study.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
 python paired_robustness.py artifacts/multiscale/native/can
 python support_adaptation.py artifacts/multiscale/native/can --lighting-audit artifacts/lighting_study/can
+python feature_adaptation.py
 ```
 
 The experiment writes per-image decisions, normal validation scores, and per-light metrics under `artifacts/multiscale`. Model weights and data stay outside Git. Set `--train-limit 0` to use every good training image. Source dependence, few-part adaptation, and extra-view analysis are described in the [acquisition and adaptation report](results/acquisition_and_adaptation.md).

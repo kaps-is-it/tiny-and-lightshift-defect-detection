@@ -265,7 +265,7 @@ def add_model_args(parser):
 
 def configure(parser, args):
     if min(args.bank_size, args.fine_bank_size, args.batch_size) < 1 or min(args.train_limit, args.validation_limit) < 0:
-        parser.error("Bank sizes and batch size must be positive; split limits must be nonnegative")
+        parser.error("Use positive bank and batch sizes and nonnegative split limits")
     device = args.device or ("cuda" if torch.cuda.is_available() else "cpu")
     if device == "cpu":
         torch.set_num_threads(min(4, torch.get_num_threads()))

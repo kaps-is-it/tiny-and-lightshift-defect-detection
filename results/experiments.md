@@ -50,6 +50,8 @@ The DINOv3 challenger used frozen ConvNeXt-Tiny stages 0, 1, and 2 with the same
 
 Using all 412 good Can training images with the same bank sizes gave 39.1% context, 34.7% fine, and 43.8% fusion shifted AU-PRO. Fusion missed 56 of 75 defective captures and falsely rejected 19 of 60 good ones. [Full source fit](can_full_fit.json)
 
+The coreset transferred differently from Can. At the same normal-image and final bank budgets, it raised fusion AU-PRO from 45.0% to 52.4% on Fabric and from 34.9% to 39.6% on Wall Plugs. The fixed fusion thresholds still missed 48 of 75 shifted Fabric defect captures and all 75 on Wall Plugs, compared with 37 and 75 for the uniform banks. On Can, the coreset context score alone reduced misses from 70 to 51 of 75 and false rejects from 9 to 6 of 60. These results give the coreset a case for further category-level tests, with its map and part scores measured independently.
+
 The two original PatchCore-style controls and the reduced upstream SuperADD runs are documented in the [previous part scoring](scoring_comparison.md) and [SuperADD report](superadd.md). The reduced comparators use different normal budgets and model settings. The selection in this report concerns the matched public experiment.
 
 ## Part decisions and adaptation
@@ -61,6 +63,8 @@ Reviewing all Can captures where the context and fine thresholds disagreed would
 The extra-view replay used existing paired captures. For Can, the OR policy with `shift_1` as the second view reduced regular-view fusion misses from 13 to 8 of 15, with 5 of 12 false rejects in both cases. It re-imaged 20 of 27 parts, increasing mean views from 1 to 1.74. This example needs a fixed, independently verified lighting change before a production claim. [Full paired replay](paired_robustness.json)
 
 Across all 495 choices of four good Can support scenes, the median-offset and bounded affine policies failed to jointly improve average misses and false rejects over the fixed thresholds for any tested part score. The simple acquisition gate referred 80.4% of changed-light captures in the Can replay. The source-calibrated gate also produced regular-light referrals in four of eight categories. The [acquisition and adaptation report](acquisition_and_adaptation.md) contains the support protocol, source calibration and physical capture implications.
+
+A second commissioning replay mapped shifted patch features toward matched regular features using per-channel moments from four good scenes selected with seed 42. The correction used half-strength shrinkage and clamped the spread ratio to 0.5–2.0 before shrinkage. The 115 held-out captures exclude all views of those four scenes. With the raw score threshold and fusion scales fixed, localization moved from 47.19% to 47.40% AU-PRO while part AUROC moved from 48.83% to 48.33%. Misses rose from 54 to 61 of 75 defective captures and false rejects fell from 10 to 8 of 40 good ones. Refitting reproduced the stored baseline scores exactly on the recorded GPU. [Per-light feature calibration results](feature_adaptation.json)
 
 ## Benchmark status
 
