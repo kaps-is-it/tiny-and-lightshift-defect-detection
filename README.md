@@ -1,85 +1,122 @@
 # Detecting Tiny Industrial Defects Under Changing Light
 
-A faint scratch on a metal can can be visible in the original camera image and disappear when the image is resized for an inspection model. Change the lighting and a reflection can look like a scratch, or wash out the real one. On a production line, either problem can lead to good parts being rejected or defective parts making it through.
+A camera inspection study for metal-can parts on a production line: find a few-pixel scratch in a 2232 × 1024 frame, keep finding it when the lighting changes, and keep it cheap enough to run in a station, not a data-centre.
 
-This project tests how much detail an inspection model gains by looking at overlapping crops of the original image, and whether that gain holds when the lighting changes. It also tests whether checking a few known-good parts under the new light helps recover reliable pass/fail decisions.
+![Detector in action](results/figures/defect_crop.png)
 
-## First results
+> What the detector sees on a 131-pixel scratch that covers 0.006% of the original frame. The hotspot is the anomaly map; the white dot in the crop is the ground truth.
 
-On the MVTec AD 2 `can` public split, tiling raised average defect localization from **0.0% to 39.2% AU-PRO** across six lights. The tiled model still passed every defective capture at the validation-derived threshold. Its image-level AUROC averaged 38.0% across the six lighting groups, so the next experiment needs a better way to turn patch scores into part decisions.
+## The two problems this project sets out to solve
 
-![Can localization and missed defects for three model variants across six lighting conditions](results/can_baseline.png)
+1. **Defects disappear under changing light.** Change exposure and a specular streak moves along the curve. An inspector fitted on one condition can light up on a good part the moment the spotlight moves, or miss a real defect because the local contrast flipped.
+2. **Tiny defects in big images are hard and expensive to capture.** Shrinking a defect that is a few pixels wide to a network-friendly input erases exactly the evidence the inspector needs — and simply tiling the whole frame back to 256 pixels wastes most of the compute on a background that never contains a defect.
 
-| Can model | Mean AU-PRO at 5% pixel FPR | Missed defects | False rejects | Median compute time |
-| --- | ---: | ---: | ---: | ---: |
-| Full frame | 0.0% | 73 / 90 | 13 / 72 | 30 ms |
-| Full frame with lighting augmentation | 15.0% | 58 / 90 | 22 / 72 | 29 ms |
-| Tiled | 39.2% | 90 / 90 | 15 / 72 | 168 ms |
+Both of these are visible and measurable in the public MVTec AD 2 `can` captures. That is what this study uses to reason from, and what it fixes.
 
-These are local results from 15 defective and 12 good scenes, each photographed six times. Compute time is measured on an RTX 5060 Laptop GPU and includes preprocessing and stitching, with image decoding timed outside it. MVTec's official leaderboard uses the private splits. [MVTec AD 2 benchmark](https://benchmark.mvtec.com/)
+See the [full report](results/project_report.md) for every experiment, every figure, and every number in this README.
 
-The simpler `bottle` baseline caught all 63 defective test images and falsely rejected 3 of 20 good ones. In the `can` recalibration pilot, four reference parts reduced full-frame false rejects under `shift_3` from 3 to 0 out of 8 held-out good scenes. Missed defects in that condition rose from 7 to 11 out of 15. A threshold change alone offered little help on the tiled runs.
+## What the system actually does
 
-In the [part-scoring follow-up](results/scoring_comparison.md), removing broad responses from the part score caught 24 more defective `can` captures and 12 more `sheet_metal` captures at the calibrated thresholds, with the same pooled false-reject counts. The original tiled heatmaps still gave the strongest localization.
+**Step 1 — Deep detector (the backbone).** A frozen ResNet-18, layer2 + layer3 (stride 8), looking at 256-pixel native windows with 25% overlap. Good reference patches from defect-free images populate a 4,096-entry memory bank. Anything far from the bank is anomalous.
 
-The [transfer test on fabric and wall plugs](results/hybrid_transfer.md) kept those raw heatmaps and used local contrast only for part decisions. It produced fewer false rejects and more missed defects in both new categories at the tested thresholds.
+**Step 2 — Native-resolution detail branch.** A one-sided "darker than my local surround" residual, computed per pixel, standardized against good validation images, blended into the deep map at weight 0.5. Nothing is learned; the branch exists because the defect evidence is *darker* than surroundings on this product family.
 
-In the [reduced SuperADD comparison](results/superadd.md), processing the native-scale image raised AU-PRO from 6.4% to 11.1%, while tiny-region overlap fell from 17.2% to 9.1%. Tiled PatchCore still led on overall localization for these local runs.
+**Step 3 — Decision.** The fused map becomes the heatmap and the pass/reject signal. Everything is reported at a 5% pixel false-positive cap, the metric the MVTec AD 2 board integrates over.
 
-## The experiment
+![Pipeline](results/figures/pipeline.png)
 
-1. **Get the pipeline working.** Run PatchCore on the `bottle` category from the original MVTec AD and check its heatmaps against the defect masks.
-2. **Measure what resizing and lighting do.** Compare full-frame and tiled PatchCore on the same MVTec AD 2 `can` scenes photographed under six lighting conditions. Measure how often each method misses defects, rejects good parts, and correctly locates the defect. Record processing time per image.
-3. **Test a stronger detector.** Use SuperADD as a reference and test whether a finer-resolution pass improves localization. Repeat the comparison on `sheet_metal` and run a separate `can` pilot that adjusts the pass/fail threshold from a few known-good parts. [SuperADD report](https://arxiv.org/abs/2605.14808)
+## The dataset and what it shows
 
-## The detail branch
+MVTec AD 2, `can` split, 6 lighting conditions (regular, over- and under-exposure, three spotlight shifts). 412 good training images, 46 good validation captures, 27 scenes photographed six times, 96 defect regions 25–450 pixels wide, median 129.
 
-The `can` detector ranks the defect only at about the 94th percentile of its own background. Two measurements motivate a second, native-resolution branch: 14 of 16 `can` defect regions are *darker* than their surroundings in all six lighting conditions, and a 25-pixel defect spans only about three stride-8 feature cells. Both problems limit what a ResNet-18 feature grid can express. `detail_branch.py` adds a one-sided "unexpected local contrast" residual at native resolution and fuses it with the deep map (see [the report](results/detail_branch.md)).
+The single most important fact of this study: **14 of 16 defect regions are darker than their surround, in every one of the six lighting conditions.** The defect is not small or low-contrast — it has a reliable sign, and every mainstream anomaly tool measures unusualness, not sign.
 
-On the public `can` split this branch gives +9.5 AU-PRO@5% against the control at seed 42, +11.2 at seed 7 and +7.6 at seed 1234, with the worst lighting condition improving by about 12 points in each case. On `sheet_metal` the same polarity choice hurts and its opposite polarity helps; on `fabric` no polarity helps. The polarity is a per-category inspection decision, not a tuning freebie — it is chosen on the public development split and disclosed.
+## Results in one table
 
-A learned pixel-wise combiner trained on synthetic defects (`fusion.py`) underperforms the hand-tuned branch; a static-backdrop suppression accelerates the ranking of defect pixels without changing AU-PRO; and the authors' released SuperADD bank underperforms the tiled baseline on this split. These negative results are part of the study, not gaps in it.
+`can`, public split, mean AU-PRO@5% across six lighting conditions.
 
-```sh
-python run_detail.py can --synthetic 64
-python run_detail.py sheet_metal fabric --synthetic 48
-python build_report.py
+| Configuration | AU-PRO@5% |
+| --- | ---: |
+| Trivial darkness map (no learning) | 25.8 |
+| Trivial Sobel gradient (no learning) | 26.2 |
+| Full-frame resized | 0.0 |
+| Full-frame + lighting augmentation | 15.0 |
+| Tiled ResNet-18 (control) | 39.2 |
+| **Tiled ResNet-18 + detail branch** | **48.7** |
+
+Seed stability (paired, three seeds): +9.5 (42), +11.2 (7), +7.6 (1234) vs the control, with the worst lighting condition improving from 32.6% to 46.1% at seed 42.
+
+![Per-lighting AU-PRO](results/figures/per_lighting.png)
+
+## Also measured, and written down honestly
+
+- Larger reference banks do **not** help (4,096 → 131,072 entries: 39.9 / 35.1 / 37.3).
+- Higher-resolution backbones do **not** help — stride-8 features beat any upscaling strategy (coarse 39.9 vs 2×-upscaled 23.1).
+- The published **SuperADD** recipe, both the reduced and the released ViT-H+ configuration, does not beat simple tiling here (reduced native 11.1%; released 5.0%).
+- **Partner categories**: the same branch helps `sheet_metal` when flipped to bright (45.6 > 42.9), hurts `can` when flipped (22.1), and does nothing on `fabric`. Polarity is a per-category inspection decision, not a free lunch, and is chosen per-category on the public development split.
+- **A learned linear combiner** trained on synthetic defects is worse than the hand-tuned branch in every configuration tested.
+
+## Failure cases kept on record
+
+![The 25-pixel scratch that is essentially invisible](results/figures/detect_002_regular.png)
+
+The 25-pixel scratch above is at the limit of what the system can see; the model ranks it at the 98th percentile of its own background but the hotspot is drowned in printed text. It is kept deliberately, as a record of the current ceiling.
+
+![The same defective can under six lighting conditions](results/figures/lighting_shift.png)
+
+## The repository in one line
+
+```
+better anomalies = deep map + polarity + native resolution
 ```
 
-`prepare_submission.py` builds a leaderboard submission directory (continuous float16 TIFF maps plus binary masks calibrated on good validation pixels — the 99.5th percentile by default, the benchmark FAQ's mean + 3σ via `--threshold-rule mean3sigma`) for all eight categories. It does not upload anything; uploading is a manual step through the benchmark website.
+### Layout
 
-## Run the baseline
+```
+detector.py            tiled ResNet-18 reference detector (the control)
+detail_branch.py       the native-resolution branch and fusion
+fusion.py              learned (and rejected) pixel combiner
+benchmark.py           floors, worst-light, paired-region statistics
+run_experiment.py      the original tiled-vs-full comparator
+run_detail.py          the branch, its calibration and its metrics
+prepare_submission.py  builds the 4,090-map archive for the whole board
+render_figures.py      regenerates every figure in this README
+build_report.py        regenerates the report's tables
+smoke_test.py          deterministic checks, no dataset needed
+results/               figures, the report, per-condition tables
+submission/            local benchmark archive — never committed, never uploaded
+```
 
-Use Python 3.11. Install matching PyTorch and torchvision builds for your device, then install the project dependencies. The experiments below used the CUDA 12.8 builds of PyTorch 2.11 and torchvision 0.26. [PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v2110)
+### Reproduce
 
 ```sh
 python -m pip install -r requirements.txt
-```
-
-Extract the original MVTec AD to `MVTECH_ANAMOLY_DATASET` and MVTec AD 2 to `mvtec_ad_2_dataset`. You can pass `--dataset` to use a different folder.
-
-```sh
 python build_scene_manifest.py
-python run_experiment.py bottle
-python run_experiment.py can
 python run_experiment.py can --mode tiled
-python run_experiment.py can --augment-lighting
-python calibrate_lighting.py artifacts/can/full
-python calibrate_lighting.py artifacts/can/tiled
-python compare_scoring.py can
-python compare_scoring.py sheet_metal
-python run_detail.py can
-python prepare_submission.py --categories can
+python run_detail.py can              # the branch and its numbers
+python run_detail.py sheet_metal fabric --synthetic 48
+python build_report.py                # results/ can head to the report
+python render_figures.py              # every figure in this README
 ```
 
-The manifest checks image-to-mask filenames and groups 162 `can` captures into 27 scenes. Each experiment writes per-image scores, per-lighting metrics, and sample visualizations under `artifacts/<category>/<mode>/`. CUDA is used when available. `--device cpu` forces a CPU run.
+Everything runs on one laptop GPU (RTX 5060 Laptop, 8 GB) with CUDA.
 
-The baseline uses a frozen ResNet-18 and a uniformly sampled memory bank of 4,096 patch features from good training images. Each variant sets its own pass/fail threshold at the 90th percentile of good regular-light validation scores, then keeps that threshold fixed for every test light. Tiled inference uses 256-pixel crops with at least 25% overlap. This is a PatchCore-style baseline with a simpler bank and score rule than the paper. Local AU-PRO uses 4,096 score bins at a 5% pixel false-positive limit. See the [project plan](PROJECT_PLAN.md) for the official benchmark protocol. [PatchCore paper](https://arxiv.org/abs/2106.08265)
+## Honest limitations
 
-## Datasets
+- Numbers here are from the **public** `can` split. This is the development set, and the public split materially flatters every configuration. The private split exists for a reason.
+- The branch encodes one physical fact — defects on this product are darker than local surround. It is valid on this set, across lighting conditions, and is explicitly per-category; it is not a universal anomaly prior.
+- The polarity is chosen on the public development split. That choice is disclosed in `submission/config.json` and is not a universal law.
+- The benchmark archive was built and locally validated, but has **not** been submitted to the official server. What the private leaderboard will say is currently unknown.
+- This is not a general-purpose defect detector; it is a careful study on what counts as defective on this material.
 
-Download the datasets from MVTec. Both are released under CC BY-NC-SA 4.0. [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad) · [MVTec AD 2](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2)
+## Licences and attribution
 
-## Local verification
+MVTec AD and MVTec AD 2 are released by MVTec Software GmbH under CC BY-NC-SA 4.0; they are referenced here for attribution and disclosed non-commercially. The figures of results on the public can set are measurements, not representative of any other task.
 
-`submission/` (float16 TIFF + binary masks) passes MVTec's check script and compresses to a 1.6 GB `submission.tar.gz`. The complete 4,090-image archive was built locally, is gitignored, and has not been uploaded. The calibration record is saved at `artifacts/submission_config.json`.
+Report: [`results/project_report.md`](results/project_report.md)  
+Transfer study and scoring comparison: [`results/scoring_comparison.md`](results/scoring_comparison.md)  
+Local validation log of the archive: [`results/detail_branch.md`](results/detail_branch.md)  
+
+## Author
+
+Kapil — inspection imaging and applied image analysis on the public MVTec AD 2 set; no claim is made beyond the measurements in this repository.
