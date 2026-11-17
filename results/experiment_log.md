@@ -41,6 +41,23 @@ Every variant measured against the same public-split harness (`summarise_by_ligh
 | Ensemble + bright branch (can) | 22.1 | 44.8 | — |
 | Fabric, ensemble only | 38.1 | 51.1 | 34.4 |
 | Sheet_metal, ensemble only | 44.8 | 41.5 | 42.5 |
+| Wallplugs, ensemble only | 40.2 | — | — |
+| Walnuts, ensemble only | 59.1 | — | — |
+
+### Full selected configurations (local public split, after calibration)
+
+| Category | Single-seed archive | Ensemble archive | Δ |
+| --- | ---: | ---: | ---: |
+| can (dark branch) | 49.2% | 49.6% | +0.4 |
+| fabric | 36.1% | 38.1% | +2.0 |
+| fruit_jelly | 36.9% | 38.8% | +1.9 |
+| rice (dark branch) | 24.2% | 24.5% | +0.3 |
+| sheet_metal (bright branch) | 45.6% | 47.3% | +1.6 |
+| vial | 46.3% | 46.9% | +0.6 |
+| wallplugs | 36.5% | 40.2% | +3.7 |
+| walnuts | 58.0% | 59.1% | +1.1 |
+
+Both archives pass MVTec's official checker. Ensemble files: 8,180 (4,090 `.tiff` continuous maps downscaled to 1/4 native resolution + 4,090 binary `.png` masks calibrated on good validation pixels at the 99.5th percentile).
 
 ## Reference bank size
 

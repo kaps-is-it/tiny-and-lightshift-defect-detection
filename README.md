@@ -109,11 +109,28 @@ python render_figures.py              # every figure in this README
 
 Everything runs on one laptop GPU (RTX 5060 Laptop, 8 GB) with CUDA.
 
+## Two local archives, honestly compared
+
+The repository currently holds two locally validated benchmark archives, built from the exact same public split, same calibration protocol, same MVTec checker passing with *All checks successful*:
+
+| Category | Single-seed | Ensemble of 3 seeds | Change |
+| --- | ---: | ---: | ---: |
+| can (dark branch) | 49.2% | **49.6%** | +0.4 |
+| fabric | 36.1% | **38.1%** | +2.0 |
+| fruit_jelly | 36.9% | **38.8%** | +1.9 |
+| rice (dark branch) | 24.2% | **24.5%** | +0.3 |
+| sheet_metal (bright branch) | 45.6% | **47.3%** | +1.6 |
+| vial | 46.3% | **46.9%** | +0.6 |
+| wallplugs | 36.5% | **40.2%** | **+3.7** |
+| walnuts | 58.0% | **59.1%** | +1.1 |
+
+`submission_ensemble/` is the current champion archive — it scores strictly higher on all eight categories at the cost of roughly 3× compute. `submission/` is the original single-seed build. Both are gitignored; neither has been uploaded. Per-category selections and ensemble seeds are recorded in `artifacts/submission_ensemble_config.json`. The ensembling folds in `--ensemble-seeds 42 7 1234` in `prepare_submission.py`; the growth is free insurance against one random bank and nothing about the decision rule changed.
+
 ## Honest limitations
 
 - Numbers here are from the **public** `can` split. This is the development set, and the public split materially flatters every configuration. The private split exists for a reason.
 - The branch encodes one physical fact — defects on this product are darker than local surround. It is valid on this set, across lighting conditions, and is explicitly per-category; it is not a universal anomaly prior.
-- The polarity is chosen on the public development split. That choice is disclosed in `submission/config.json` and is not a universal law.
+- The polarization is chosen on the public development split. That choice is disclosed in `artifacts/submission_ensemble_config.json` (and `submission/`'s own config before the file is moved aside) and is not a universal law.
 - The benchmark archive was built and locally validated, but has **not** been submitted to the official server. What the private leaderboard will say is currently unknown.
 - This is not a general-purpose defect detector; it is a careful study on what counts as defective on this material.
 

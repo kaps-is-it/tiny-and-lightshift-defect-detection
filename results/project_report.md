@@ -163,7 +163,7 @@ Averaging the anomaly maps of three independently-fitted detectors (seeds 42, 7 
 | sheet_metal · + bright branch | 45.6 | **47.3** | +1.7 |
 | fabric · control | 36.1 | 38.1 | +2.0 |
 
-The ensemble changes no decision rule and adds no data; it just refuses to trust one random bank. It is folded into the submission build with `--ensemble-seeds 42 7 1234` and is the configuration recorded in `artifacts/submission_ensemble/config.json`.
+The ensemble changes no decision rule and adds no data; it just refuses to trust one random bank. It is folded into the submission build with `--ensemble-seeds 42 7 1234` and is the configuration recorded in `artifacts/submission_ensemble_config.json`. MVTec's checker passes on the ensemble archive; it is the current champion (see README's per-category comparison).
 
 ---
 
