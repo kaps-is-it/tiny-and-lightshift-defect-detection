@@ -1,6 +1,6 @@
 # Detecting Tiny Industrial Defects Under Changing Light
 
-This is the original planning record for the completed MVTec study. The [final project report](PROJECT_REPORT.md) follows the experiments through to their results and model selection.
+This is the original planning record for the completed MVTec study. The [project README](README.md) follows the experiments through to their results and model selection.
 
 ## Research question
 
