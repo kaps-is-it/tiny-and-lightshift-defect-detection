@@ -6,3 +6,6 @@
 /artifacts/
 __pycache__/
 *.pyc
+
+/submission*/
+/submission*.tar.gz

@@ -1,0 +1,1298 @@
+[
+  {
+    "image": "can/test_public/good/000_overexposed.png",
+    "scene": "can/good/000",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.465576171875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_overexposed.png",
+    "scene": "can/good/001",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.47509765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/002_overexposed.png",
+    "scene": "can/good/002",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 2.02197265625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_overexposed.png",
+    "scene": "can/good/003",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.76531982421875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_overexposed.png",
+    "scene": "can/good/004",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.9853515625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_overexposed.png",
+    "scene": "can/good/005",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 2.3990478515625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/006_overexposed.png",
+    "scene": "can/good/006",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.70025634765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/007_overexposed.png",
+    "scene": "can/good/007",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.89825439453125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_overexposed.png",
+    "scene": "can/good/008",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.48736572265625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/009_overexposed.png",
+    "scene": "can/good/009",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 2.8377685546875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_overexposed.png",
+    "scene": "can/good/010",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.6337890625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/011_overexposed.png",
+    "scene": "can/good/011",
+    "lighting": "overexposed",
+    "defective": false,
+    "peak": 1.920654296875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/000_overexposed.png",
+    "scene": "can/bad/000",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.09912109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/001_overexposed.png",
+    "scene": "can/bad/001",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.3458251953125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_overexposed.png",
+    "scene": "can/bad/002",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.6243896484375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/003_overexposed.png",
+    "scene": "can/bad/003",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.97601318359375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/004_overexposed.png",
+    "scene": "can/bad/004",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.678955078125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/005_overexposed.png",
+    "scene": "can/bad/005",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.35693359375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/006_overexposed.png",
+    "scene": "can/bad/006",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.2723388671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_overexposed.png",
+    "scene": "can/bad/007",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.52923583984375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_overexposed.png",
+    "scene": "can/bad/008",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.498046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_overexposed.png",
+    "scene": "can/bad/009",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.216796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/010_overexposed.png",
+    "scene": "can/bad/010",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.4755859375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_overexposed.png",
+    "scene": "can/bad/011",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.1915283203125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_overexposed.png",
+    "scene": "can/bad/012",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 2.88330078125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/013_overexposed.png",
+    "scene": "can/bad/013",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.40167236328125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/014_overexposed.png",
+    "scene": "can/bad/014",
+    "lighting": "overexposed",
+    "defective": true,
+    "peak": 1.611083984375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/000_regular.png",
+    "scene": "can/good/000",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.4442138671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_regular.png",
+    "scene": "can/good/001",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.497314453125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/002_regular.png",
+    "scene": "can/good/002",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 2.01739501953125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_regular.png",
+    "scene": "can/good/003",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.69415283203125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_regular.png",
+    "scene": "can/good/004",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.96484375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_regular.png",
+    "scene": "can/good/005",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 2.4423828125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/006_regular.png",
+    "scene": "can/good/006",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.66644287109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/007_regular.png",
+    "scene": "can/good/007",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.972900390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_regular.png",
+    "scene": "can/good/008",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.44891357421875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/009_regular.png",
+    "scene": "can/good/009",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 2.84521484375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_regular.png",
+    "scene": "can/good/010",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.58306884765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/011_regular.png",
+    "scene": "can/good/011",
+    "lighting": "regular",
+    "defective": false,
+    "peak": 1.94854736328125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/000_regular.png",
+    "scene": "can/bad/000",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.1519775390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/001_regular.png",
+    "scene": "can/bad/001",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.256591796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_regular.png",
+    "scene": "can/bad/002",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.7083740234375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/003_regular.png",
+    "scene": "can/bad/003",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.4775390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/004_regular.png",
+    "scene": "can/bad/004",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.69775390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/005_regular.png",
+    "scene": "can/bad/005",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.82177734375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/006_regular.png",
+    "scene": "can/bad/006",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.3580322265625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_regular.png",
+    "scene": "can/bad/007",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.507568359375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_regular.png",
+    "scene": "can/bad/008",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.52020263671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_regular.png",
+    "scene": "can/bad/009",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.58984375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/010_regular.png",
+    "scene": "can/bad/010",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.4151611328125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_regular.png",
+    "scene": "can/bad/011",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.753173828125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_regular.png",
+    "scene": "can/bad/012",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 2.7825927734375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/013_regular.png",
+    "scene": "can/bad/013",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.412109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/014_regular.png",
+    "scene": "can/bad/014",
+    "lighting": "regular",
+    "defective": true,
+    "peak": 1.6522216796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/000_shift_1.png",
+    "scene": "can/good/000",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.410888671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_shift_1.png",
+    "scene": "can/good/001",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 2.1839599609375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/002_shift_1.png",
+    "scene": "can/good/002",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 2.549560546875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_shift_1.png",
+    "scene": "can/good/003",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.640625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_shift_1.png",
+    "scene": "can/good/004",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.81884765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_shift_1.png",
+    "scene": "can/good/005",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 2.37353515625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/006_shift_1.png",
+    "scene": "can/good/006",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.9517822265625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/007_shift_1.png",
+    "scene": "can/good/007",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.81854248046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_shift_1.png",
+    "scene": "can/good/008",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.8707275390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/009_shift_1.png",
+    "scene": "can/good/009",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 3.6688232421875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_shift_1.png",
+    "scene": "can/good/010",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 2.9615478515625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/011_shift_1.png",
+    "scene": "can/good/011",
+    "lighting": "shift_1",
+    "defective": false,
+    "peak": 1.88201904296875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/000_shift_1.png",
+    "scene": "can/bad/000",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.0367431640625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/001_shift_1.png",
+    "scene": "can/bad/001",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.060302734375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_shift_1.png",
+    "scene": "can/bad/002",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 1.4534912109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/003_shift_1.png",
+    "scene": "can/bad/003",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.959716796875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/004_shift_1.png",
+    "scene": "can/bad/004",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 1.60675048828125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/005_shift_1.png",
+    "scene": "can/bad/005",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 3.2159423828125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/006_shift_1.png",
+    "scene": "can/bad/006",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.196533203125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_shift_1.png",
+    "scene": "can/bad/007",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.060791015625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_shift_1.png",
+    "scene": "can/bad/008",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 1.82965087890625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_shift_1.png",
+    "scene": "can/bad/009",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.146484375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/010_shift_1.png",
+    "scene": "can/bad/010",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.3291015625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_shift_1.png",
+    "scene": "can/bad/011",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.07684326171875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_shift_1.png",
+    "scene": "can/bad/012",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.52197265625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/013_shift_1.png",
+    "scene": "can/bad/013",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.1209716796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/014_shift_1.png",
+    "scene": "can/bad/014",
+    "lighting": "shift_1",
+    "defective": true,
+    "peak": 2.9228515625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/000_shift_2.png",
+    "scene": "can/good/000",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 1.841552734375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_shift_2.png",
+    "scene": "can/good/001",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.7257080078125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/002_shift_2.png",
+    "scene": "can/good/002",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.3116455078125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_shift_2.png",
+    "scene": "can/good/003",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 1.9993896484375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_shift_2.png",
+    "scene": "can/good/004",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 1.946044921875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_shift_2.png",
+    "scene": "can/good/005",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.8741455078125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/006_shift_2.png",
+    "scene": "can/good/006",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.982666015625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/007_shift_2.png",
+    "scene": "can/good/007",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 1.67401123046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_shift_2.png",
+    "scene": "can/good/008",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.6959228515625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/009_shift_2.png",
+    "scene": "can/good/009",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.8720703125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_shift_2.png",
+    "scene": "can/good/010",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.9200439453125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/011_shift_2.png",
+    "scene": "can/good/011",
+    "lighting": "shift_2",
+    "defective": false,
+    "peak": 2.9423828125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/000_shift_2.png",
+    "scene": "can/bad/000",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.43310546875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/001_shift_2.png",
+    "scene": "can/bad/001",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.186767578125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_shift_2.png",
+    "scene": "can/bad/002",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.2772216796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/003_shift_2.png",
+    "scene": "can/bad/003",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 3.0799560546875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/004_shift_2.png",
+    "scene": "can/bad/004",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.5687255859375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/005_shift_2.png",
+    "scene": "can/bad/005",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 3.7515869140625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/006_shift_2.png",
+    "scene": "can/bad/006",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 1.729248046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_shift_2.png",
+    "scene": "can/bad/007",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 1.61279296875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_shift_2.png",
+    "scene": "can/bad/008",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 1.54248046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_shift_2.png",
+    "scene": "can/bad/009",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.90869140625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/010_shift_2.png",
+    "scene": "can/bad/010",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.5235595703125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_shift_2.png",
+    "scene": "can/bad/011",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.3035888671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_shift_2.png",
+    "scene": "can/bad/012",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.71337890625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/013_shift_2.png",
+    "scene": "can/bad/013",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.5404052734375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/014_shift_2.png",
+    "scene": "can/bad/014",
+    "lighting": "shift_2",
+    "defective": true,
+    "peak": 2.34912109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/000_shift_3.png",
+    "scene": "can/good/000",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.2679443359375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_shift_3.png",
+    "scene": "can/good/001",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 1.57171630859375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/002_shift_3.png",
+    "scene": "can/good/002",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.53759765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_shift_3.png",
+    "scene": "can/good/003",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.2716064453125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_shift_3.png",
+    "scene": "can/good/004",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 1.80560302734375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_shift_3.png",
+    "scene": "can/good/005",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.5067138671875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/006_shift_3.png",
+    "scene": "can/good/006",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.2344970703125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/007_shift_3.png",
+    "scene": "can/good/007",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 1.72509765625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_shift_3.png",
+    "scene": "can/good/008",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 1.92266845703125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/009_shift_3.png",
+    "scene": "can/good/009",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 3.2655029296875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_shift_3.png",
+    "scene": "can/good/010",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 1.50909423828125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/011_shift_3.png",
+    "scene": "can/good/011",
+    "lighting": "shift_3",
+    "defective": false,
+    "peak": 2.6259765625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/000_shift_3.png",
+    "scene": "can/bad/000",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.07501220703125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/001_shift_3.png",
+    "scene": "can/bad/001",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.177001953125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_shift_3.png",
+    "scene": "can/bad/002",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.53680419921875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/003_shift_3.png",
+    "scene": "can/bad/003",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.6673583984375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/004_shift_3.png",
+    "scene": "can/bad/004",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.71624755859375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/005_shift_3.png",
+    "scene": "can/bad/005",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.525390625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/006_shift_3.png",
+    "scene": "can/bad/006",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.87713623046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_shift_3.png",
+    "scene": "can/bad/007",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.91400146484375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_shift_3.png",
+    "scene": "can/bad/008",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.75201416015625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_shift_3.png",
+    "scene": "can/bad/009",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.97125244140625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/010_shift_3.png",
+    "scene": "can/bad/010",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.3338623046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_shift_3.png",
+    "scene": "can/bad/011",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.82244873046875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_shift_3.png",
+    "scene": "can/bad/012",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.5186767578125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/013_shift_3.png",
+    "scene": "can/bad/013",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 1.93121337890625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/014_shift_3.png",
+    "scene": "can/bad/014",
+    "lighting": "shift_3",
+    "defective": true,
+    "peak": 2.2841796875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/000_underexposed.png",
+    "scene": "can/good/000",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 1.43194580078125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/001_underexposed.png",
+    "scene": "can/good/001",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.0450439453125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/002_underexposed.png",
+    "scene": "can/good/002",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 2.4300537109375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/003_underexposed.png",
+    "scene": "can/good/003",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 1.614501953125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/004_underexposed.png",
+    "scene": "can/good/004",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 2.04949951171875,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/005_underexposed.png",
+    "scene": "can/good/005",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.4415283203125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/006_underexposed.png",
+    "scene": "can/good/006",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.130615234375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/007_underexposed.png",
+    "scene": "can/good/007",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 1.90087890625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/good/008_underexposed.png",
+    "scene": "can/good/008",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.00537109375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/009_underexposed.png",
+    "scene": "can/good/009",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.2730712890625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/010_underexposed.png",
+    "scene": "can/good/010",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.20751953125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/good/011_underexposed.png",
+    "scene": "can/good/011",
+    "lighting": "underexposed",
+    "defective": false,
+    "peak": 3.2506103515625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/000_underexposed.png",
+    "scene": "can/bad/000",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.60888671875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/001_underexposed.png",
+    "scene": "can/bad/001",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.1263427734375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/002_underexposed.png",
+    "scene": "can/bad/002",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.6134033203125,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/003_underexposed.png",
+    "scene": "can/bad/003",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 3.2279052734375,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/004_underexposed.png",
+    "scene": "can/bad/004",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 3.10546875,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/005_underexposed.png",
+    "scene": "can/bad/005",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 4.2275390625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/006_underexposed.png",
+    "scene": "can/bad/006",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.2679443359375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/007_underexposed.png",
+    "scene": "can/bad/007",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 1.5118408203125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/008_underexposed.png",
+    "scene": "can/bad/008",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 1.536376953125,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/009_underexposed.png",
+    "scene": "can/bad/009",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 3.4605712890625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/010_underexposed.png",
+    "scene": "can/bad/010",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.4664306640625,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/011_underexposed.png",
+    "scene": "can/bad/011",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 1.71624755859375,
+    "rejected": false
+  },
+  {
+    "image": "can/test_public/bad/012_underexposed.png",
+    "scene": "can/bad/012",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.76025390625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/013_underexposed.png",
+    "scene": "can/bad/013",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.7623291015625,
+    "rejected": true
+  },
+  {
+    "image": "can/test_public/bad/014_underexposed.png",
+    "scene": "can/bad/014",
+    "lighting": "underexposed",
+    "defective": true,
+    "peak": 2.03179931640625,
+    "rejected": false
+  }
+]

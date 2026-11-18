@@ -4,7 +4,7 @@ I got into industrial computer vision a while back after looking through my prev
 
 What made me want to try this myself was finding a dataset where I could follow the *same part* through several lighting conditions. I could look at a can, see exactly where the defect was, and check where my detector looked when the light changed. My starting question was whether an inspector trained on good parts could spot a change in conditions and still find small defects without collecting thousands of newly labeled defective products.
 
-I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captures of 184 scenes. On Sheet Metal, changing how I scored a suspicious region took me from **30 to 50 detections out of 75 defective captures**, with the same three false rejects. On Can, the experiment that drew the best defect mask actually caught fewer defective parts. Those two results shaped what I kept in the final system.
+I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captures of 184 scenes. On Sheet Metal, changing how I scored a suspicious region took me from **30 to 50 detections out of 75 defective captures**, with the same three false rejects. On Can, I kept working after position-aware matching reached **47.74%** localization AU-PRO under changed lighting. Combining deep features with a pixel-level dark-contrast signal took that to **63.85%** on the same five changed lights and **63.94%** across all six. The new heatmaps located small defects more precisely, even though the strongest spot on a map was still an unreliable reason to reject a whole can.
 
 ![Actual Can inspection with the source image, defect crop, fused heatmap, annotation, and thresholded prediction](results/visuals/inspection_hero.png)
 
@@ -17,11 +17,12 @@ I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captur
 | Sheet Metal decisions, peak score → region score | 30/75 defective caught, 3/20 good rejected | **50/75 caught, 3/20 good rejected** |
 | All eight categories, same change | 137/585 defective caught, 43/315 good rejected | **151/585 caught**, 47/315 good rejected |
 | Can mask quality, native matching → position-aware | 46.39% AU-PRO, 2.89% pixel F1 | **47.74% AU-PRO, 8.02% pixel F1** |
+| Can localization, position-aware → local dark contrast | 47.74% AU-PRO, 75.99% tiny overlap | **63.85% AU-PRO, 81.61% tiny overlap** |
 | Fabric localization, same position-aware change | 45.00% AU-PRO | **37.20% AU-PRO** |
 
-Pixel F1 measures how well the marked pixels match the annotation, accounting for both missed pixels and false marks. The Can masks improved, but using their peak to reject a part caught only **14 of 75** defective captures, down from **21**. I kept native fusion as my default and made region scoring and position-aware matching optional. Each capture is one lighting view, so several captures can show the same physical part.
+Pixel F1 measures how well the marked pixels match the annotation, accounting for both missed pixels and false marks. Using just the map peak, native fusion caught **21 of 75** defective Can captures, position-aware matching caught **14**, and local dark contrast caught **17**. I kept native fusion as my general baseline, region scoring for Sheet Metal decisions, and local dark contrast for the best Can heatmap. Each capture is one lighting view, so several captures can show the same physical part.
 
-**Jump to** [Research and motivation](#1-the-problem-i-investigated) · [The data](#2-the-data-and-how-i-used-it) · [How the inspector works](#4-how-i-built-the-native-resolution-inspector) · [Experiments](#6-the-experiments-in-order) · [Model comparisons](#7-comparison-with-released-cat-and-superadd) · [Tracing the misses](#9-going-back-to-the-parts-i-missed) · [Final system and screenshot](#10-what-i-ended-up-using) · [Reproduce the study](#reproduce-the-study)
+**Jump to** [Research and motivation](#1-the-problem-i-investigated) · [The data](#2-the-data-and-how-i-used-it) · [How the inspector works](#4-how-i-built-the-native-resolution-inspector) · [Experiments](#6-the-experiments-in-order) · [Model comparisons](#7-comparison-with-released-cat-and-superadd) · [Tracing the misses](#9-going-back-to-the-parts-i-missed) · [Earlier inspector](#10-what-i-ended-up-using) · [Best Can model, heatmaps and results](#11-the-can-scratch-that-kept-me-working) · [Reproduce the study](#reproduce-the-study)
 
 ## 1. The problem I investigated
 
@@ -371,11 +372,66 @@ I combined proposals from my inspector and the released CAT model, scoring each 
 
 ## 10. What I ended up using
 
-I kept native RGB fusion as the default. It made the biggest difference to the original resizing problem and gives me a consistent baseline across products. For **Sheet Metal decisions**, normal-region scoring gave me the clearest improvement at the same observed false-reject count. For **Can localization**, position-aware matching gave me the best mask of the follow-up runs. I would choose between these modes based on what someone needs to do with the output. Drawing the boundary of a flaw and rejecting a part are different jobs, and I measured both.
+I kept native RGB fusion as the default. It made the biggest difference to the original resizing problem and gives me a consistent baseline across products. For **Sheet Metal decisions**, normal-region scoring gave me the clearest improvement at the same observed false-reject count. For **Can localization**, position-aware matching gave me the best mask I had at this stage. I would choose between these modes based on what someone needs to do with the output. Drawing the boundary of a flaw and rejecting a part are different jobs, and I measured both.
 
 Here is an actual single-image run of the position-aware inspector. It fitted the normal Can references, read the Shift 1 image, and returned a score of **1.1174** against a threshold of **1.0087**. The preview and JSON decision came from the same command. I used the annotation separately to make the comparison figure above.
 
 ![Screenshot of an executed local notebook with inspection.py, the actual score and threshold, and its saved input and heatmap preview](results/visuals/inspection_session.png)
+
+## 11. The Can scratch that kept me working
+
+Position-aware matching took Can from 46.39% to 47.74% AU-PRO under changed lighting. I liked being able to point to a scratch and show which pixels the change recovered. I was less satisfied with the rest of the cans. Even with that better map, the inspector caught just 14 of 75 defective captures at its part threshold. So I went back to the images. A patch’s distance from a normal patch tells me how different it looks, but it loses something simple. Was the mark lighter or darker than the metal around it?
+
+In the public Can images, 14 of the 16 annotated defect regions were darker than their surroundings under all six lights. That gave me something specific to try. I could keep the tiled detector for context and give it a second view that could pick up a thin dark mark at the original pixel resolution.
+
+### What I tried next
+
+I first checked how far simple image processing would get me. Scoring pixels by darkness alone reached **25.8%** mean AU-PRO across six lights. An edge detector reached **26.2%**. Both found real marks, but they also picked up ordinary printing. A learned combiner trained on synthetic defects reached **31.4%**. The tiled deep-feature control in this series reached **39.2%**.
+
+| Can configuration | Mean AU-PRO across six lights | What I changed |
+| --- | ---: | --- |
+| Deep features + wide dark residual | 48.7% | Compared each pixel with its 201 × 201 neighborhood. |
+| Wider dark residual | 51.2% | Tried a 501 × 501 window and a weight of 0.5. |
+| Deep features + local dark z-score | 53.0% | Used a 25 × 25 window and divided the contrast by the local variation. |
+| Same map + 5 × 5 maximum filter | 60.1% | Let strong edge responses reach neighboring pixels inside a flaw. |
+| Per-image scaling and half-size score map | 62.93% | Rescaled each capture and kept more detail in the saved map than a quarter-size export. |
+| Same settings, dark-detail weight of 0.75 | **63.94%** | Gave a little more weight to the pixel-level signal. |
+
+The early rows are rounded measurements from my experiment log. The final recipe uses seed 42. I also tried both directions of contrast, extra smoothing and a larger reference bank. With the final postprocessing and weight of 0.75, bright-only reached **23.7%**, both directions reached **61.8%**, and dark-only reached **63.94%**. Earlier trials on Sheet Metal favored bright marks. That helped me decide to keep this particular recipe specific to Can. [Full experiment log](local_contrast/results/experiment_log.md)
+
+### How a Can image becomes a heatmap
+
+1. **Learn what normal cans look like.** I cut 412 good training images into overlapping 256-pixel tiles. A frozen ResNet-18 extracts patch features from two layers. I keep a seeded sample of 4,096 normal feature vectors. At inspection time the distance to the nearest reference gives a coarse heatmap of unfamiliar patches.
+2. **Measure the mark at its original size.** At each pixel I compare its luminance with the mean in a 25 × 25 window. I divide the difference by the local standard deviation plus 0.5 and keep positive values where the pixel is darker. A five-level dip stands out more on smooth metal than on busy lettering.
+3. **Combine the two maps.** On 46 separate good validation images, I measure the median and the distance from the median to the 99th percentile for each signal. I use these to put the signals on comparable scales. The fused score is the deep score plus **0.75 × the dark-detail score**.
+4. **Fill narrow gaps and adjust for exposure.** A 5 × 5 maximum filter expands narrow responses. I then subtract the map’s median and divide by its 99.5th percentile minus its median. This preserves the pixel ordering inside a capture while changing how scores from different captures compare at a shared threshold. I store the map at half width and height in float16 and resize it back to the annotation size for evaluation.
+5. **Make the part decision separately.** I compare the maximum of the final map with the 90th percentile of the 46 good validation maxima. The earlier inspector used the same rule, with its own cutoff. Fitting the reference bank, map scales and part threshold takes only good images. I used the labeled public development scenes to choose the sign and weight and to measure the result.
+
+![Real Can image, ground-truth outline, deep patch response, dark detail and final fused score on the same 100-pixel crop](results/visuals/can_local_detail.png)
+
+*I returned to Can 003 under Shift 1, the same 131-pixel defect shown in the position-aware comparison above. The cyan box shows where I zoomed in. The cyan outline traces the annotation. The two branch panels share a display scale. The final panel shows the processed score in its own units. The dark spot inside the outline lights up, but so do smaller marks above and below it. The part decision uses the highest score anywhere on the full image.*
+
+### How much better was it?
+
+I ran the final setting on the same **27 public Can scenes** under all six lights, giving **162 captures**. Each lighting condition gets equal weight in the averages below. AU-PRO measures how well the heatmap covers individual flaws at low pixel false-positive rates. Tiny overlap measures coverage of small annotated regions at the 5% pixel false-positive limit. Higher is better for both. The part-decision counts cover the five changed lights.
+
+| Method | AU-PRO, all six lights | AU-PRO, five changed lights | Tiny overlap, changed lights | Defective caught / 75 | Good falsely rejected / 60 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Earlier native fusion | 46.72% | 46.39% | 73.14% | **21** | **15** |
+| Earlier position-aware matching | 48.17% | 47.74% | 75.99% | 14 | 19 |
+| **Local dark contrast + deep features** | **63.94%** | **63.85%** | **81.61%** | 17 | 19 |
+
+![Measured Can AU-PRO by light for native fusion, position-aware matching and the final local-contrast method](results/visuals/can_local_lights.png)
+
+The gain over my previous best Can map was **16.11 percentage points** under changed lighting. Tiny-region overlap rose by **5.61 points** using the unrounded measurements. Even the hardest light for the new method, Shift 2, reached **61.87%**. This compares two complete systems. The earlier runs used 96 normal training images and this one used 412, so that difference is part of the comparison too.
+
+My reruns of the released CAT and SuperADD Can models scored **33.87%** and **4.91%** changed-light AU-PRO on these same public captures. CAT caught **48 of 75** defective captures at its released mask rule, with **32 of 60** good captures falsely rejected. The new model averaged **50.11% image AUROC** under changed lighting. Its heatmap got much better at showing me *where* to look, while its peak remained a weak way to tell good cans from bad ones. I use the new model for Can localization and keep region scoring for Sheet Metal decisions. [Public Can measurements](results/can_local_contrast.json) · [Per-capture decisions](results/can_local_decisions.json) · [Earlier Can runs](results/can_sampling.json) · [Released-model comparison](results/released_comparators.json)
+
+![Full-frame input and heatmap from the Can inspector with its measured peak score, threshold and part decision](results/visuals/can_local_inspection.png)
+
+*This is the full-image inspection preview for the same capture. The color bar shows the final anomaly score. The inspector can produce this view for an unlabeled image. I used the public annotation separately to make the zoomed-in figure.*
+
+The **63.94%** is a public development result for **one category and one seed**. The repeated views contain 15 distinct defective scenes. I used those public scenes to decide which version to keep. The private leaderboard covers different images, and I have no private score for this recipe. [Official benchmark context](#8-where-the-website-benchmark-fits)
 
 ## Reproduce the study
 
@@ -389,6 +445,7 @@ The repository includes the dataset manifest, normal-reference detector, overlap
 | `multiscale_detector.py`, `multiscale_experiment.py` | Fit normal references and run fine/context/fused comparisons. |
 | `photometric_views.py`, the alternative detector modules | Implement preprocessing and model-family controls. |
 | `evaluation.py` | Calculate part and region metrics and render inspection overlays. |
+| [Local-contrast implementation](local_contrast/) | Fit and run the Can localizer, reproduce the public scores, and render its heatmaps. Also contains the experimental feature banks, contrast operators, synthetic combiner, and ensemble runners. |
 | `inspection.py` | Score supplied images with native fusion, position-aware matching, or the region decision rule and save the outputs. |
 | `hotspot_study.py`, `report_hotspots.py` | Fit normal-region references, trace the misses, and summarize all eight categories. |
 | `sampling_study.py`, `lighting_context.py`, `cat_hotspot_study.py` | Test spatial matching, offset sampling, lighting stability, and cross-model agreement. |
@@ -397,7 +454,19 @@ The repository includes the dataset manifest, normal-reference detector, overlap
 | `run_cat.py`, `run_superadd.py` | Evaluate the released Can comparators. |
 | `export_benchmark.py` | Validate locally packaged score maps and masks. |
 
-I used Python 3.11, PyTorch 2.11, torchvision 0.26, NumPy, SciPy, Pillow, and tifffile. The GPU experiments ran on an RTX 5060 Laptop GPU with 8 GiB of VRAM. Optional model and figure dependencies are documented with their reproduction commands.
+I used Python 3.11, PyTorch 2.11, torchvision 0.26, NumPy, SciPy, Pillow, and tifffile. The GPU experiments ran on an RTX 5060 Laptop GPU with 8 GiB of VRAM. From the repository root, these commands reproduce my best Can model. PyTorch downloads the public ResNet-18 weights on first use if they are missing from the local cache.
+
+```sh
+python -m pip install -r local_contrast/requirements.txt
+python local_contrast/smoke_test.py
+python local_contrast/inspect_can.py --image mvtec_ad_2_dataset/can/test_public/bad/003_shift_1.png --out artifacts/local_contrast/single
+python local_contrast/inspect_can.py --public --out artifacts/local_contrast/public
+python local_contrast/showcase.py --run artifacts/local_contrast/public/public_can.json --out artifacts/local_contrast/public/per_light.png
+```
+
+The single-image command fits the normal references and writes the native-size score map, a preview and a JSON decision. On my illustrated capture the peak was **2.960** against a part threshold of **2.573**, giving **reject**. The public run writes metrics for each light, one decision per capture and the illustrated defect crop. Both commands choose CUDA when available and accept `--device cpu`. The experimental runners under `local_contrast/` retain their own detector and evaluator so the earlier experiments can still be reproduced with their original settings.
+
+For the earlier native-fusion, scoring and transfer experiments I used these commands.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -484,7 +553,7 @@ Several limits matter when interpreting the numbers.
 - The recorded latency boundaries and workload vary by runner. The final local comparison reports the measured times on the same laptop.
 - Selected visual examples illustrate individual behavior. The tables contain the full evaluated sets.
 
-The question I would ask first on another product is where the detector looked on a missed part. Drawing five small boxes told me more about the next experiment than a single average score did. On Sheet Metal that check led to 20 additional detections. On Can it explained why changing the score alone had so little chance of recovering many of the missed locations.
+The question I would ask first on another product is where the detector looked on a missed part. Drawing five small boxes told me more about the next experiment than a single average score did. On Sheet Metal that check led to 20 additional detections. On Can it explained why changing the score alone had so little chance of recovering many of the missed locations. Going back to the native pixels gave me my best Can map. Measuring the part decisions alongside it showed me exactly where that improvement stopped.
 
 ## Data, images, and references
 
