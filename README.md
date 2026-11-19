@@ -1,4 +1,4 @@
-# Tiny Defects Under Changing Light
+# Tiny Defects and Changing Light Conditions
 
 I got interested in industrial computer vision while looking through my previous employer’s portfolio. As I read about how factories inspect parts, I kept coming back to two problems. A reflection on a good part can look like damage, and a scratch I can see in a full-size photo can almost disappear when I resize it for a model.
 
