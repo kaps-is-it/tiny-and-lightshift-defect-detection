@@ -74,12 +74,56 @@ def light_figure(report, baseline, output):
     fig.savefig(output, dpi=150)
 
 
+def scene_figure(archive, dataset, output):
+    """Show the same Can 003 crop under six lights, plus their mean result."""
+    from PIL import Image
+
+    public = dataset / "can" / "test_public"
+    with Image.open(public / "ground_truth/bad/003_regular_mask.png") as image:
+        mask = np.asarray(image) != 0
+    y, x = np.where(mask)
+    cy, cx = int(y.mean()), int(x.mean())
+    crop = np.s_[cy - 50:cy + 50, cx - 50:cx + 50]
+    lights = ["regular", "overexposed", "underexposed", "shift_1", "shift_2", "shift_3"]
+    fig = Figure(figsize=(13.8, 4.4), constrained_layout=True)
+    axes = fig.subplots(2, 7)
+    with np.load(archive) as maps:
+        for col, light in enumerate(lights):
+            with Image.open(public / f"bad/003_{light}.png") as image:
+                pixels = np.asarray(image.convert("RGB"))[crop]
+            axes[0, col].imshow(pixels)
+            axes[0, col].set_title(light.replace("_", " ").capitalize())
+            axes[1, col].imshow(maps[light][crop], cmap="inferno", vmin=0, vmax=2.5)
+            if light == "regular":
+                axes[0, -1].imshow(pixels)
+                axes[0, -1].contour(mask[crop], levels=[0.5], colors=["#00f2de"], linewidths=1.6)
+        heat = axes[1, -1].imshow(maps["scene_mean"][crop], cmap="inferno", vmin=0, vmax=2.5)
+    axes[0, -1].set_title("Annotation", color="#096957", weight="bold")
+    axes[1, -1].set_title("Six-view mean", color="#096957", weight="bold")
+    for ax in axes.flat:
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+    axes[0, 0].set_ylabel("Input crop")
+    axes[1, 0].set_ylabel("Model score")
+    fig.colorbar(heat, ax=axes[1, :].tolist(), orientation="horizontal", shrink=0.35,
+                 aspect=40, label="Anomaly score · same scale in every heatmap")
+    fig.suptitle("One 131-pixel defect seen under six lights", fontsize=18, weight="bold")
+    fig.savefig(output, dpi=150)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, default=Path("results/can_local_contrast.json"))
     parser.add_argument("--baseline", type=Path, default=Path("results/can_sampling.json"))
     parser.add_argument("--out", type=Path, default=Path("artifacts/local_contrast/per_light.png"))
+    parser.add_argument("--scene-maps", type=Path, help="Render the registered Can 003 views saved by round 11.")
+    parser.add_argument("--dataset", type=Path, default=Path("mvtec_ad_2_dataset"))
     args = parser.parse_args()
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    light_figure(json.loads(args.run.read_text(encoding="utf-8")),
-                 json.loads(args.baseline.read_text(encoding="utf-8")), args.out)
+    if args.scene_maps:
+        scene_figure(args.scene_maps, args.dataset, args.out)
+    else:
+        light_figure(json.loads(args.run.read_text(encoding="utf-8")),
+                     json.loads(args.baseline.read_text(encoding="utf-8")), args.out)

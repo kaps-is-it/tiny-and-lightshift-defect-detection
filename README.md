@@ -4,7 +4,7 @@ I got into industrial computer vision a while back after looking through my prev
 
 What made me want to try this myself was finding a dataset where I could follow the *same part* through several lighting conditions. I could look at a can, see exactly where the defect was, and check where my detector looked when the light changed. My starting question was whether an inspector trained on good parts could spot a change in conditions and still find small defects without collecting thousands of newly labeled defective products.
 
-I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captures of 184 scenes. On Sheet Metal, changing how I scored a suspicious region took me from **30 to 50 detections out of 75 defective captures**, with the same three false rejects. On Can, I kept working after position-aware matching reached **47.74%** localization AU-PRO under changed lighting. Combining deep features with a pixel-level dark-contrast signal took that to **63.85%** on the same five changed lights and **63.94%** across all six. The new heatmaps located small defects more precisely, even though the strongest spot on a map was still an unreliable reason to reject a whole can.
+I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captures of 184 scenes. On Sheet Metal, changing how I scored a suspicious region took me from **30 to 50 detections out of 75 defective captures**, with the same three false rejects. On Can, I kept working after position-aware matching reached **47.74%** localization AU-PRO under changed lighting. Combining deep features with a pixel-level dark-contrast signal took that to **63.85%** on the same five changed lights and **63.94%** across all six. I then averaged the maps from three independently sampled reference banks and reached **66.62%** under changed lighting from a single image. When I let the inspector use all six aligned views of a can together, it reached **67.53%**. The strongest spot on a map was still an unreliable reason to reject a whole can.
 
 ![Actual Can inspection with the source image, defect crop, fused heatmap, annotation, and thresholded prediction](results/visuals/inspection_hero.png)
 
@@ -18,11 +18,12 @@ I built the inspector in PyTorch and tested it on 1,084 public MVTec AD 2 captur
 | All eight categories, same change | 137/585 defective caught, 43/315 good rejected | **151/585 caught**, 47/315 good rejected |
 | Can mask quality, native matching → position-aware | 46.39% AU-PRO, 2.89% pixel F1 | **47.74% AU-PRO, 8.02% pixel F1** |
 | Can localization, position-aware → local dark contrast | 47.74% AU-PRO, 75.99% tiny overlap | **63.85% AU-PRO, 81.61% tiny overlap** |
+| Can localization, single image → six aligned views | **66.62%** with three banks | **67.53%** with a shared scene map |
 | Fabric localization, same position-aware change | 45.00% AU-PRO | **37.20% AU-PRO** |
 
-Pixel F1 measures how well the marked pixels match the annotation, accounting for both missed pixels and false marks. Using just the map peak, native fusion caught **21 of 75** defective Can captures, position-aware matching caught **14**, and local dark contrast caught **17**. I kept native fusion as my general baseline, region scoring for Sheet Metal decisions, and local dark contrast for the best Can heatmap. Each capture is one lighting view, so several captures can show the same physical part.
+Pixel F1 measures how well the marked pixels match the annotation, accounting for both missed pixels and false marks. Using just the map peak, native fusion caught **21 of 75** defective Can captures, position-aware matching caught **14**, and the single-seed local-contrast model caught **17**. The three-bank ensemble caught **6** and falsely rejected **8 of 60** good captures at its own validation cutoff. I kept native fusion as my general baseline, region scoring for Sheet Metal decisions, and local dark contrast for Can localization. I now use three normal reference banks for a single Can image and can average the maps when I have a complete set of aligned views. Each capture is one lighting view, so several captures can show the same physical part.
 
-**Jump to** [Research and motivation](#1-the-problem-i-investigated) · [The data](#2-the-data-and-how-i-used-it) · [How the inspector works](#4-how-i-built-the-native-resolution-inspector) · [Experiments](#6-the-experiments-in-order) · [Model comparisons](#7-comparison-with-released-cat-and-superadd) · [Tracing the misses](#9-going-back-to-the-parts-i-missed) · [Earlier inspector](#10-what-i-ended-up-using) · [Best Can model, heatmaps and results](#11-the-can-scratch-that-kept-me-working) · [Reproduce the study](#reproduce-the-study)
+**Jump to** [Research and motivation](#1-the-problem-i-investigated) · [The data](#2-the-data-and-how-i-used-it) · [How the inspector works](#4-how-i-built-the-native-resolution-inspector) · [Experiments](#6-the-experiments-in-order) · [Model comparisons](#7-comparison-with-released-cat-and-superadd) · [Tracing the misses](#9-going-back-to-the-parts-i-missed) · [Earlier inspector](#10-what-i-ended-up-using) · [The local-contrast model](#11-the-can-scratch-that-kept-me-working) · [Best Can results and six-view heatmaps](#12-one-can-under-six-lights) · [Reproduce the study](#reproduce-the-study)
 
 ## 1. The problem I investigated
 
@@ -433,6 +434,74 @@ My reruns of the released CAT and SuperADD Can models scored **33.87%** and **4.
 
 The **63.94%** is a public development result for **one category and one seed**. The repeated views contain 15 distinct defective scenes. I used those public scenes to decide which version to keep. The private leaderboard covers different images, and I have no private score for this recipe. [Official benchmark context](#8-where-the-website-benchmark-fits)
 
+## 12. One can under six lights
+
+At 63.94% AU-PRO, I had a detector that could pick up a small dark mark beside the printing on a can. Two questions were still bothering me. How much did the result depend on which normal patches happened to land in my reference bank? And why was I asking the inspector to start over every time it saw the same can under a different light?
+
+I tested those questions separately. The first change still lets me inspect a single photograph. The second needs all six aligned photographs of the same part, including the regular-light view.
+
+| Public Can · AU-PRO up to 5% pixel FPR | Input per prediction | All six lights | Five changed lights | Worst light | Tiny overlap, all lights |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Earlier local-contrast model, seed 42 | One capture | 63.94% | 63.85% | 61.87% | 81.57% |
+| Three reference banks | One capture | 66.71% | **66.62%** | 65.26% | 81.64% |
+| Three banks + scene mean | Six aligned captures | **67.53%** | **67.53%** | **67.53%** | **81.82%** |
+
+### First I changed the reference bank
+
+The frozen ResNet sees the same 412 good training images each time, but a seed determines which 4,096 patch features I keep. A small scratch can get quite a different nearest neighbor in a different bank. I fitted three banks with seeds 42, 7 and 99. Each has its own calibration from the same 46 good validation images. I kept the 25 × 25 dark-contrast window, used 1.0 in the local standard-deviation denominator, and kept the detail weight at 0.75. This runner also applies an extra Gaussian blur (σ = 2 pixels) to the deep map before fusion. I average the three **finished** maps, after the 5 × 5 maximum filter, per-image scaling and half-resolution round trip.
+
+On their own, the three seeds reached **64.09%**, **64.99%** and **66.13%** all-light AU-PRO in my rerun. Their average reached **66.71%**. That gained **2.77 percentage points under changed lighting** over my published single-seed model. I chose the seeds after looking at the public results. Adding seed 3 to the three-bank setup gave 66.62% across all lights in the seed sweep. [Seed sweep](research_extra6.py) · [Four-bank comparison](research_extra7.py)
+
+### Then I combined views of the same part
+
+For each of the 27 public scenes, I took the six single-view ensemble maps and averaged their scores at each pixel. A mark that stays in place can contribute six times. A reflection that moves or disappears contributes only in the views where it is visible. The dataset supplies the scene grouping and the captures are already aligned, so I could test this directly. The masks enter the scoring and the illustration, after the mean map has been built.
+
+![Six corresponding Can 003 crops and their actual single-view heatmaps, beside the annotated defect and the scene-mean heatmap](results/visuals/can_ensemble_views.png)
+
+*Each column shows the same 100 × 100 pixels of Can 003. The color scale is fixed across the heatmaps so a change in brightness has the same meaning in every panel. At the right, the cyan outline marks the 131 annotated pixels and the panel below shows the six-view prediction. This is the same example I used for the earlier models.*
+
+The extra views added **0.91 points** over the single-view ensemble on the changed-light measure. Across all six lights the total gain over the published single-seed model was **3.59 points**, and under the five changed lights it was **3.68 points**. The lowest per-light score rose by **5.66 points** over the single-seed run. All six per-light scores are identical because each scene gets the same output for every light and its six annotations are pixel-identical. There are still only **27 distinct scenes**, including **15 defective ones**. For a camera that supplies just one image, **66.62%** is the relevant changed-light result. [Full rerun and per-light measurements](results/can_ensemble_multiview.json) · [Published single-seed measurements](results/can_local_contrast.json)
+
+**What happened to the part decision?** I fitted the single-view ensemble’s peak cutoff on the good validation captures. It caught **6/75** defective changed-light captures and falsely rejected **8/60** good ones. I also tried rejecting a scene if *any* of its five changed views crossed that cutoff. That caught **3/15 defective scenes** and falsely rejected **5/12 good scenes**. One bright response could decide the fate of an entire can. When I applied that same cutoff (2.532) to the **averaged** map, it caught **0/15 defective scenes** and falsely rejected **1/12 good scenes**. The validation set supplies only regular-light images, so I had no independent six-view validation set to calibrate a part decision. The 67.53% measures localization across a range of pixel thresholds. I would use the map to guide a reviewer.
+
+### What else I tried
+
+These are the other rounds from my experiment notes. I reran the three-bank Can comparison above for this release. The transfer and extra-data figures below come from the original sweeps.
+
+| Change on Can | Public AU-PRO, all lights / changed lights | What I took from it |
+| --- | ---: | --- |
+| Add the 46 validation images to training | 66.77% / 66.71% | A small change, and the calibration images now overlap training. I kept the original split. |
+| Add the 72 good public test captures to training | 66.66% / 66.60% | This reuses evaluation inputs. I treated this as a diagnostic. Those good test captures can no longer serve as held-out examples. |
+| Augment normal training images with lighting changes | 65.28% / 65.24% | This augmentation reduced the score with the same bank capacity. |
+| Mix local-contrast and native-fusion maps | 65.18% best across all lights | The three-bank average gave me a better Can map. |
+| Subtract a per-cell normal average | 47.26% across all lights | Removing a location’s typical response also removed useful signal. |
+| Adjust each map using its lowest-scoring pixels | 65.92% best across all lights | This simple within-image correction underperformed the unadjusted ensemble. |
+
+I also tried a position-conditioned bank and two ways to score suspicious regions. The position-bank combination reached 0.00% in that configuration. One region rule caught 41/75 changed-light defects and falsely rejected 25/60 good captures. It traded more catches for more false alarms. These were lightweight experiments with the project’s features. A full prototype-reconstruction or subspace method would be a separate implementation. [Map and decision sweeps](research_extra4.py) · [Hybrid and position trials](research_extra5.py) · [Training-data trials](research_extra9.py)
+
+I checked how much of the idea carried over to other products. These are **single-view** results averaged over **all available lights for each category**. I used the same averaging convention for the earlier baseline in this table.
+
+| Product | Earlier native fusion | New run | What I used |
+| --- | ---: | ---: | --- |
+| Fabric | 45.56% | **54.24%** | Dark detail, seeds 42 and 7 |
+| Sheet Metal | 44.84% | **52.60%** | Bright detail, weight 0.5, seeds 42 and 7 |
+| Wall Plugs | 35.19% | **36.88%** | Dark detail, seeds 42 and 7 |
+| Vial | **38.80%** | 34.35% | Dark detail, seeds 42 and 7 |
+| Rice | 21.72% | **22.08%** | Single bank, seed 42 |
+
+Fabric and Sheet Metal showed the clearest transfer. Vial is why I wouldn’t pick the Can recipe for every product. I also used Bottle from the original MVTec AD as a separate pipeline check. The two-bank result there was 48.65%. [Native-fusion baselines](results/multiscale.json) · [Category runs](research_extra.py) · [Fabric and Sheet Metal](research_extra8.py) · [Bottle check](research_extra10.py)
+
+For comparison with the released models I tested, I use **single-view, changed-light public Can** for all three methods. The ensemble reached **66.62%**, CAT **33.87%**, and SuperADD **4.91%**. The six-view method gets additional input. MVTec’s leaderboard uses private images, and my experiment has no private score or official rank. [Released-model measurements](results/released_comparators.json) · [Dated leaderboard comparison](#8-where-the-website-benchmark-fits)
+
+To rerun this chapter, I use the repository root and the dependencies in `local_contrast/requirements.txt`.
+
+```sh
+python research_extra11.py
+python local_contrast/showcase.py --scene-maps artifacts/can_multiview/can_003.npz --out artifacts/can_multiview/can_ensemble_views.png
+```
+
+The first command rebuilds all three banks, evaluates both input settings, and saves the per-light JSON and Can 003 maps locally. Add `--skip-inp` to skip the within-image controls. [Evaluation and scene averaging](research_extra11.py) · [Map construction](research_extra2.py)
+
 ## Reproduce the study
 
 To run the inspector, I extract MVTec AD 2 into `mvtec_ad_2_dataset/` at the repository root. The earlier Bottle check uses the original MVTec AD under `MVTECH_ANAMOLY_DATASET/`. Both datasets are available for noncommercial use under CC BY-NC-SA 4.0. [MVTec AD 2 download and terms](https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2) · [Original MVTec AD](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
@@ -454,7 +523,7 @@ The repository includes the dataset manifest, normal-reference detector, overlap
 | `run_cat.py`, `run_superadd.py` | Evaluate the released Can comparators. |
 | `export_benchmark.py` | Validate locally packaged score maps and masks. |
 
-I used Python 3.11, PyTorch 2.11, torchvision 0.26, NumPy, SciPy, Pillow, and tifffile. The GPU experiments ran on an RTX 5060 Laptop GPU with 8 GiB of VRAM. From the repository root, these commands reproduce my best Can model. PyTorch downloads the public ResNet-18 weights on first use if they are missing from the local cache.
+I used Python 3.11, PyTorch 2.11, torchvision 0.26, NumPy, SciPy, Pillow, and tifffile. The GPU experiments ran on an RTX 5060 Laptop GPU with 8 GiB of VRAM. From the repository root, these commands reproduce the single-seed Can model from section 11. PyTorch downloads the public ResNet-18 weights on first use if they are missing from the local cache.
 
 ```sh
 python -m pip install -r local_contrast/requirements.txt
@@ -553,7 +622,7 @@ Several limits matter when interpreting the numbers.
 - The recorded latency boundaries and workload vary by runner. The final local comparison reports the measured times on the same laptop.
 - Selected visual examples illustrate individual behavior. The tables contain the full evaluated sets.
 
-The question I would ask first on another product is where the detector looked on a missed part. Drawing five small boxes told me more about the next experiment than a single average score did. On Sheet Metal that check led to 20 additional detections. On Can it explained why changing the score alone had so little chance of recovering many of the missed locations. Going back to the native pixels gave me my best Can map. Measuring the part decisions alongside it showed me exactly where that improvement stopped.
+The question I would ask first on another product is where the detector looked on a missed part. Drawing five small boxes told me more about the next experiment than a single average score did. On Sheet Metal that check led to 20 additional detections. On Can it explained why changing the score alone had so little chance of recovering many of the missed locations. Going back to the native pixels gave me a better Can map. Combining three reference banks improved it again. I could make one more gain when I had six aligned views of the same part. Measuring the part decisions alongside it showed me exactly where that improvement stopped.
 
 ## Data, images, and references
 
