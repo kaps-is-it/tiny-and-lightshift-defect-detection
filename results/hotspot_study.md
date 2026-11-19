@@ -113,19 +113,19 @@ The original native fusion rule remains the default. I added normal-region scori
 From the repository root with MVTec AD 2 available locally, run the following with the project's Python environment. The figures use Matplotlib. I used CUDA throughout. For a CPU reproduction, pass `--device cpu` to each model runner and the map figure command so the regenerated random banks agree with the recorded control.
 
 ```powershell
-python hotspot_study.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
-python report_hotspots.py
-python sampling_study.py can
-python sampling_study.py fabric --position-only
-python plot_hotspots.py --position-example
-python cat_hotspot_study.py
+python -m experiments.baselines.hotspot_study can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
+python -m experiments.baselines.report_hotspots
+python -m experiments.baselines.sampling_study can
+python -m experiments.baselines.sampling_study fabric --position-only
+python -m experiments.baselines.plot_hotspots --position-example
+python -m experiments.baselines.cat_hotspot_study
 ```
 
 To inspect individual images with the experimental region decision and view its proposals in decision-score order, I use the local inspector. It fits using good training and validation images, reads each input, and can save an annotated image and a JSON decision. The position-aware map is also available in the regular scoring command.
 
 ```powershell
-python inspection.py regions can mvtec_ad_2_dataset/can/test_public/bad/007_shift_1.png --output artifacts/region_demo
-python inspection.py score can mvtec_ad_2_dataset/can/test_public/bad/003_shift_1.png --method position --output artifacts/position_demo
+python -m experiments.baselines.inspection regions can data/mvtec_ad_2/can/test_public/bad/007_shift_1.png --output artifacts/region_demo
+python -m experiments.baselines.inspection score can data/mvtec_ad_2/can/test_public/bad/003_shift_1.png --method position --output artifacts/position_demo
 ```
 
 The CAT experiment requires the release and checkpoint documented in the [matched comparison](released_comparators.md). The native experiments use the existing ResNet weights. The scripts store per-capture coordinates, scores, evaluation flags, validation records, and normal-source paths under `artifacts/hotspots`. The summaries are [all-category decisions](hotspot_study.json), [Can localization controls](can_sampling.json), and [Can model agreement](can_cat_agreement.json).

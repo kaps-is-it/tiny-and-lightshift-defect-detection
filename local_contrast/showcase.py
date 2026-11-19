@@ -119,7 +119,7 @@ if __name__ == "__main__":
     parser.add_argument("--baseline", type=Path, default=Path("results/can_sampling.json"))
     parser.add_argument("--out", type=Path, default=Path("artifacts/local_contrast/per_light.png"))
     parser.add_argument("--scene-maps", type=Path, help="Render the registered Can 003 views saved by round 11.")
-    parser.add_argument("--dataset", type=Path, default=Path("mvtec_ad_2_dataset"))
+    parser.add_argument("--dataset", type=Path, default=Path("data/mvtec_ad_2"))
     args = parser.parse_args()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     if args.scene_maps:

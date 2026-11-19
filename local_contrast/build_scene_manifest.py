@@ -60,7 +60,7 @@ def build_manifest(dataset: Path, category: str) -> list[dict[str, str]]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, default=Path("mvtec_ad_2_dataset"))
+    parser.add_argument("--dataset", type=Path, default=Path("data/mvtec_ad_2"))
     parser.add_argument("--category", default="can")
     parser.add_argument("--output", type=Path, default=Path("artifacts/can_manifest.csv"))
     args = parser.parse_args()

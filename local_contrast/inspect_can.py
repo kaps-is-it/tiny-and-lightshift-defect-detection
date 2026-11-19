@@ -8,11 +8,11 @@ import numpy as np
 import torch
 from PIL import Image
 
-from detail_branch import BranchFusion
-from detector import PatchDetector
-from evaluation import ImageResult, summarize
-from prepare_submission import finalize_map, roundtrip_map
-from run_experiment import load_splits, predict_map, read_image, training_batches, training_views
+from local_contrast.detail_branch import BranchFusion
+from local_contrast.detector import PatchDetector
+from local_contrast.evaluation import ImageResult, summarize
+from local_contrast.prepare_submission import finalize_map, roundtrip_map
+from local_contrast.run_experiment import load_splits, predict_map, read_image, training_batches, training_views
 
 
 SEED = 42
@@ -79,7 +79,7 @@ def public_run(args, detector, fusion, threshold, training, validation, captures
                                   scene=c.scene, lighting=light, defective=c.mask is not None,
                                   peak=peak, rejected=peak >= threshold))
             if c.scene == "can/bad/003" and light == "shift_1":
-                from showcase import defect_figure
+                from local_contrast.showcase import defect_figure
                 components = fusion.components(deep, np.asarray(im))
                 defect_figure(args.out / "can_detail.png", im, components, scores, mask, threshold)
                 save_preview(args.out / "inspection.png", im, scores, threshold)
@@ -111,7 +111,7 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--public", action="store_true", help="Evaluate every labeled public Can capture.")
     mode.add_argument("--image", type=Path, help="Inspect one Can image without its annotation.")
-    parser.add_argument("--dataset", type=Path, default=Path("mvtec_ad_2_dataset"))
+    parser.add_argument("--dataset", type=Path, default=Path("data/mvtec_ad_2"))
     parser.add_argument("--out", type=Path, default=Path("artifacts/local_contrast/inspection"))
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda" if torch.cuda.is_available() else "cpu")
     args = parser.parse_args()

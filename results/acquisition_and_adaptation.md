@@ -22,7 +22,7 @@ The monitor measures median luminance, the 5th-to-95th-percentile luminance rang
 | Fabric, regular | 4 / 11 (36.4%) | 203 / 330 (61.5%) |
 | Fruit Jelly, each available light | 0–1 / 5 (0–20%) | 0 / 5 (0.0%) |
 
-Batch alerts increased relative to regular light in 27 of the 39 changed conditions. Four categories produced regular-light batch alerts. Fabric had a high false-alert burden and Fruit Jelly showed no batch response. The monitor flags changes in acquisition statistics. Its alert counts cannot tell whether defect recognition improved or deteriorated. [Lighting audit data](lighting_audit.json) · [Audit script](../lighting_study.py)
+Batch alerts increased relative to regular light in 27 of the 39 changed conditions. Four categories produced regular-light batch alerts. Fabric had a high false-alert burden and Fruit Jelly showed no batch response. The monitor flags changes in acquisition statistics. Its alert counts cannot tell whether defect recognition improved or deteriorated. [Lighting audit data](lighting_audit.json) · [Audit script](../experiments/baselines/lighting_study.py)
 
 ## What four reference parts do to Can decisions
 
@@ -35,13 +35,13 @@ We took every four-part combination among the 12 verified-good Can scenes, for 4
 | Bounded affine calibration | 11.88 | 56.88 | 0.00 |
 | Review the batch on a drift alert, fixed threshold otherwise | 1.98 | 10.80 | 92.42 |
 
-Neither recalibration policy improved both mean errors for any of the five stored detector scores. For the fusion score, median offset added misses in 431 of 495 support sets. The review policy referred **80.4% of changed-light captures** and none of the regular-light captures in this replay. Its lower automatic counts reflect deferred decisions. Referred captures have no measured final outcome. These results do not justify an automatic threshold update on an alert. The offline comparison records how much referral would defer and which automatic errors remain. [Support replay data](support_adaptation.json) · [Replay script](../support_adaptation.py)
+Neither recalibration policy improved both mean errors for any of the five stored detector scores. For the fusion score, median offset added misses in 431 of 495 support sets. The review policy referred **80.4% of changed-light captures** and none of the regular-light captures in this replay. Its lower automatic counts reflect deferred decisions. Referred captures have no measured final outcome. These results do not justify an automatic threshold update on an alert. The offline comparison records how much referral would defer and which automatic errors remain. [Support replay data](support_adaptation.json) · [Replay script](../experiments/baselines/support_adaptation.py)
 
 ## Reproduce
 
 ```sh
-python lighting_study.py can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
-python support_adaptation.py artifacts/multiscale/native/can --lighting-audit artifacts/lighting_study/can
+python -m experiments.baselines.lighting_study can fabric fruit_jelly rice sheet_metal vial wallplugs walnuts
+python -m experiments.baselines.support_adaptation artifacts/multiscale/native/can --lighting-audit artifacts/lighting_study/can
 ```
 
 The first command saves per-capture CSVs and a summary for each category under `artifacts/lighting_study/`. The second replays the saved native-scale Can predictions and saves its report alongside them.

@@ -28,9 +28,8 @@ Extract the Can `model.pth` from the authors' archive under the `CLASS=can` run.
 The runner preserves the four-by-four split, 448-pixel input, cosine residual and uint8 tile quantization from the author code. The published Can mask rule thresholds the stitched scores strictly above 42 and removes 8-connected components below the larger of eight pixels or 0.002% of image area, rounded down. The authors document calibration on good validation data. [Pinned CAT code and threshold protocol](https://github.com/VisualScienceLab-KHU/VAND2026_CAT/tree/9038ee3dddf947f30c61251c6fce898f2334ba6c)
 
 ```sh
-python run_cat.py --device cuda --batch-size 4 --smoke
-python run_cat.py --device cuda --batch-size 4 --output artifacts/cat/can-release
-python multiscale_experiment.py can --output artifacts/release-comparison
+python -m experiments.baselines.run_cat --device cuda --batch-size 4 --output artifacts/cat/can-release
+python -m experiments.baselines.multiscale_experiment can --output artifacts/release-comparison
 ```
 
 The CPU and CUDA CAT smoke tests produced the same reported metrics. The full comparison ran on an RTX 5060 Laptop GPU. The sibling report documents the released SuperADD run, including the timm backbone conversion and local assets. [SuperADD reproduction](superadd.md)

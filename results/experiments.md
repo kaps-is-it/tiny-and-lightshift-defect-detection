@@ -72,6 +72,6 @@ The released CAT and SuperADD Can configurations scored the same 162 public capt
 
 ## Local archive
 
-The 19.88 GiB native RGB fusion archive passed MVTec's local checker. It contains 2,045 continuous float16 TIFF maps and 2,045 binary PNG masks for each of the two private splits. The archive stays in the local `artifacts` directory. Its [file manifest and SHA-256](benchmark_export.json) record the configuration and exact artifact. The portfolio results use the public labels and the archive records local format validation. [MVTec benchmark format](https://benchmark.mvtec.com/submit)
+The 19.88 GiB native RGB fusion archive passed MVTec's local checker. It contains 2,045 continuous float16 TIFF maps and 2,045 binary PNG masks for each of the two private splits. The project retains the export record. Its [file manifest and SHA-256](benchmark_export.json) record the configuration and exact artifact. The portfolio results use the public labels and the archive records local format validation. [MVTec benchmark format](https://benchmark.mvtec.com/submit)
 
-[Per-light metrics and part decisions](multiscale.json) · [Paired decision and reinspection results](paired_robustness.json) · [Research and alternatives](../RESEARCH.md)
+[Per-light metrics and part decisions](multiscale.json) · [Paired decision and reinspection results](paired_robustness.json) · [Research and alternatives](../docs/research.md)

@@ -3,7 +3,7 @@
 import numpy as np
 from scipy.ndimage import uniform_filter
 
-from spatial_scoring import SpatialScorer
+from local_contrast.spatial_scoring import SpatialScorer
 
 
 BACKGROUND_WINDOW = 65  # Slightly wider than eight feature strides in a native tile.

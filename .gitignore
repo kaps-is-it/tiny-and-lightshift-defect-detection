@@ -1,11 +1,9 @@
-/MVTECH_ANAMOLY_DATASET/
-/mvtec_ad_2_dataset/
-/MVTecAD2_public_code_utils/
-
-/.venv/
+/data/
+/tools/mvtec_ad2_utils/
 /artifacts/
+/.venv/
 __pycache__/
-*.pyc
-
+*.py[cod]
+/.pytest_cache/
 /submission*/
 /submission*.tar.gz

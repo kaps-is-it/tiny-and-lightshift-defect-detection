@@ -28,8 +28,8 @@ Pass ``--compress`` to also create the tar.gz the uploader expects. Upload
 is a manual step on the benchmark website; nothing here sends data anywhere.
 
 Usage
-    python prepare_submission.py --device cuda
-    python prepare_submission.py --categories can --compress
+    python -m local_contrast.prepare_submission --device cuda
+    python -m local_contrast.prepare_submission --categories can --compress
 """
 
 from __future__ import annotations
@@ -46,11 +46,11 @@ import tifffile
 from PIL import Image
 from scipy.ndimage import maximum_filter
 
-from benchmark import summarise_by_light
-from detector import PatchDetector
-from detail_branch import BranchFusion, MIN_SPREAD
-from evaluation import ImageResult
-from run_experiment import load_splits, predict_map, read_image
+from local_contrast.benchmark import summarise_by_light
+from local_contrast.detector import PatchDetector
+from local_contrast.detail_branch import BranchFusion, MIN_SPREAD
+from local_contrast.evaluation import ImageResult
+from local_contrast.run_experiment import load_splits, predict_map, read_image
 
 ALL_CATEGORIES = ("can", "fabric", "fruit_jelly", "rice", "sheet_metal",
                   "vial", "wallplugs", "walnuts")
@@ -157,7 +157,7 @@ def best_variant(results: dict) -> tuple[str, float, str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--categories", nargs="+", default=ALL_CATEGORIES)
-    parser.add_argument("--dataset", type=Path, default=Path("mvtec_ad_2_dataset"))
+    parser.add_argument("--dataset", type=Path, default=Path("data/mvtec_ad_2"))
     parser.add_argument("--tile-size", type=int, default=256)
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--bank-size", type=int, default=4096)
@@ -199,7 +199,7 @@ def main() -> None:
         print(f"\n########## {category} ##########", flush=True)
         training, validation, captures = load_splits(args.dataset, category, args.seed)
         device = args.device or ("cuda" if torch.cuda.is_available() else "cpu")
-        from run_experiment import training_batches, training_views
+        from local_contrast.run_experiment import training_batches, training_views
         fit_seeds = args.ensemble_seeds or [args.seed]
         detectors = []
         for seed in fit_seeds:
@@ -298,8 +298,8 @@ def main() -> None:
     (args.output / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
     print(f"\nConfig written to {args.output / 'config.json'}")
     if args.compress:
-        print("use MVTecAD2_public_code_utils for the official archive, e.g.:\n"
-              "  python MVTecAD2_public_code_utils/check_and_prepare_data_for_upload.py "
+        print("use tools/mvtec_ad2_utils for the official archive, e.g.:\n"
+              "  python tools/mvtec_ad2_utils/check_and_prepare_data_for_upload.py "
               f"{args.output}")
 
 

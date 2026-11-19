@@ -35,9 +35,9 @@ The lower miss counts previously observed on can and sheet metal did not carry o
 ## Reproduce
 
 ```sh
-python run_experiment.py fabric --mode tiled --compare-part-scores
-python run_experiment.py wallplugs --mode tiled --compare-part-scores
-python summarize_hybrid.py fabric wallplugs --dataset mvtec_ad_2_dataset
+python -m local_contrast.run_experiment fabric --mode tiled --compare-part-scores
+python -m local_contrast.run_experiment wallplugs --mode tiled --compare-part-scores
+python -m experiments.baselines.summarize_hybrid fabric wallplugs --dataset data/mvtec_ad_2
 ```
 
 The per-category runs write paired scores, thresholds, metrics, and previews under `artifacts/<category>/tiled-paired/`. The summary writes `artifacts/hybrid_summary.json`.

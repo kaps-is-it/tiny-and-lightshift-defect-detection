@@ -14,8 +14,7 @@ The released binary masks had zero pixel F1 in all six public groups. Median per
 Use the pinned checkout and dependencies below. Put the authors' `can.npz` and its matching `can.json` in `artifacts/superadd-assets`. Save the ViT-H+/16 timm checkpoint there as `dinov3-vith16plus-timm.safetensors`. Asset hashes are in the per-light results. [Released reference banks](https://owncloud.fraunhofer.de/index.php/s/THkX7W8AhRd2RCs) · [ViT-H+/16 model files](https://huggingface.co/timm/vit_huge_plus_patch16_dinov3_qkvb.lvd1689m/tree/main)
 
 ```sh
-python run_superadd.py --smoke
-python run_superadd.py --output artifacts/superadd/can-release
+python -m experiments.baselines.run_superadd --output artifacts/superadd/can-release
 ```
 
 ## Reduced ViT-S comparison
@@ -46,8 +45,8 @@ git -C artifacts/upstream-superadd checkout 44cf25144442fbbc1334ea59d1632327a437
 Download `model.safetensors` from the timm model card to `artifacts/superadd-assets/dinov3-vits16-timm.safetensors`. The runner also accepts an explicit `--weights` path. [Model files](https://huggingface.co/timm/vit_small_patch16_dinov3_qkvb.lvd1689m/tree/main)
 
 ```sh
-python run_superadd.py --train-small
-python run_superadd.py --train-small --native
+python -m experiments.baselines.run_superadd --train-small
+python -m experiments.baselines.run_superadd --train-small --native
 ```
 
 The runs write `metrics.json` and `predictions.csv` under `artifacts/superadd/can-small/` and `artifacts/superadd/can-small-native/`.

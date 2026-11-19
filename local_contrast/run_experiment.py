@@ -14,10 +14,10 @@ import torch
 from PIL import Image, ImageEnhance
 from scipy.ndimage import gaussian_filter
 
-from build_scene_manifest import build_manifest
-from detector import PatchDetector
-from evaluation import ImageResult, save_overlay, summarize, summarize_decisions
-from part_scoring import BACKGROUND_WINDOW, local_contrast_score
+from local_contrast.build_scene_manifest import build_manifest
+from local_contrast.detector import PatchDetector
+from local_contrast.evaluation import ImageResult, save_overlay, summarize, summarize_decisions
+from local_contrast.part_scoring import BACKGROUND_WINDOW, local_contrast_score
 
 
 INPUT_SIZE = 256
@@ -310,7 +310,7 @@ def main() -> None:
     if args.compare_part_scores and args.mode != "tiled":
         parser.error("The local-contrast score comparison requires tiled mode")
     if args.dataset is None:
-        args.dataset = Path("MVTECH_ANAMOLY_DATASET" if args.category == "bottle" else "mvtec_ad_2_dataset")
+        args.dataset = Path("data/mvtec_ad" if args.category == "bottle" else "data/mvtec_ad_2")
     run(args)
 
 

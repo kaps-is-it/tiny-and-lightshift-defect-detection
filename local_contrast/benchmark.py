@@ -21,7 +21,7 @@ from collections import defaultdict
 import numpy as np
 from scipy.ndimage import sobel
 
-from evaluation import ImageResult, summarize
+from local_contrast.evaluation import ImageResult, summarize
 
 
 def trivial_maps(image: np.ndarray) -> dict[str, np.ndarray]:

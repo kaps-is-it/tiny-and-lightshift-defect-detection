@@ -40,8 +40,8 @@ Local contrast is the next candidate for the part decision. It reduced missed ca
 ## Reproduce
 
 ```sh
-python compare_scoring.py can
-python compare_scoring.py sheet_metal
+python -m experiments.baselines.compare_scoring can
+python -m experiments.baselines.compare_scoring sheet_metal
 ```
 
 The two commands write per-image scores, thresholds, split filenames, and per-light metrics under `artifacts/score-comparison/`. These are local public-split comparisons.
