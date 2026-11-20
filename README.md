@@ -18,9 +18,11 @@ The model looks at overlapping tiles at the photo’s original resolution. ResNe
 
 ## How my model compared
 
-Since MVTec publishes the dataset and builds industrial inspection software, I wanted to see how my detector stacked up against established models on MVTec’s own benchmark images.
+This section is the clearest answer to the question I started with. CAT, SuperADD and the Anomalib models can all detect defects — that was never in doubt. The hard part is finding a defect when the light moves, when its position changes and the reflections move with it, and when the defect is only a few pixels wide, often sitting next to printed lettering or texture that already looks suspicious. The comparison below shows how established models hold up under those same changed lights. That is the idea that pulled me into this work: defect detectors already exist, but a detector that stays reliable through changing light and reflections was still missing from the tools I could compare. This project set out to build one, and the higher localization scores in the table are the evidence that I worked in the right direction — my model finds the tiny defects, especially under the changed lights and reflections I tested.
 
-Every model below takes one photo per prediction. The project’s evaluator scored the maps on the same 162 public Can captures, including 135 under changed lighting. CAT and SuperADD use their released Can configurations. The Anomalib runs use 558 × 256 inputs, and their maps for good captures enter scoring at that smaller size.
+MVTec publishes the dataset and builds industrial inspection software, so their benchmark images were the natural place to test that claim.
+
+Every model below takes one photo per prediction. All maps were scored with the project’s own evaluator on the same 162 public Can captures, including 135 under changed lighting. CAT and SuperADD use their released Can configurations. The Anomalib runs use 558 × 256 inputs, and their maps for good captures enter scoring at that smaller size.
 
 | Single-image model on public Can · AU-PRO up to 5% pixel FPR | Five changed lights | All six lights |
 | --- | ---: | ---: |
@@ -31,7 +33,7 @@ Every model below takes one photo per prediction. The project’s evaluator scor
 | Anomalib PaDiM | 2.14% | 2.20% |
 | Anomalib STFPM | 2.08% | 2.09% |
 
-CAT, SuperADD, and the Anomalib models in the table can all detect defects. The comparison on Can shows there’s still a real problem when the light moves and the reflections change. Tiny defects are especially easy to miss next to printed lettering or textures that already catch the detector’s attention. That’s the problem I set out to solve, and the higher localization scores show that my model did a better job of pinpointing those defects under the lighting changes I tested.
+The table makes the gap concrete. CAT is the strongest existing model at 33.87% on the five changed lights; the Anomalib runs and the released SuperADD bank land between 2% and 7%; my single-image ensemble reaches 66.62%. Under changed lighting, the models that already detect defects do not localize them reliably — and the smallest defects, the ones hiding beside lettering or texture, are exactly where that difference matters most.
 
 The ensemble’s single-image heatmap scored **20.23 percentage points higher than my original tiled baseline** on the five changed lights. PatchCore had the strongest localization of the three Anomalib runs. [Ensemble results](results/can_ensemble_multiview.json) · [CAT and SuperADD settings](#7-comparison-with-released-cat-and-superadd) · [Anomalib experiment and scoring details](#13-testing-anomalib-on-can)
 
