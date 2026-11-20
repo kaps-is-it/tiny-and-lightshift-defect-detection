@@ -31,6 +31,8 @@ Every model below takes one photo per prediction. The project’s evaluator scor
 | Anomalib PaDiM | 2.14% | 2.20% |
 | Anomalib STFPM | 2.08% | 2.09% |
 
+On these cans, moving the light shifted the reflections, and tiny scratches were easy to miss beside printed lettering and textures that already drew strong responses from the detector. The localization gains gave me confidence that keeping the original image detail and using local contrast was the right direction for finding those marks under changing light.
+
 The ensemble’s single-image heatmap scored **20.23 percentage points higher than my original tiled baseline** on the five changed lights. PatchCore had the strongest localization of the three Anomalib runs. [Ensemble results](results/can_ensemble_multiview.json) · [CAT and SuperADD settings](#7-comparison-with-released-cat-and-superadd) · [Anomalib experiment and scoring details](#13-testing-anomalib-on-can)
 
 **Sheet Metal** gave me a different clue. On many missed parts, the heatmap already pointed near the flaw. Scoring those suspicious regions raised detections from **30 to 50 out of 75 defective captures** under changed lighting, with **three false rejects out of 20 good captures** in both runs. [How I traced the misses](#9-going-back-to-the-parts-i-missed)
