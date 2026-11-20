@@ -565,7 +565,19 @@ The default Anomalib runs also differed from the Can ensemble in how they handle
 
 A full-frame attempt at native size with a batch of 32 ran out of GPU memory. At 558 × 256, the 32 × 70 PatchCore feature grid across 412 training images gives **922,880 embeddings** of 1,536 float32 features. That is roughly **5.67 GB before coreset selection** and **0.57 GB after**. At native size the grid would sample every eight pixels, giving 128 × 279 locations per photo and about **90.4 GB** of embeddings before selection. For PaDiM, a single native covariance tensor across **142,848 positions** and **100 retained features** would take about **5.71 GB**, before storing training embeddings or inverting the covariance matrices. STFPM trains a student network directly, with **16 times as many input pixels** per pass at full size.
 
-A useful follow-up would be a tiled PatchCore run with a smaller bank and native-size scoring maps for every capture. Tiling would keep more of the scratch visible within each feature cell. Another option would test intermediate sizes such as 698 × 320 or 838 × 384 with a reduced bank. Further tests could vary the training light, average aligned views at inference, or set a fixed epoch budget for STFPM. The reported Anomalib localization scores come from the completed 558 × 256 runs.
+##### Estimated native-resolution AU-PRO
+
+These ranges are untested projections from the experiment notes for full-size inputs at `image_size=(1024, 2232)` (height, width). They assume the same model settings, regular-light training, and one photo per prediction.
+
+| Anomalib model | Measured at 558 × 256 (all six / five changed) | Projected at native size (all six) | Projected at native size (five changed) |
+| --- | ---: | ---: | ---: |
+| PatchCore | 7.30% / 6.83% | **≈20–35%** | **≈15–28%** |
+| PaDiM | 2.20% / 2.14% | **≈8–18%** | **≈6–14%** |
+| STFPM | 2.09% / 2.08% | **≈15–30%** | **≈10–25%** |
+
+The notes also considered an optimistic PatchCore case of **35–40% AU-PRO across all six lights**. That would be roughly 30 percentage points below the **67.53%** measured for the ensemble using six aligned photos per part.
+
+A useful follow-up would be a tiled PatchCore run with a smaller bank and native-size scoring maps for every capture. Tiling would keep more of the scratch visible within each feature cell. Another option would test intermediate sizes such as 698 × 320 or 838 × 384 with a reduced bank. Further tests could vary the training light, average aligned views at inference, or set a fixed epoch budget for STFPM.
 
 ## Reproduce the study
 
