@@ -575,9 +575,7 @@ These ranges are untested projections from the experiment notes for full-size in
 | PaDiM | 2.20% / 2.14% | **≈8–18%** | **≈6–14%** |
 | STFPM | 2.09% / 2.08% | **≈15–30%** | **≈10–25%** |
 
-The notes also considered an optimistic PatchCore case of **35–40% AU-PRO across all six lights**. That would be roughly 30 percentage points below the **67.53%** measured for the ensemble using six aligned photos per part.
-
-A useful follow-up would be a tiled PatchCore run with a smaller bank and native-size scoring maps for every capture. Tiling would keep more of the scratch visible within each feature cell. Another option would test intermediate sizes such as 698 × 320 or 838 × 384 with a reduced bank. Further tests could vary the training light, average aligned views at inference, or set a fixed epoch budget for STFPM.
+The notes also considered an optimistic PatchCore case of **35–40% AU-PRO across all six lights**. That would still be roughly 30 percentage points below the **67.53%** measured for the ensemble using six aligned photos per part.
 
 ## Reproduce the study
 
