@@ -31,7 +31,7 @@ Every model below takes one photo per prediction. The project’s evaluator scor
 | Anomalib PaDiM | 2.14% | 2.20% |
 | Anomalib STFPM | 2.08% | 2.09% |
 
-On these cans, moving the light shifted the reflections, and tiny scratches were easy to miss beside printed lettering and textures that already drew strong responses from the detector. The localization gains gave me confidence that keeping the original image detail and using local contrast was the right direction for finding those marks under changing light.
+CAT, SuperADD, and the Anomalib models in the table can all detect defects. The comparison on Can shows there’s still a real problem when the light moves and the reflections change. Tiny defects are especially easy to miss next to printed lettering or textures that already catch the detector’s attention. That’s the problem I set out to solve, and the higher localization scores show that my model did a better job of pinpointing those defects under the lighting changes I tested.
 
 The ensemble’s single-image heatmap scored **20.23 percentage points higher than my original tiled baseline** on the five changed lights. PatchCore had the strongest localization of the three Anomalib runs. [Ensemble results](results/can_ensemble_multiview.json) · [CAT and SuperADD settings](#7-comparison-with-released-cat-and-superadd) · [Anomalib experiment and scoring details](#13-testing-anomalib-on-can)
 
