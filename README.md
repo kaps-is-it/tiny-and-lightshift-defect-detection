@@ -18,6 +18,8 @@ The model looks at overlapping tiles at the photo’s original resolution. ResNe
 
 ## How my model compared
 
+Since MVTec publishes the dataset and builds industrial inspection software, I wanted to see how my detector stacked up against established models on MVTec’s own benchmark images.
+
 Every model below takes one photo per prediction. The project’s evaluator scored the maps on the same 162 public Can captures, including 135 under changed lighting. CAT and SuperADD use their released Can configurations. The Anomalib runs use 558 × 256 inputs, and their maps for good captures enter scoring at that smaller size.
 
 | Single-image model on public Can · AU-PRO up to 5% pixel FPR | Five changed lights | All six lights |
@@ -515,7 +517,7 @@ The comparison at the top uses the single-photo ensemble so every model gets the
 
 ### 13. Testing Anomalib on Can
 
-I tried Anomalib to see how far three standard configurations could get on the same Can images within the laptop’s memory budget. Anomalib is an open-source library that implements PatchCore, PaDiM, and STFPM. Its `MVTecAD2` data module loads the benchmark images published by MVTec. [Anomalib project](https://github.com/open-edge-platform/anomalib) · [MVTec AD 2 data module](https://anomalib.readthedocs.io/en/lib-v2.7.1/markdown/guides/reference/data/datamodules/image/mvtecad2.html) · [Experiment report and files](anomalib_testing/ANOMALIB_EXPERIMENT.md)
+HALCON is one of MVTec’s commercial machine-vision tools. For this experiment, I ran PatchCore, PaDiM, and STFPM from Anomalib, Intel’s open-source anomaly detection library. Its `MVTecAD2` data module let me run those three implementations on the same public Can images from MVTec. [MVTec HALCON](https://www.mvtec.com/products/halcon) · [Anomalib project](https://github.com/open-edge-platform/anomalib) · [MVTec AD 2 data module](https://anomalib.readthedocs.io/en/lib-v2.7.1/markdown/guides/reference/data/datamodules/image/mvtecad2.html) · [Experiment report and files](anomalib_testing/ANOMALIB_EXPERIMENT.md)
 
 #### How the runs were set up
 
