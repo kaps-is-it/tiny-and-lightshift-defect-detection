@@ -18,15 +18,18 @@ The model looks at overlapping tiles at the photo’s original resolution. ResNe
 
 ## How my model compared
 
-For a direct comparison, I ran the released CAT and SuperADD Can models on the same public images. Every model took one photo per prediction. The same evaluator scored all the maps on 135 captures from the five changed lights.
+Every model below takes one photo per prediction. The project’s evaluator scored the maps on the same 162 public Can captures, including 135 under changed lighting. CAT and SuperADD use their released Can configurations. The Anomalib runs use 558 × 256 inputs, and their maps for good captures enter scoring at that smaller size.
 
-| Single-image model on public Can | Localization AU-PRO up to 5% pixel FPR |
-| --- | ---: |
-| **My three-bank ensemble** | **66.62%** |
-| Released CAT checkpoint | 33.87% |
-| Released SuperADD reference bank | 4.91% |
+| Single-image model on public Can · AU-PRO up to 5% pixel FPR | Five changed lights | All six lights |
+| --- | ---: | ---: |
+| **My three-bank ensemble** | **66.62%** | **66.71%** |
+| Released CAT checkpoint | 33.87% | 34.86% |
+| Anomalib PatchCore | 6.83% | 7.30% |
+| Released SuperADD reference bank | 4.91% | 4.95% |
+| Anomalib PaDiM | 2.14% | 2.20% |
+| Anomalib STFPM | 2.08% | 2.09% |
 
-The ensemble’s single-image heatmap scored **20.23 percentage points higher than my original tiled baseline** on those same lights. [Ensemble results](results/can_ensemble_multiview.json) · [Matched baseline runs and settings](#7-comparison-with-released-cat-and-superadd)
+The ensemble’s single-image heatmap scored **20.23 percentage points higher than my original tiled baseline** on the five changed lights. PatchCore had the strongest localization of the three Anomalib runs. [Ensemble results](results/can_ensemble_multiview.json) · [CAT and SuperADD settings](#7-comparison-with-released-cat-and-superadd) · [Anomalib experiment and scoring details](#13-testing-anomalib-on-can)
 
 **Sheet Metal** gave me a different clue. On many missed parts, the heatmap already pointed near the flaw. Scoring those suspicious regions raised detections from **30 to 50 out of 75 defective captures** under changed lighting, with **three false rejects out of 20 good captures** in both runs. [How I traced the misses](#9-going-back-to-the-parts-i-missed)
 
@@ -34,7 +37,7 @@ The ensemble’s single-image heatmap scored **20.23 percentage points higher th
 
 If you’re curious how the model took shape, the full study is below. It follows the experiments from the first baseline to the missed images that gave me ideas for what to try next.
 
-**Jump to** [The data](#2-the-data-and-how-i-used-it) · [How I measured progress](#5-how-i-measured-progress) · [Experiments](#6-the-experiments-in-order) · [Leaderboard context](#8-where-the-website-benchmark-fits) · [Local dark contrast](#11-the-can-scratch-that-kept-me-working) · [Three banks and six views](#12-one-can-under-six-lights) · [Reproduce the study](#reproduce-the-study)
+**Jump to** [The data](#2-the-data-and-how-i-used-it) · [How I measured progress](#5-how-i-measured-progress) · [Experiments](#6-the-experiments-in-order) · [Leaderboard context](#8-where-the-website-benchmark-fits) · [Local dark contrast](#11-the-can-scratch-that-kept-me-working) · [Three banks and six views](#12-one-can-under-six-lights) · [Anomalib comparison](#13-testing-anomalib-on-can) · [Reproduce the study](#reproduce-the-study)
 
 ### 1. The problem I investigated
 
@@ -508,7 +511,59 @@ The transfer results are **single-view** scores averaged over **all available li
 
 Fabric and Sheet Metal showed the clearest transfer. Vial is why I wouldn’t pick the Can recipe for every product. Bottle from the original MVTec AD served as a separate pipeline check. The two-bank result there was 48.65%. [Native-fusion baselines](results/multiscale.json) · [Category runs](experiments/refinements/parameter_sweep.py) · [Fabric and Sheet Metal](experiments/refinements/category_transfer.py) · [Bottle check](experiments/refinements/bottle_transfer.py)
 
-The [matched comparison at the top](#how-my-model-compared) uses the single-photo ensemble so each model has the same input. The [reproduction steps below](#reproduce-the-study) run both versions and save the maps for the six-view figure. [Evaluation and scene averaging](local_contrast/multiview.py) · [Map construction](local_contrast/ensemble_maps.py)
+The comparison at the top uses the single-photo ensemble so every model gets the same number of photos per prediction. The reproduction steps run both ensemble versions and save the maps for the six-view figure. [Single-photo comparison](#how-my-model-compared) · [Reproduce the study](#reproduce-the-study) · [Evaluation and scene averaging](local_contrast/multiview.py) · [Map construction](local_contrast/ensemble_maps.py)
+
+### 13. Testing Anomalib on Can
+
+I tried Anomalib to see how far three standard configurations could get on the same Can images within the laptop’s memory budget. Anomalib is an open-source library that implements PatchCore, PaDiM, and STFPM. Its `MVTecAD2` data module loads the benchmark images published by MVTec. [Anomalib project](https://github.com/open-edge-platform/anomalib) · [MVTec AD 2 data module](https://anomalib.readthedocs.io/en/lib-v2.7.1/markdown/guides/reference/data/datamodules/image/mvtecad2.html) · [Experiment report and files](anomalib_testing/ANOMALIB_EXPERIMENT.md)
+
+#### How the runs were set up
+
+The runs used Anomalib `2.7.2.dev0` from source with Python 3.11, PyTorch, and Lightning on Windows. The RTX 5060 Laptop GPU ran in WDDM mode with 8 GiB of VRAM, and the laptop had 32 GB of system RAM. The Can split supplied **412 good training images** and **46 good validation images**, all under regular light. Each of the six test lights had **12 good and 15 defective captures**, for **72 good and 90 defective captures** in total. The lights were regular, overexposed, underexposed, and Shifts 1–3.
+
+All three runs used the default model settings and scored each photo independently. The preprocessor resized the native 2,232 × 1,024 images to **558 × 256 pixels**, preserving the aspect ratio and reducing each axis by a factor of four. Anomalib takes the size as `(height, width)`, so the reported runs use `(256, 558)`. The first attempt used `(560, 256)`, which produced a portrait-shaped input and was discarded. The runs used antialiased resizing, ImageNet normalization, training batches of 8, evaluation batches of 16, and 8 data-loader workers.
+
+| Model | Backbone and feature layers | Fit | Predict |
+| --- | --- | ---: | ---: |
+| PatchCore | Wide ResNet-50-2, layers 2–3, 10% coreset | 12,155 s (about 3 h 23 min) | 85 s |
+| PaDiM | ResNet-18, layers 1–3, 100 retained features per position | 58 s | 60 s |
+| STFPM | ResNet-18, layers 1–3, student–teacher checkpoint at epoch 130 | About 2 h 6 min | 65 s |
+
+PatchCore and PaDiM fitted their references in one epoch. Most of PatchCore’s fit time went into k-center greedy selection of **92,287 reference patches**, at about 7.8 selections per second. STFPM trained a student network. In this environment `Engine()` picked up Lightning’s 1,000-epoch default, so I stopped training and scored the saved checkpoint at epoch 130 (global step 6,812). Each STFPM epoch wrote a checkpoint of about 32 MiB. The project evaluator took another one to two minutes per model. These are timings for the recorded stages on this laptop. [Anomalib source build](https://github.com/open-edge-platform/anomalib/tree/3fd9805e1de959c13ad93a24f3f6fae9a7e920a4)
+
+#### How the predictions were scored
+
+1. The adapter read the fields on each `Engine.predict` batch object and turned them into per-image records. It matched predictions by their full dataset-relative paths because good and defective captures can share a filename. All three runs matched **162 of 162 captures**, with zero unmatched predictions.
+2. The project evaluator received the continuous `anomaly_map` returned by Anomalib. The default post-processor stayed enabled. For each defective capture the adapter read the annotation as a 2D grayscale mask and resized the score map bilinearly to the native mask shape, 1,024 × 2,232.
+3. The evaluator pooled background pixels within each light and weighted each eight-connected defect region equally. Its 4,096-bin threshold sweep integrated overlap up to a 5% pixel false-positive rate and divided the area by 0.05 to get normalized AU-PRO. The reported means weight the included lighting groups equally. Tiny-region overlap measures coverage at the 5% limit for regions occupying at most 0.01% of the source image. The evaluator’s default cutoff of 0.0 applies to the part-decision fields. [Metric implementation](local_contrast/evaluation.py) · [Per-light aggregation](local_contrast/benchmark.py)
+
+The adapter resized maps when a defect mask was present. The 72 good captures have no masks, so their maps contributed background pixels at 256 × 558. Each good capture in the native ensemble contributed sixteen times that pixel count. This changes the weighting of good-image background in the pooled false-positive rate. The scores below describe the recorded runs. A comparison on a common scoring grid would measure how much that weighting mattered.
+
+#### What scored best
+
+| Public Can configuration | AU-PRO, all six | AU-PRO, five changed lights | Regular-light AU-PRO | Worst-light AU-PRO | Tiny overlap, all six |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Three banks, six aligned photos per part | **67.53%** | **67.53%** | **67.53%** | **67.53%** | **81.82%** |
+| Three banks, one photo per prediction | **66.71%** | **66.62%** | **67.16%** | **65.26%** | **81.64%** |
+| Anomalib PatchCore, one resized photo | 7.30% | 6.83% | ≈9.7% | 4.42% | 9.09% |
+| Anomalib PaDiM, one resized photo | 2.20% | 2.14% | ≈2.5% | 1.78% | 4.69% |
+| Anomalib STFPM, one resized photo | 2.09% | 2.08% | ≈2.1% | 1.95% | 4.59% |
+
+PatchCore led the Anomalib runs. The single-photo ensemble scored **59.41 percentage points higher** than PatchCore across all six lights and **59.79 points higher** across the five changed lights, using the displayed scores. The Anomalib regular-light estimates come from subtracting five times the rounded changed-light mean from six times the rounded all-light mean. The ensemble’s regular-light scores come directly from the saved results. The six-photo version averages the six views into one map per scene using the same banks (seeds 42, 7, and 99 and a local-contrast denominator offset of 1.0). [Saved ensemble results](results/can_ensemble_multiview.json)
+
+#### Why resolution was worth checking
+
+An audit of the 90 defective masks found **108 four-connected regions** of at least four pixels. The median area was **100.5 pixels** (0.0044% of a frame), and the median equivalent diameter was **11.3 pixels**. The 10th to 90th percentile range was 9–409 pixels in area and 3.4–22.8 pixels in diameter. The largest region was 446 pixels. About **28%** of regions were smaller than 8 pixels in diameter, **72%** were smaller than 16, and all were smaller than 32.
+
+At the resized input, PatchCore’s 32 × 70 feature grid represents roughly **32 × 32 native pixels per location**. The finest 64 × 139 feature grid in PaDiM and STFPM represents about **16 × 16**. The median defect is narrower than either footprint. Upsampling lines up the heatmap with the mask after the input resize has already removed fine detail. The native Can model keeps the original detail with overlapping tiles and adds a **25 × 25 local dark-contrast signal** alongside its deep features.
+
+The default Anomalib runs also differed from the Can ensemble in how they handled lighting. They saw regular light during fitting and processed the five changed lights one photo at a time. The ensemble was tuned on these public scenes, and its six-photo version can reinforce responses that stay in the same place across views. Input resolution, feature choice, tuning, view count, and the scoring-grid difference all matter when reading the gap. The earlier full-frame versus tile test is the controlled experiment for the effect of resizing. [Resolution test](#the-first-can-resolution-test) · [Six-view experiment](#12-one-can-under-six-lights)
+
+#### What a native-resolution run would cost
+
+A full-frame attempt at native size with a batch of 32 ran out of GPU memory. At 558 × 256, the 32 × 70 PatchCore feature grid across 412 training images gives **922,880 embeddings** of 1,536 float32 features. That is roughly **5.67 GB before coreset selection** and **0.57 GB after**. At native size the grid would sample every eight pixels, giving 128 × 279 locations per photo and about **90.4 GB** of embeddings before selection. For PaDiM, a single native covariance tensor across **142,848 positions** and **100 retained features** would take about **5.71 GB**, before storing training embeddings or inverting the covariance matrices. STFPM trains a student network directly, with **16 times as many input pixels** per pass at full size.
+
+A useful follow-up would be a tiled PatchCore run with a smaller bank and native-size scoring maps for every capture. Tiling would keep more of the scratch visible within each feature cell. Another option would test intermediate sizes such as 698 × 320 or 838 × 384 with a reduced bank. Further tests could vary the training light, average aligned views at inference, or set a fixed epoch budget for STFPM. The reported Anomalib localization scores come from the completed 558 × 256 runs.
 
 ## Reproduce the study
 
@@ -534,6 +589,7 @@ The evaluation saves `public_can.json` with the per-light results and `can_003.n
 | [Baseline experiments](experiments/baselines/) | Reproduce the native inspector, released CAT and SuperADD runs, and the studies on decision rules, lighting, and adaptation. |
 | [Detail experiments](experiments/detail/) | Test pixel-level detail signals, feature banks, and synthetic defects. |
 | [Refinement experiments](experiments/refinements/) | Reproduce the seed sweeps, transfer studies, and map and decision experiments. |
+| [Anomalib comparison](anomalib_testing/) | Run the Anomalib models and find the recorded logs, checkpoints, and preview images. |
 | [Measurements and figures](results/) | Saved reports, per-light scores, and examples from actual runs. |
 
 ### Run the earlier inspectors and experiments
@@ -618,6 +674,17 @@ python -m experiments.baselines.make_project_visuals
 ```
 
 The private export includes native-resolution maps and binary masks for all **4,090 private images**. The local 19.88 GiB archive passed MVTec’s supplied format checker. It contains 2,045 float16 score maps and 2,045 binary masks for each private split. The archive is a local engineering artifact, with its configuration and SHA-256 recorded in the repository. [Archive manifest](results/benchmark_export.json)
+
+### Anomalib run notes
+
+Use the Anomalib source build listed in the comparison and place the dataset under `data/mvtec_ad_2/`. Run these commands from the repository root. The fit runner includes a pandas 3 compatibility fix for missing mask paths on good samples. New runs save their outputs under `artifacts/anomalib_testing/`. [Anomalib setup and settings](#13-testing-anomalib-on-can) · [Recorded logs](anomalib_testing/logs/)
+
+```sh
+python -m anomalib_testing.research_extra12
+python -m anomalib_testing.research_stfpm_eval
+```
+
+The first command fits all three models. In the recorded run, STFPM training was stopped after saving epoch 130. The second command works on its own and scores that saved checkpoint. The three recorded checkpoints use Git LFS. If the checkout has pointer files, run `git lfs pull` before loading the weights. The `all6`, `changed5`, `worst`, and `tiny` fields in the original logs are the values used above. [Recorded checkpoints and previews](anomalib_testing/results/) · [STFPM checkpoint](anomalib_testing/results/Stfpm/MVTecAD2/can/v0/weights/lightning/model.ckpt)
 
 ## What I learned
 
